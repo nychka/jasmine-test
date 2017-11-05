@@ -1,0 +1,293 @@
+/**
+ * Manifesto to any additional service, who wants to cooperate with payment block
+ *
+ * @author Nychka Yaroslav
+ * @email y.nychka@tickets.com.ua
+ * @date 21 September 2017
+ * @version 1.0.3
+ *
+ * 1. MUST implement all functionality defined in this interface
+ *
+ * 2. MUST notify about any cost changes using notify()
+ *
+ * 3. MUST put initialization logic into init() - it will be called as needed
+ *
+ * 4. MUST work through ServiceManager only
+ *
+ */
+function ServiceInterface() {
+    if(typeof(this.cost) == 'undefined') this.cost = 0;
+};
+
+ServiceInterface.prototype.cost = 0;
+
+ServiceInterface.prototype.enablePriceInCabinet = false;
+
+ServiceInterface.prototype.getId = function()
+{
+    return this.id;
+};
+
+ServiceInterface.prototype.isEnabledPriceInCabinet = function()
+{
+  return this.enabledPriceInCabinet;
+};
+
+ServiceInterface.prototype.getCost = function()
+{
+    if(isNaN(this.cost) || this.cost === undefined){
+        throw new ServiceInterfaceCostIsNotNumberException(this);
+    }
+
+    return this.cost;
+};
+
+ServiceInterface.prototype.setCost = function(cost)
+{
+    this.cost = cost;
+    this.notify();
+};
+
+ServiceInterface.prototype.allowNotify = function(allow)
+{
+    this.allowNotifications = allow;
+};
+
+ServiceInterface.prototype.canNotify = function()
+{
+    return this.allowNotifications;
+};
+
+ServiceInterface.prototype.notify = function()
+{
+    if(! this.canNotify()) return false;
+
+    this.allowNotify(false);
+    this.getManager().update(this);
+};
+
+ServiceInterface.prototype.getManager = function()
+{
+    return this.manager;
+};
+
+ServiceInterface.prototype.setManager = function(manager)
+{
+    this.manager = manager;
+};
+
+ServiceInterface.prototype.init = function()
+{
+    throw new ServiceInterfaceMethodNotImplementedException(this, 'init');
+};
+
+ServiceInterface.prototype.changeCurrency = function(currency)
+{
+    throw new ServiceInterfaceMethodNotImplementedException(this, 'changeCurrency');
+};
+
+ServiceInterface.prototype.toggleService = function(bool)
+{
+    throw new ServiceInterfaceMethodNotImplementedException(this, 'toggleService');
+};
+ServiceInterface.prototype.isIgnored = function()
+{
+    return $.hub.dispatcher.getController('separate') && $.hub.dispatcher.getController('separate').getIgnoredAdditionalServices().indexOf(this.getId()) >= 0;
+};
+
+ServiceInterface.prototype.getContainer = function()
+{
+  return this.mainWrapp;
+};
+
+ServiceInterface.prototype.isHidden = function()
+{
+  return this.mainWrapp.length && this.mainWrapp.is(':hidden');
+};
+
+function ServiceInterfaceMethodNotImplementedException(service, method)
+{
+    this.service = (typeof service.getId === 'function') ? service.getId() : 'nameless';
+    this.message = 'service MUST implement method: ' + method + ' according to manifesto';
+};
+
+function ServiceInterfaceCostIsNotNumberException(service)
+{
+    this.service = (typeof service.getId === 'function') ? service.getId() : 'nameless';
+    this.message = 'service\'s cost is not a number';
+};
+
+
+function ServiceInterfaceNotImplementedException(service)
+{
+    this.service = (typeof service.getId === 'function') ? service.getId() : 'nameless';
+    this.message = 'service MUST implement ServiceInterface according to manifesto';
+};
+
+function ServiceInterfaceDeactivatedException(service, message)
+{
+    this.service = (typeof service.getId === 'function') ? service.getId() : 'nameless';
+    this.message = message;
+};
+
+function ServiceManager()
+{
+    this.services = {};
+    this.length = 0;
+
+    this.deactivate = function(service)
+    {
+        if(service.mainWrapp && service.mainWrapp.length && typeof service.mainWrapp.hide == 'function'){
+            service.mainWrapp.hide();
+            throw new ServiceInterfaceDeactivatedException(service, 'service was successfully deactivated');
+        }else{
+            throw new ServiceInterfaceDeactivatedException(service, 'service was not deactivated!');
+        }
+    };
+
+    this.add = function(service)
+    {
+        if(! this.canAdd(service)) return false;
+
+        var id = service.getId();
+        this.services[id] = service;
+        service.setManager(this);
+
+        $.hub.publish('service_added', {
+            data: { service: service },
+            message: 'service ' + id + ' was added to manager'
+        });
+
+        return this.count();
+    };
+
+    this.check = function(service)
+    {
+        if (!(service instanceof ServiceInterface)) throw new ServiceInterfaceNotImplementedException(service);
+        if (isNaN(service.cost) || service.cost == undefined) throw new ServiceInterfaceCostIsNotNumberException(service);
+    };
+
+    this.canAdd  = function(service)
+    {
+        try {
+            this.check(service);
+        }catch(e){
+            console.error(e);
+            this.deactivate(service);
+
+            return false;
+        }
+
+        return true;
+    };
+
+    this.update = function(service)
+    {
+        var cost = service.getCost();
+
+        $.hub.publish('service_price_changed', {
+            data:  { service: service, cost: cost },
+            message: 'service '+ service.getId() + ' changed price to ' + cost
+        });
+    };
+
+    this.reload = function()
+    {
+        this.getServices(function(service){
+            service.reloadCost();
+        });
+    };
+
+    this.isCabinet = function()
+    {
+        return window.cur_domain == 'my';
+    };
+
+    this.getServices = function(fn, options)
+    {
+        if(! (fn && typeof fn === 'function')) return this.services;
+
+        for(var i in this.services){
+            var service = this.services[i];
+
+            if(options && this.isCabinet() && ! service.isEnabledPriceInCabinet()) continue;
+
+            if(options && options.onlyVisibleOnPage){
+                if(service.isIgnored()) continue;
+            }
+
+            if(options && options.onlyIncludedInTotalPrice){
+                if(! this.canServiceBeIncludedInTotalPrice(service.getId())) continue;
+            }
+
+            fn.call(this, service);
+        }
+    };
+
+    this.canServiceBeIncludedInTotalPrice = function(id)
+    {
+        var list = this.getListIncludedInTotalPrice();
+
+        return list.indexOf(id) >= 0;
+    };
+
+    this.run = function()
+    {
+        this.getServices(function(service){
+            service.init();
+        });
+
+        $.hub.publish('service_manager_ran', {data:  {}, message: 'manager initialized '+ this.count() +' services'});
+
+        $.hub.subscribe('currency_changed', function(envelope){
+            $.hub.dispatcher.getManager('service').getServices(function(service){
+                service.changeCurrency(envelope.data.currency);
+            });
+        });
+    };
+
+    this.getCost = function(onlyIncludedInTotalPrice)
+    {
+        var cost = 0;
+
+        this.getServices(function(service){
+            cost += service.getCost();
+        }, {
+        }, {
+            onlyIncludedInTotalPrice: onlyIncludedInTotalPrice,
+            onlyVisibleOnPage: true
+        });
+
+        return cost;
+    };
+
+    /**
+     * список додаткових сервісів, які входять в обрахунок загальної ціни квитка
+     */
+    this.getListIncludedInTotalPrice = function()
+    {
+        var el = $('#additional_services_in_main_price');
+
+        return el.length && el.val().length ? JSON.parse(el.val()) : [];
+    };
+
+    this.findById = function(id)
+    {
+        return this.services.hasOwnProperty(id) ? this.services[id] : false;
+    };
+
+    this.count = function()
+    {
+        this.length = Object.keys(this.services).length;
+
+        return this.length;
+    };
+};
+
+(function($){
+    if(! $.hasOwnProperty('hub')){ throw new Error('Hub must be loaded first!'); }
+
+    $.hub.dispatcher.addManager('service', new ServiceManager());
+
+})(jQuery);
+
