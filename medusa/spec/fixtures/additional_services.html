@@ -305,7 +305,7 @@
     </div>
 </section>
 <script type="text/javascript">
-    var canUseServiceInterface = function(){ return $.hub && $.hub.dispatcher.getManager('service'); };
+    var canUseServiceInterface = function(){ return Hub && Hub.dispatcher.getManager('service'); };
 
     var AncillaryServices = function(){
         this.id = 'ancillary';
@@ -635,7 +635,7 @@
     ancillaryServicesObj = new AncillaryServices;
 
     if(canUseServiceInterface()){
-        $.hub.dispatcher.getManager('service').add(ancillaryServicesObj);
+        Hub.dispatcher.getManager('service').add(ancillaryServicesObj);
     }else{
         PriceCalculationObj.addService(ancillaryServicesObj);
         ancillaryServicesObj.init();
@@ -660,7 +660,7 @@
                 var text = self.services_grouppes[i] + ' ' + pass.toLowerCase();
                 var id = 'ancillary_' +  i.toLowerCase() + '_pass_' + n;
                 html = '<div class="col-2 col-xl-4 col-l-2 col-m-12""><a href="#" class="popup__table-link" data-link="'+i.toLowerCase()+'" onclick="open_w(this,'+k+')">Редактировать</a></div>';
-                $.hub.dispatcher.getManager('payment').additionalPricesSet(id, text, v);
+                Hub.dispatcher.getManager('payment').additionalPricesSet(id, text, v);
 
                 if(!total[i.toLowerCase()]) total[i.toLowerCase()] = 0;
                 total[i.toLowerCase()] += v;
@@ -675,7 +675,7 @@
 </script>
 <!-- INSURANCE -->
 <script type="text/javascript">
-    var canUseServiceInterface = function(){ return $.hub && $.hub.getManager('service'); };
+    var canUseServiceInterface = function(){ return Hub && Hub.getManager('service'); };
     var InsuranceWithAvia = function(){
         this.id = 'insurance';
         this.cost = 0;
@@ -831,8 +831,8 @@
 
         $('.booking_price_button').find('ins').hide();
         var currency = default_currency;
-        if($.hub.getManager('payment')){
-            currency = $.hub.getManager('payment').getActivePaymentSystem().getCurrency();
+        if(Hub.getManager('payment')){
+            currency = Hub.getManager('payment').getActivePaymentSystem().getCurrency();
         }
 //    this.changeCurrency(currency);
         var provider_packets = {}
@@ -893,7 +893,7 @@
         }
         if(!_self.is_booking) {
             try {
-                $.hub.getManager('payment').additionalPricesSet('ins_with_avia', 'Стоимость страховки', price)
+                Hub.getManager('payment').additionalPricesSet('ins_with_avia', 'Стоимость страховки', price)
             }
             catch (e) {
                 token = $.cookie("extended_user_token").replace(/[^0-9]/gi,'');
@@ -1103,7 +1103,7 @@
     $(function(){
         insWithAviaObj = new InsuranceWithAvia;
         if(canUseServiceInterface()){
-            $.hub.getManager('service').add(insWithAviaObj);
+            Hub.getManager('service').add(insWithAviaObj);
         }else{
             PriceCalculationObj.addService(insWithAviaObj);
             insWithAviaObj.init();
@@ -1196,7 +1196,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    var canUseServiceInterface = function(){ return $.hub && $.hub.getManager('service') && typeof ServiceInterface === 'function' };
+    var canUseServiceInterface = function(){ return Hub && Hub.getManager('service') && typeof ServiceInterface === 'function' };
 
     var AeroexpressService = function() {
         this.id = "aeroexpress_service";
@@ -1421,7 +1421,7 @@
 
         aeroexpressServicesObj = new AeroexpressService;
         if(canUseServiceInterface()){
-            $.hub.getManager('service').add(aeroexpressServicesObj);
+            Hub.getManager('service').add(aeroexpressServicesObj);
         }else{
             aeroexpressServicesObj.init();
             PriceCalculationObj.addService(aeroexpressServicesObj);

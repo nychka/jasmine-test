@@ -15,9 +15,7 @@
  * 4. MUST work through ServiceManager only
  *
  */
-function ServiceInterface() {
-    if(typeof(this.cost) == 'undefined') this.cost = 0;
-};
+function ServiceInterface() {/*v1.0.3 by 11.10.2017*/};
 
 ServiceInterface.prototype.cost = 0;
 
@@ -92,7 +90,7 @@ ServiceInterface.prototype.toggleService = function(bool)
 };
 ServiceInterface.prototype.isIgnored = function()
 {
-    return $.hub.dispatcher.getController('separate') && $.hub.dispatcher.getController('separate').getIgnoredAdditionalServices().indexOf(this.getId()) >= 0;
+    return Hub.dispatcher.getController('separate') && Hub.dispatcher.getController('separate').getIgnoredAdditionalServices().indexOf(this.getId()) >= 0;
 };
 
 ServiceInterface.prototype.getContainer = function()
@@ -139,9 +137,9 @@ function ServiceManager()
     {
         if(service.mainWrapp && service.mainWrapp.length && typeof service.mainWrapp.hide == 'function'){
             service.mainWrapp.hide();
-            throw new ServiceInterfaceDeactivatedException(service, 'service was successfully deactivated');
+            //throw new ServiceInterfaceDeactivatedException(service, 'service was successfully deactivated');
         }else{
-            throw new ServiceInterfaceDeactivatedException(service, 'service was not deactivated!');
+            //throw new ServiceInterfaceDeactivatedException(service, 'service was not deactivated!');
         }
     };
 
@@ -153,7 +151,7 @@ function ServiceManager()
         this.services[id] = service;
         service.setManager(this);
 
-        $.hub.publish('service_added', {
+        Hub.publish('service_added', {
             data: { service: service },
             message: 'service ' + id + ' was added to manager'
         });
@@ -185,7 +183,7 @@ function ServiceManager()
     {
         var cost = service.getCost();
 
-        $.hub.publish('service_price_changed', {
+        Hub.publish('service_price_changed', {
             data:  { service: service, cost: cost },
             message: 'service '+ service.getId() + ' changed price to ' + cost
         });
@@ -237,10 +235,10 @@ function ServiceManager()
             service.init();
         });
 
-        $.hub.publish('service_manager_ran', {data:  {}, message: 'manager initialized '+ this.count() +' services'});
+        Hub.publish('service_manager_ran', {data:  {}, message: 'manager initialized '+ this.count() +' services'});
 
-        $.hub.subscribe('currency_changed', function(envelope){
-            $.hub.dispatcher.getManager('service').getServices(function(service){
+        Hub.subscribe('currency_changed', function(envelope){
+            Hub.dispatcher.getManager('service').getServices(function(service){
                 service.changeCurrency(envelope.data.currency);
             });
         });
@@ -285,9 +283,9 @@ function ServiceManager()
 };
 
 (function($){
-    if(! $.hasOwnProperty('hub')){ throw new Error('Hub must be loaded first!'); }
+    if(! window.hasOwnProperty('Hub')){ throw new Error('Hub must be loaded first!'); }
 
-    $.hub.dispatcher.addManager('service', new ServiceManager());
+    Hub.dispatcher.addManager('service', new ServiceManager());
 
 })(jQuery);
 

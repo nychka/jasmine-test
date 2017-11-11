@@ -33,7 +33,7 @@ function PaymentDecorator(manager) {
   };
 
   this.getPaymentSystemBlock = function (id) {
-    if (!this.system_block[id]) $.hub.error('Decoration payment system "' + id + '" doesn\'t exist');
+    if (!this.system_block[id]) Hub.error('Decoration payment system "' + id + '" doesn\'t exist');
 
     return this.system_block[id];
   };
@@ -55,7 +55,7 @@ function PaymentDecorator(manager) {
   };
 
   this.getGroupBlock = function (group) {
-    if (!this.group_block[group]) $.hub.error('Decoration payment group "' + group + '" doesn\'t exist');
+    if (!this.group_block[group]) Hub.error('Decoration payment group "' + group + '" doesn\'t exist');
 
     return this.group_block[group];
   };

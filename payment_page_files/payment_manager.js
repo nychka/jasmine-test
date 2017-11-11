@@ -25,7 +25,7 @@ function PaymentManager() {
         message: 'payment manager is ready to work. Active payment system is defined as well',
         data: { id: this.getActivePaymentSystem().getId() }
     };
-    $.hub.publish(envelope.event, envelope);
+    Hub.publish(envelope.event, envelope);
   };
 
   this.init = function () {
@@ -53,8 +53,8 @@ function PaymentManager() {
     this.isDirectAsService = this.initDirectAsService();
     this.default_active = active;
 
-    $.hub.subscribe('bonus_use_changed', this.reloadPrices.bind(self));
-    $.hub.subscribe('service_price_changed', this.reloadPrices.bind(self));
+    Hub.subscribe('bonus_use_changed', this.reloadPrices.bind(self));
+    Hub.subscribe('service_price_changed', this.reloadPrices.bind(self));
   };
 
   this.getTicketsCommission = function () {
@@ -66,11 +66,11 @@ function PaymentManager() {
   };
 
   this.getMarkupsManager = function () {
-    return $.hub.dispatcher.getManager('markup');
+    return Hub.dispatcher.getManager('markup');
   };
 
   this.getBonusManager = function () {
-    return $.hub.dispatcher.getManager('bonus');
+    return Hub.dispatcher.getManager('bonus');
   };
 
   this.getDecimalPrecision = function(currency){
@@ -117,7 +117,7 @@ function PaymentManager() {
     if(this.paymentGroups[group]){
       this.setActivePaymentSystem(this.paymentGroups[group].getActivePaymentSystemId(defaultGroup));
     }else{
-      $.hub.error('Payment group "'+group+'" doesn\'t exist');
+      Hub.error('Payment group "'+group+'" doesn\'t exist');
     }
   };
 
@@ -145,7 +145,7 @@ function PaymentManager() {
           message: 'payment system changed from ' + ((old !== null) ? old.getId() : 'null') + ' to ' + id,
           data: {id: id, default_group: ps.getDefaultGroupName()}
         };
-        $.hub.publish(envelope.event, envelope);
+        Hub.publish(envelope.event, envelope);
 
         if(this.oldCurrency !== ps.getCurrency()){
           var envelope = {
@@ -153,7 +153,7 @@ function PaymentManager() {
             message: 'currency changed from ' + this.oldCurrency + ' ' + ' to ' + ps.getCurrency(),
             data: { currency: ps.getCurrency() }
           };
-          $.hub.publish(envelope.event, envelope);
+          Hub.publish(envelope.event, envelope);
         }
       }
 
@@ -168,14 +168,14 @@ function PaymentManager() {
             message: 'payment group changed from '+((old !== null) ? old.getGroupName() : 'null')+' to '+ps.getGroupName(),
             data: { name: ps.getGroupName() }
           };
-          $.hub.publish(envelope.event, envelope);
+          Hub.publish(envelope.event, envelope);
         }
         this.reloadPrices();
       } else {
-        $.hub.error('Payment system "' + id + '" doesn\'t have group attached to.');
+        Hub.error('Payment system "' + id + '" doesn\'t have group attached to.');
       }
     } else {
-      $.hub.error('Payment system "'+id+'" doesn\'t exist');
+      Hub.error('Payment system "'+id+'" doesn\'t exist');
     }
   };
 
@@ -191,14 +191,14 @@ function PaymentManager() {
   this.getBasePrice = function(except){
     var paymentSystem = this.getActivePaymentSystem();
     // Default price
-    var cost = $.hub.priceLog.set('ticket_base_price',paymentSystem.getDefaultTopay(),'Get default payment system price');
+    var cost = Hub.priceLog.set('ticket_base_price',paymentSystem.getDefaultTopay(),'Get default payment system price');
     // + main additional services
     if(!except || except.indexOf("services") < 0){
-      cost = $.hub.priceLog.add('ticket_base_price',this.getAdditionalServicesCost(true),'Add calculating additional services cost');
+      cost = Hub.priceLog.add('ticket_base_price',this.getAdditionalServicesCost(true),'Add calculating additional services cost');
     }
     // + markups
     if((!except || except.indexOf("markups") < 0) && paymentSystem.hasMarkups()) {
-      cost = $.hub.priceLog.add('ticket_base_price',this.getMarkupsManager().getCurrentMarkupPrice(paymentSystem.getId()),'Add markup price');
+      cost = Hub.priceLog.add('ticket_base_price',this.getMarkupsManager().getCurrentMarkupPrice(paymentSystem.getId()),'Add markup price');
     }
     // + bonuses
     // if((!except || except.indexOf("bonuses") < 0) && this.getBonusManager()) {
@@ -297,7 +297,7 @@ function PaymentManager() {
 
     var paymentSystem = this.getActivePaymentSystem(),
         currency = paymentSystem.getCurrency(),
-        cost = $.hub.priceLog.set('ticket_full_price',this.getBasePrice(),'Get base price'), // завжди отримуємо ціну у валюті сайту
+        cost = Hub.priceLog.set('ticket_full_price',this.getBasePrice(),'Get base price'), // завжди отримуємо ціну у валюті сайту
         clear_cost = cost;
 
     // Need details about "avia_sub_total"
@@ -309,12 +309,12 @@ function PaymentManager() {
 
     if (this.getBonusManager()) {
       var rate = paymentSystem.getRate();
-      cost = $.hub.priceLog.add('ticket_full_price',this.getBonusManager().calculateBonus(cost / rate) * rate,"Use bonuses");
+      cost = Hub.priceLog.add('ticket_full_price',this.getBonusManager().calculateBonus(cost / rate) * rate,"Use bonuses");
     }
 
-    if ($.hub.dispatcher.getManager('service')) {
+    if (Hub.dispatcher.getManager('service')) {
       // service.reloadCost();
-      cost = $.hub.priceLog.add('ticket_full_price',this.getAdditionalServicesCost() - this.getAdditionalServicesCost(true),"Add other additional services prices");
+      cost = Hub.priceLog.add('ticket_full_price',this.getAdditionalServicesCost() - this.getAdditionalServicesCost(true),"Add other additional services prices");
     }
 
     // NEED TO REWORK -- CHANGE PRICE IN AVIA CABINET OLD VERSION
@@ -340,7 +340,7 @@ function PaymentManager() {
         message: 'price changed from ' + this.oldPrice + ' ' + this.oldCurrency + ' to ' + cost + ' ' + currency,
         data: {price: cost, currency: currency, rate: paymentSystem.getRate()}
       };
-      $.hub.publish(envelope.event, envelope);
+      Hub.publish(envelope.event, envelope);
     }
     this.oldPrice = cost;
     this.oldCurrency = currency;
@@ -373,7 +373,7 @@ function PaymentManager() {
   };
 
   this.getGroupByName = function (group) {
-    if(!this.paymentGroups[group]) $.hub.error('Payment group "'+group+'" doesn\'t exist');
+    if(!this.paymentGroups[group]) Hub.error('Payment group "'+group+'" doesn\'t exist');
 
     return this.paymentGroups[group];
   };
@@ -395,7 +395,7 @@ function PaymentManager() {
   };
 
   this.getPaymentSystemById = function (id) {
-    if(!this.paymentSystems[id]) $.hub.error('Payment system "'+id+'" doesn\'t exist');
+    if(!this.paymentSystems[id]) Hub.error('Payment system "'+id+'" doesn\'t exist');
 
     return this.paymentSystems[id];
   };
@@ -431,11 +431,11 @@ function PaymentManager() {
   // return price of additional services
   // if "commonServicesOnly" == "TRUE" will return only common services price, if "FALSE" or undefined - the other's
   this.getAdditionalServicesCost = function(commonServicesOnly){
-   return $.hub.dispatcher.getManager('service') ? $.hub.dispatcher.getManager('service').getCost(commonServicesOnly) : 0;
+   return Hub.dispatcher.getManager('service') ? Hub.dispatcher.getManager('service').getCost(commonServicesOnly) : 0;
   };
 }
 
-$.hub.subscribe('archive_initialized', function(){
-    $.hub.logger.count('new PaymentManager()');
-    $.hub.dispatcher.addManager('payment', new PaymentManager());
+Hub.subscribe('archive_initialized', function(){
+    Hub.logger.count('new PaymentManager()');
+    Hub.dispatcher.addManager('payment', new PaymentManager());
 });

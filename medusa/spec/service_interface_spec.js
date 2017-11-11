@@ -1,20 +1,9 @@
 describe('ServiceInterface', function(){
     var serviceManager, service;
 
-    function FooService(){
-        this.id = 'foo_service';
-        this.mainWrapp = $.hub.dispatcher.getManager('service').findById('ancillary').mainWrapp;
-        ServiceInterface.call(this);
-    }
-
-    FooService.prototype = Object.create(ServiceInterface.prototype);
-    FooService.prototype.constructor = FooService;
-    FooService.prototype.changeCurrency = function(currency){ this.currency = currency; };
-    FooService.prototype.toggleService = function(bool){ bool ? this.mainWrapp.show() : this.mainWrapp.hide(); };
-
     beforeEach(function(){
         serviceManager = new ServiceManager();
-        service = new FooService();
+        service = servant.getInstance();
         service.setManager(serviceManager);
     });
 
@@ -52,7 +41,7 @@ describe('ServiceInterface', function(){
 
     describe('changeCurrency', function(){
         it('when has not been implemented, throws error', function() {
-            delete FooService.prototype.changeCurrency;
+            servant.removeMethod('changeCurrency');
 
             expect(function () {
                 service.changeCurrency('USD')
@@ -98,7 +87,7 @@ describe('ServiceInterface', function(){
 
     describe('init', function(){
        it('when has not been implemented, throws error', function(){
-          delete FooService.prototype.init;
+          servant.removeMethod('init');
 
           expect(function(){
               service.init();
@@ -120,7 +109,7 @@ describe('ServiceInterface', function(){
         });
 
         it('when has not been implemented, throws error', function(){
-            delete FooService.prototype.toggleService;
+            servant.removeMethod('toggleService');
 
             expect(function(){
                 service.toggleService();

@@ -94,7 +94,7 @@ function PaymentCard(settings){
     this.debug = function(message)
     {
         if(window.time_to_debug){
-            $.hub.log(message);
+            Hub.log(message);
         }
     };
     this.operate = function(e){
@@ -294,7 +294,7 @@ function PaymentCard(settings){
             message: 'card state transits from: ' + previous_state + ' to: ' + state,
             data: { previous_state: previous_state, current_state: state }
         };
-        $.hub.publish(envelope.event, envelope);
+        Hub.publish(envelope.event, envelope);
         var state = this.getState(state);
         var context = this.getContext();
         state.handle(context);
@@ -337,7 +337,7 @@ function PaymentCard(settings){
         if(this.default.hasOwnProperty(key) && this.default.key == null){
             this.default[key] = value;
         }else{
-            $.hub.warn('You are trying to change default value from: ' + this.default.key + ' to: ' + value);
+            Hub.warn('You are trying to change default value from: ' + this.default.key + ' to: ' + value);
         }
     };
     this.getDefaultValue = function(key)
@@ -367,7 +367,7 @@ function PaymentCard(settings){
             data: { card_type: card_type }
         };
 
-        $.hub.publish(envelope.event, envelope);
+        Hub.publish(envelope.event, envelope);
         this.currentCardType = type;
     };
     this.getCardTypeById = function(id)

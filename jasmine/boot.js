@@ -121,8 +121,8 @@
       htmlReporter.initialize();
       env.execute();
   };
-  if(window.jQuery && $.hasOwnProperty('hub')){
-    $.hub.subscribe('payment_controller_initialized', initializeJasmine, window);
+  if(window.jQuery && window.hasOwnProperty('Hub')){
+    Hub.subscribe('payment_controller_initialized', initializeJasmine, window);
   }else{
     initializeJasmine();
   }

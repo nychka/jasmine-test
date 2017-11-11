@@ -44,8 +44,8 @@ function Promocodes(){
 
   //метод для оновлення даних в блоці зі всіма складовими ціни
   this.updatePriceBlock = function(){
-    if(this.usePromotionChecked() && typeof $.hub.dispatcher.getManager('payment') != "undefined"){
-      $.hub.dispatcher.getManager('payment').additionalPricesSet('promocodes', $('#up_ad_text_js').data('promocodes'), -this.realPromotionCost.toFixed(2));
+    if(this.usePromotionChecked() && typeof Hub.dispatcher.getManager('payment') != "undefined"){
+      Hub.dispatcher.getManager('payment').additionalPricesSet('promocodes', $('#up_ad_text_js').data('promocodes'), -this.realPromotionCost.toFixed(2));
     }
   };
 
@@ -60,8 +60,8 @@ function Promocodes(){
 
   //оновлення ціни біля кнопки Оплатити
   this.reload = function(){
-    if($.hub && $.hub.dispatcher.getManager('payment')){
-      $.hub.dispatcher.getManager('payment').reloadPrices();
+    if(Hub && Hub.dispatcher.getManager('payment')){
+      Hub.dispatcher.getManager('payment').reloadPrices();
     } else if(typeof $('.js-one_offer').controller() != "undefined"){
       $('.js-one_offer').controller().reloadPrice();
     }
@@ -170,7 +170,7 @@ function Promocodes(){
             input.removeClass('error').after(promoValid);
             obj.reloadPromotionInfo(response.details.amount, response.details.percentage, true, true);
 
-            if($.hub) $.hub.publish('promo_code_used', { data: { use: true, amount: response.details.amount }, message: 'use promocode'});
+            if(Hub) Hub.publish('promo_code_used', { data: { use: true, amount: response.details.amount }, message: 'use promocode'});
           } else {
             promoError = promoError.replace("%error_msg%", response.msg);
             input.addClass('error').after(promoError).after(promoBtnClear);
@@ -224,7 +224,7 @@ $(document).delegate('[name=use_promocode]', 'change', function(ev){
   promocodes.promocode_value = "";
   var promoTextInput = $(ev.target).closest('.section-promocode').find('.js-promocode-input');
   promocodes.checkPromocodeValue(promoTextInput);
-  if(! checked_status && $.hub) $.hub.publish('promo_code_used', { data: { use: checked_status }, message: 'fix this'});
+  if(! checked_status && Hub) Hub.publish('promo_code_used', { data: { use: checked_status }, message: 'fix this'});
 
   checkboxes.each(function(i, cur_cbox){
     $(cur_cbox).closest('.js-section-additional').toggleClass('active').siblings(".js-section-additional").toggleClass('disabled');

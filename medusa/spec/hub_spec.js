@@ -1,18 +1,19 @@
 describe('Hub', function(){
-    var extensions = $.hub.getExtensions();
+    var extensions = Hub.getExtensions();
+    var hub;
 
     beforeEach(function(){
-        $.extend({ jhub: new Hub() });
-        $.jhub.extend('logger', extensions.logger);
+        hub = new Hub.constructor();
+        hub.extend('logger', extensions.logger);
     });
 
     describe('extend', function(){
         it('extend by object', function(){
             var extension = { foo: 42 };
 
-            $.jhub.extend('bar', extension);
+            hub.extend('bar', extension);
 
-            expect($.jhub.bar).toEqual(extension);
+            expect(hub.bar).toEqual(extension);
         });
 
         it('extend by function', function(){
@@ -20,9 +21,9 @@ describe('Hub', function(){
                 this.foo = 42;
             };
 
-            $.jhub.extend('bar', extension);
+            hub.extend('bar', extension);
 
-            expect($.jhub.bar).toEqual(new extension());
+            expect(hub.bar).toEqual(new extension());
         });
 
         it('get all available extensions', function(){
@@ -30,51 +31,51 @@ describe('Hub', function(){
                 this.foo = 42;
             };
 
-            $.jhub.extend('foo', extension);
+            hub.extend('foo', extension);
 
-            expect(Object.keys($.jhub.getExtensions()).length).toEqual(2);
-            expect($.jhub.getExtensions()['foo']).toEqual(new extension);
+            expect(Object.keys(hub.getExtensions()).length).toEqual(2);
+            expect(hub.getExtensions()['foo']).toEqual(new extension);
         });
 
         it('extend by Dispatcher', function(){
-            var extensions = $.hub.getExtensions();
+            var extensions = Hub.getExtensions();
             var fooManager  = { foo: 42 };
 
-            $.jhub.extend('dispatcher', extensions.dispatcher);
+            hub.extend('dispatcher', extensions.dispatcher);
 
-            expect(typeof $.jhub.dispatcher.addManager === 'function').toBeTruthy();
-            $.jhub.dispatcher.addManager('foo', fooManager);
+            expect(typeof hub.dispatcher.addManager === 'function').toBeTruthy();
+            hub.dispatcher.addManager('foo', fooManager);
 
-            expect($.jhub.dispatcher.getManager('foo')).toEqual(fooManager);
+            expect(hub.dispatcher.getManager('foo')).toEqual(fooManager);
         });
     });
 
     describe('publish', function(){
         it('creates event when publish', function(){
-            $.jhub.publish('custom', function(){});
+            hub.publish('custom', function(){});
 
-            expect(Object.keys($.jhub.getEvents()).length).toEqual(1);
-            expect($.jhub.getEvents().hasOwnProperty('custom')).toBeTruthy();
+            expect(Object.keys(hub.getEvents()).length).toEqual(1);
+            expect(hub.getEvents().hasOwnProperty('custom')).toBeTruthy();
         });
 
         it('keep publishing', function(){
             var data = { data: { foo: 42 }};
 
-           $.jhub.publish('custom', data);
+           hub.publish('custom', data);
 
-           expect($.jhub.getDelayedPublishing('custom')).toEqual(data);
+           expect(hub.getDelayedPublishing('custom')).toEqual(data);
         });
 
         it('runs all callbacks', function(){
            var obj = { foo: 2};
 
-           $.jhub.publish('custom', { data: { foo: 2 } });
+           hub.publish('custom', { data: { foo: 2 } });
 
-           $.jhub.subscribe('custom', function(data){
+           hub.subscribe('custom', function(data){
               obj.foo += data.data.foo;
            });
 
-           $.jhub.subscribe('custom', function(data){
+           hub.subscribe('custom', function(data){
                obj.foo *= data.data.foo;
            });
 
@@ -84,57 +85,57 @@ describe('Hub', function(){
 
     describe('subscribe', function(){
         it('handles errors thrown on callbacks', function(){
-            $.jhub.publish('custom', {});
-            $.jhub.subscribe('custom', function(){});
-            expect($.jhub.getEvents()['custom'].callbacks.length).toEqual(1);
+            hub.publish('custom', {});
+            hub.subscribe('custom', function(){});
+            expect(hub.getEvents()['custom'].callbacks.length).toEqual(1);
 
-            $.jhub.subscribe('custom', function(){ throw new Error('You cannot pass!')});
-            expect($.jhub.getEvents()['custom'].callbacks.length).toEqual(2);
+            hub.subscribe('custom', function(){ throw new Error('You cannot pass!')});
+            expect(hub.getEvents()['custom'].callbacks.length).toEqual(2);
         });
 
         it('creates event when subscribes on it', function(){
-            $.jhub.subscribe('custom', function(){});
+            hub.subscribe('custom', function(){});
 
-            expect(Object.keys($.jhub.getEvents()).length).toEqual(1);
-            expect($.jhub.getEvents().hasOwnProperty('custom')).toBeTruthy();
+            expect(Object.keys(hub.getEvents()).length).toEqual(1);
+            expect(hub.getEvents().hasOwnProperty('custom')).toBeTruthy();
         });
 
         it('different callbacks on same event', function(){
-            expect(Object.keys($.jhub.getEvents()).length).toEqual(0);
+            expect(Object.keys(hub.getEvents()).length).toEqual(0);
 
-            $.jhub.subscribe('custom', function(){});
+            hub.subscribe('custom', function(){});
 
-            expect(Object.keys($.jhub.getEvents()).length).toEqual(1);
+            expect(Object.keys(hub.getEvents()).length).toEqual(1);
 
-            $.jhub.subscribe('custom', function(){});
+            hub.subscribe('custom', function(){});
 
-            expect(Object.keys($.jhub.getEvents()).length).toEqual(1);
+            expect(Object.keys(hub.getEvents()).length).toEqual(1);
 
-            expect($.jhub.getEvents()['custom'].callbacks.length).toEqual(2);
+            expect(hub.getEvents()['custom'].callbacks.length).toEqual(2);
         });
 
         it('same callback can subscribe only once', function(){
             var callback = function(){ return 'I am the same'; };
 
-            $.jhub.subscribe('custom', callback);
-            expect($.jhub.getEvents()['custom'].callbacks.length).toEqual(1);
+            hub.subscribe('custom', callback);
+            expect(hub.getEvents()['custom'].callbacks.length).toEqual(1);
 
-            $.jhub.subscribe('custom', callback);
-            expect($.jhub.getEvents()['custom'].callbacks.length).toEqual(1);
+            hub.subscribe('custom', callback);
+            expect(hub.getEvents()['custom'].callbacks.length).toEqual(1);
         });
 
         it('after publish', function(){
             var obj = { };
-            $.jhub.publish('foo_called', { data: { foo: 'bar' }, message: 'foo was called'});
-            $.jhub.subscribe('foo_called', function(){ obj.foo = 'bar'});
+            hub.publish('foo_called', { data: { foo: 'bar' }, message: 'foo was called'});
+            hub.subscribe('foo_called', function(){ obj.foo = 'bar'});
 
             expect(obj.hasOwnProperty('foo')).toBeTruthy();
         });
 
         it('before publish', function(){
             var obj = { };
-            $.jhub.subscribe('foo_called', function(){ obj.foo = 'bar'});
-            $.jhub.publish('foo_called', { data: { foo: 'bar' }, message: 'foo was called'});
+            hub.subscribe('foo_called', function(){ obj.foo = 'bar'});
+            hub.publish('foo_called', { data: { foo: 'bar' }, message: 'foo was called'});
 
             expect(obj.hasOwnProperty('foo')).toBeTruthy();
         });

@@ -15,7 +15,7 @@ function CardType(obj)
             message: 'card type: ' + self.id + ' disabled',
             data: self
         };
-        $.hub.publish(envelope.event, envelope);
+        Hub.publish(envelope.event, envelope);
     };
     this.enable = function()
     {
@@ -27,7 +27,7 @@ function CardType(obj)
             message: 'card type: ' + self.id + ' enabled',
             data: self
         };
-        $.hub.publish(envelope.event, envelope);
+        Hub.publish(envelope.event, envelope);
     };
     this.isActive = function()
     {

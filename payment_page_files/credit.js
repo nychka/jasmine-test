@@ -171,7 +171,7 @@ credit = {
     },
     ConfirmationOfCodeCredit: function(){
       var code           = $("#sms_code").val()
-      var payment_system = $.hub.dispatcher.getManager('payment').getActivePaymentSystem().getId();
+      var payment_system = Hub.dispatcher.getManager('payment').getActivePaymentSystem().getId();
       var order_id       = $("[name=order_id]").val();
       var service        = $("[name=service]").val();
       var label          = $("label[for='checkbox-confirm2']");
@@ -235,7 +235,7 @@ credit = {
       });
     },
     RequestForApprovalOfAgreementCredit: function(){
-      var payment_system_id = $.hub.dispatcher.getManager('payment').getActivePaymentSystem().getId();
+      var payment_system_id = Hub.dispatcher.getManager('payment').getActivePaymentSystem().getId();
       var data  ={
         'payment_system': payment_system_id,
         'order_id'      : $("[name=order_id]").val(),
@@ -272,7 +272,7 @@ credit = {
     },
     GetInfoAboutCredit: function(ps_id, currency){
       // setTimeout(function(){
-        var cost = $.hub.dispatcher.getManager('payment').getFullPrice();
+        var cost = Hub.dispatcher.getManager('payment').getFullPrice();
         var loan_amount = (typeof(cost) == 'undefined') ? clear_cost : cost ;
         var service;
         var currency;

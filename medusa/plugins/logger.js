@@ -51,5 +51,5 @@
         init();
     };
 
-    $.hub.extend('logger', new Logger());
+    Hub.extend('logger', new Logger());
 })();

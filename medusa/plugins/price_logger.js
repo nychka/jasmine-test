@@ -32,5 +32,5 @@
         };
     };
 
-    $.hub.extend('priceLog', new PriceLogger());
+    Hub.extend('priceLog', new PriceLogger());
 })();

@@ -3,7 +3,7 @@ $.Controller("SeparateBookingPageController",{
   ignore_service:{},
   init:function(){
     var self = this;
-    if($.hub) $.hub.dispatcher.addController('separate', self);
+    if(Hub) Hub.dispatcher.addController('separate', self);
     try {
       var page_position = self.get_page_position();
       var ins = ($('[data-auto-controller="InsuranceWithAviaController"]').length > 0 || $('#insurance_with_avia').length > 0) && !$('.additional-service__insurance').data('view'),
@@ -82,7 +82,7 @@ $.Controller("SeparateBookingPageController",{
           /**
            * DEPRECATED service use id property according ServiceInterface
            */
-           $.hub.subscribe('service_manager_ran', function(){
+           Hub.subscribe('service_manager_ran', function(){
               self.recalculate_prices();
               self.off_service();
            }, self);
@@ -459,23 +459,23 @@ $.Controller("SeparateBookingPageController",{
       $('[id *= "addP_additional-service"]').hide();
     }
     /**
-     * DEPRECATED will be replaced with $.hub.trigger('change_price')
+     * DEPRECATED will be replaced with Hub.trigger('change_price')
      */
-    if($.hub.dispatcher.getManager('payment')){
-      $.hub.dispatcher.getManager('payment').reloadPrices(); /* NOTICE: direct call to reload prices is deprecated and will be removed soon */;
+    if(Hub.dispatcher.getManager('payment')){
+      Hub.dispatcher.getManager('payment').reloadPrices(); /* NOTICE: direct call to reload prices is deprecated and will be removed soon */;
     }
   },
 
   off_service: function(){
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('insurance') && !($('.additional-service__insurance').data('view'))) this.service_toggle($.hub.dispatcher.getManager('service').services.insurance.getId(), true);
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('additional_service')) this.service_toggle($.hub.dispatcher.getManager('service').services.additional_service.getId(), true);
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('transfer_service')) this.service_toggle($.hub.dispatcher.getManager('service').services.transfer_service.getId(), true);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('insurance') && !($('.additional-service__insurance').data('view'))) this.service_toggle(Hub.dispatcher.getManager('service').services.insurance.getId(), true);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('additional_service')) this.service_toggle(Hub.dispatcher.getManager('service').services.additional_service.getId(), true);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('transfer_service')) this.service_toggle(Hub.dispatcher.getManager('service').services.transfer_service.getId(), true);
   },
 
   on_service: function(){
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('insurance')) this.service_toggle($.hub.dispatcher.getManager('service').services.insurance.getId(), false);
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('additional_service')) this.service_toggle($.hub.dispatcher.getManager('service').services.additional_service.getId(), false);
-    if($.hub.dispatcher.getManager('service').services.hasOwnProperty('transfer_service')) this.service_toggle($.hub.dispatcher.getManager('service').services.transfer_service.getId(), false);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('insurance')) this.service_toggle(Hub.dispatcher.getManager('service').services.insurance.getId(), false);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('additional_service')) this.service_toggle(Hub.dispatcher.getManager('service').services.additional_service.getId(), false);
+    if(Hub.dispatcher.getManager('service').services.hasOwnProperty('transfer_service')) this.service_toggle(Hub.dispatcher.getManager('service').services.transfer_service.getId(), false);
   },
 
   check_insurance_load: function(recalculate){
@@ -487,7 +487,7 @@ $.Controller("SeparateBookingPageController",{
           time();
         }else{
           if(recalculate) self.recalculate_prices();
-          else $.hub.dispatcher.getManager('payment').reloadPrices();
+          else Hub.dispatcher.getManager('payment').reloadPrices();
 
         }
       }, 100);
