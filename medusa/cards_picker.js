@@ -13,16 +13,6 @@ function CardsPicker(options)
         this.settings = $.extend({}, default_options, options);
         this.length = 0;
         cards = {};
-
-        Hub.subscribe('cards_picker_prepared', function(){
-            this.getPickerContainer()
-                .on('change', function(ev){
-                    var card = $(ev.target).val();
-
-                    Hub.publish('cards_picker_changed', { data: { card: card },  message: 'card number has been chosen: ' + card });
-                })
-            //.chosen({disable_search_threshold: true });
-        }.bind(this));
     };
 
     this.setup = function()
@@ -40,7 +30,6 @@ function CardsPicker(options)
         }
 
         this.count();
-        if(this.getPickerContainer().selectmenu) this.getPickerContainer().selectmenu('refresh', true);
 
         var envelope = {
             data: { cards: this.getCards() },

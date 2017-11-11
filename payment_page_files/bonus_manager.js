@@ -45,13 +45,13 @@ function BonusManager() {
     this.prepareBonusAvailability(program);
   };
   this.prepareBonusRule = function(program){
-    var bonuses_storage = $.archive.getData().data.bonuses;
+    var bonuses_storage = Hub.archive.getData().data.bonuses;
     if(bonuses_storage){
       this.bonusRule[program] = new BonusRule(bonuses_storage[program].rules);
     }
   };
   this.prepareBonusAvailability = function (program) {
-    var bonuses_storage = $.archive.getData().data.bonuses;
+    var bonuses_storage = Hub.archive.getData().data.bonuses;
     if(bonuses_storage){
       this.availabilityList[program] = bonuses_storage[program].availability_list;
     }
@@ -247,7 +247,7 @@ function BonusManager() {
       // diff = (willBeCharged - discount);
       // willBeCharged = (diff > minimalPayment) ? diff : minimalPayment;
       // this.realPromotionCost = startPrice - willBeCharged;
-        Hub.log('todo: calculate promo');
+        Hub.track'todo: calculate promo');
          willBeCharged = (willBeCharged - this.usePromotionCost);
     }
     /**
@@ -279,11 +279,11 @@ Hub.subscribe('archive_initialized', function(){
 });
 
 Hub.subscribe('login_succeeded', function(obj){
-  if(obj.data && obj.data.bonuses && $.archive.getData().data.bonuses){
+  if(obj.data && obj.data.bonuses && Hub.archive.getData().data.bonuses){
     if(obj.data.bonuses.template.ttn) Hub.dispatcher.getManager('bonus').getDecorator().replaceBonusBlock('ttn', obj.data.bonuses.template.ttn);
     if(obj.data.bonuses.template.otp) Hub.dispatcher.getManager('bonus').getDecorator().replaceBonusBlock('otp', obj.data.bonuses.template.otp);
 
-    $.archive.updateData('bonuses', obj.data.bonuses.availability);
+    Hub.archive.updateData('bonuses', obj.data.bonuses.availability);
     Hub.dispatcher.getManager('bonus').reload();
     Hub.trigger('price_changed');
   }

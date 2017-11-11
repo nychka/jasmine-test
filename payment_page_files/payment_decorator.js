@@ -215,7 +215,7 @@ function PaymentDecorator(manager) {
    USBLP card selector loading
    */
   this.loadUsblpBonusesSelector = function (status) {
-      var cards = $.archive.getData().data.bonuses.otp.cards;
+      var cards = Hub.archive.getData().data.bonuses.otp.cards;
       if (cards != undefined) {
         if (status) {
           if ($('#usbl_selector').length > 0) {

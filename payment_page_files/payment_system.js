@@ -17,7 +17,7 @@ function PaymentSystem(data,group,manager){
 
   this.initMargin = function () {
     var margin = 1;
-    var margins = $.archive.getData().data.margins;
+    var margins = Hub.archive.getData().data.margins;
     if(margins && margins.hasOwnProperty(this.id)) {
       var m = margins[this.id] * 0.01 + 1;
       if(!isNaN(m)){

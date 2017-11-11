@@ -94,7 +94,7 @@ function PaymentCard(settings){
     this.debug = function(message)
     {
         if(window.time_to_debug){
-            Hub.log(message);
+            Hub.track(message);
         }
     };
     this.operate = function(e){
