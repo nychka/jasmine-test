@@ -432,7 +432,7 @@ function PaymentManager() {
     // return price of additional services
     // if "commonServicesOnly" == "TRUE" will return only common services price, if "FALSE" or undefined - the other's
     this.getAdditionalServicesCost = function(commonServicesOnly){
-        return Hub.dispatcher.getManager('service') ? Hub.dispatcher.getManager('service').getCost(commonServicesOnly) : 0;
+        return Hub.dispatcher.getManager('service') ? Hub.dispatcher.getManager('service').getPrice(commonServicesOnly) : 0;
     };
 
     this.hasSavedCards = function(){

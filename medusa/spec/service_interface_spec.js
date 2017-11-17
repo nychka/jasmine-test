@@ -21,16 +21,16 @@ describe('ServiceInterface', function(){
         });
     });
 
-    describe('getCost', function(){
+    describe('getPrice', function(){
         it('by default 0', function(){
-            expect(service.getCost()).toEqual(0);
+            expect(service.getPrice()).toEqual(0);
         });
 
         it('when NaN, throws error', function(){
             service.setCost(NaN);
 
             expect(function(){
-                service.getCost();
+                service.getPrice();
             }).toThrow(new ServiceInterfaceCostIsNotNumberException(service));
         });
     });

@@ -41,7 +41,7 @@ function PaymentSystem(data,group,manager){
   this.getDefaultGroupName = function(){
     return this.defaultGroupName;
   };
-  this.getCost = function(){
+  this.getPrice = function(){
     return this.cost;
   };
   this.getRate = function(){
@@ -60,12 +60,12 @@ function PaymentSystem(data,group,manager){
   };
   this.getCostByDefaultCurrency = function(currency, originalCost){
     var rate = this.getRate();
-    var cost = originalCost ? this.getOriginalCost() : this.getCost();
+    var cost = originalCost ? this.getOriginalCost() : this.getPrice();
 
     return this.isCurrencyEquals(currency) ? cost : (cost * rate);
   };
   this.getOriginalCost = function(){
-    return this.data.original_cost ? parseFloat(this.data.original_cost) : this.getCost();
+    return this.data.original_cost ? parseFloat(this.data.original_cost) : this.getPrice();
   };
 
   this.getDefaultTariff = function(){

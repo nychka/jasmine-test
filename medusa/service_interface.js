@@ -31,7 +31,7 @@ ServiceInterface.prototype.isEnabledPriceInCabinet = function()
   return this.enabledPriceInCabinet;
 };
 
-ServiceInterface.prototype.getCost = function()
+ServiceInterface.prototype.getPrice = function()
 {
     if(isNaN(this.cost) || this.cost === undefined){
         throw new ServiceInterfaceCostIsNotNumberException(this);
@@ -181,7 +181,7 @@ function ServiceManager()
 
     this.update = function(service)
     {
-        var cost = service.getCost();
+        var cost = service.getPrice();
 
         Hub.publish('service_price_changed', {
             data:  { service: service, cost: cost },
@@ -244,12 +244,12 @@ function ServiceManager()
         });
     };
 
-    this.getCost = function(onlyIncludedInTotalPrice)
+    this.getPrice = function(onlyIncludedInTotalPrice)
     {
         var cost = 0;
 
         this.getServices(function(service){
-            cost += service.getCost();
+            cost += service.getPrice();
         }, {
         }, {
             onlyIncludedInTotalPrice: onlyIncludedInTotalPrice,
