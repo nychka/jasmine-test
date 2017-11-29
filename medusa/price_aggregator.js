@@ -1,21 +1,32 @@
-function PriceAggregator()
+function PriceAggregator(settings)
 {
   var components = {};
-  var baseLine = 0;
   var filters = {};
+  var kelvin = -273.15;
+
+  PriceComponent.call(this, settings);
 
   this.init = function()
   {
     this.registerFilter('total', TotalPriceFilter);
   };
 
+/**
+ * @override
+ * @param filterId
+ * @returns {number}
+ */
   this.getPrice = function(filterId)
   {
     var filter = filterId ? this.getFilterById(filterId) : this.getDefaultFilter();
-    var price = filter.call(this, this);
+    if(typeof filter !== 'function') console.warn('filter not prepared');
 
-    return price > baseLine ? price : baseLine;
+    return (typeof filter === 'function') ? filter.call(this, this) : kelvin;
   };
+/**
+ * @override
+ */
+  this.setPrice = function(){ console.warn('This operation is useless. What have you been expected?')};
 
   this.getComponents = function(fn)
   {
@@ -24,7 +35,7 @@ function PriceAggregator()
       return components;
   };
 
-  this.addComponent = function(component)
+  this.registerComponent = function(component)
   {
     if(! (component instanceof PriceComponent)) throw new Error('Must be instance of PriceComponent!');
 
@@ -72,36 +83,6 @@ function PriceAggregator()
 
       return sum;
   };
-};
-
-function PriceComponent(settings)
-{
-  var price;
-  var id;
-
-  var init = function(){
-      if(settings){
-          if(settings.hasOwnProperty('price')) price = settings.price;
-          if(settings.hasOwnProperty('id')) id = settings.id;
-      }
-  };
-
-  this.getId = function()
-  {
-    return id;
-  };
-
-  this.getPrice = function()
-  {
-    return price;
-  };
-
-  this.setPrice = function(newPrice)
-  {
-    price = newPrice;
-  };
-
-  init();
 };
 
 function TotalPriceFilter(aggregator)

@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f99f5fa0-1b3a-4fab-a851-2f08ce0bc36f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/price_aggregator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/price_component.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/spec/component_spec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/spec/inheritance_spec.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/payment_page_files/bonus_manager.js" afterPath="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/managers/payment_manager.js" afterPath="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/service_interface.js" afterPath="$PROJECT_DIR$/medusa/service_interface.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/service_interface_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/service_interface_spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_aggregator.js" afterPath="$PROJECT_DIR$/medusa/price_aggregator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page.html" afterPath="$PROJECT_DIR$/payment_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/payment_decorator.js" afterPath="$PROJECT_DIR$/payment_page_files/payment_decorator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/payment_group.js" afterPath="$PROJECT_DIR$/payment_page_files/payment_group.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/payment_system.js" afterPath="$PROJECT_DIR$/payment_page_files/payment_system.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,45 +30,85 @@
       <file leaf-file-name="payment_page.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/payment_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="5137" column="72" lean-forward="false" selection-start-line="5137" selection-start-column="72" selection-end-line="5137" selection-end-column="72" />
+            <state relative-caret-position="256">
+              <caret line="5141" column="35" lean-forward="false" selection-start-line="5141" selection-start-column="35" selection-end-line="5141" selection-end-column="35" />
               <folding>
                 <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#799029#799773#0" expanded="false" />
+                <element signature="e#799024#799768#0" expanded="false" />
                 <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_aggregator.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
+      <file leaf-file-name="bonus_manager.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/managers/bonus_manager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            <state relative-caret-position="18">
+              <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_aggregator_spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="price_aggregator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="23" column="77" lean-forward="true" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="price_component.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="87" column="50" lean-forward="true" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="component_spec.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/spec/component_spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2142">
+              <caret line="119" column="63" lean-forward="true" selection-start-line="119" selection-start-column="63" selection-end-line="119" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="price_aggregator_spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="57" lean-forward="true" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+            <state relative-caret-position="336">
+              <caret line="107" column="60" lean-forward="true" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
               <folding>
-                <marker date="1510930797487" expanded="false" signature="3905:5054" ph="{...}" />
+                <element signature="e#5623#7534#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hub.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/hub.js">
+      <file leaf-file-name="payment_manager.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-522">
-              <caret line="1" column="33" lean-forward="true" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+            <state relative-caret-position="180">
+              <caret line="34" column="94" lean-forward="false" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment_system.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -82,18 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>payment_manager</find>
-      <find>$.archive</find>
-      <find>pickerConta</find>
-      <find>pickerSelect</find>
-      <find>bonuses</find>
-      <find>prepareCards</find>
-      <find>otp</find>
-      <find>promocode</find>
-      <find>promo</find>
-      <find>promo_code</find>
-      <find>promotion_dep</find>
-      <find>promotion_deprecated_loaded</find>
       <find>prepareBonus</find>
       <find>prepareProm</find>
       <find>preparePromotionRule</find>
@@ -112,6 +144,18 @@
       <find>addComponent('bar',</find>
       <find>addComponent(</find>
       <find>addComp</find>
+      <find>AdditionalServices</find>
+      <find>'todo:</find>
+      <find>Hub.error</find>
+      <find>init()</find>
+      <find>ServiceIn</find>
+      <find>gets total prc</find>
+      <find>aggregator.ini</find>
+      <find>ServiceInterface</find>
+      <find>base</find>
+      <find>baselin</find>
+      <find>posit</find>
+      <find>gets total</find>
     </findStrings>
     <replaceStrings>
       <replace>hub.dispatcher.addManager</replace>
@@ -130,10 +174,11 @@
       <replace>prepareCards()</replace>
       <replace>Hub.archive</replace>
       <replace>setup</replace>
-      <replace>Hub.track</replace>
       <replace>price</replace>
-      <replace>addComponent(</replace>
       <replace>setPrice</replace>
+      <replace>Hub.track</replace>
+      <replace>addComponent(</replace>
+      <replace>PaymentManager</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/payment_page_files</dir>
@@ -164,7 +209,6 @@
         <option value="$PROJECT_DIR$/payment_page_files/archive.js" />
         <option value="$PROJECT_DIR$/payment_page_files/card_type.js" />
         <option value="$PROJECT_DIR$/payment_page_files/credit.js" />
-        <option value="$PROJECT_DIR$/payment_page_files/payment_group.js" />
         <option value="$PROJECT_DIR$/payment_page_files/payment_manager.js" />
         <option value="$PROJECT_DIR$/payment_page_files/promotion_rule.js" />
         <option value="$PROJECT_DIR$/payment_page_files/separate_booking_page_controller.js" />
@@ -175,16 +219,21 @@
         <option value="$PROJECT_DIR$/medusa/spec/otp_cards_picker_spec.js" />
         <option value="$PROJECT_DIR$/medusa/otp_cards_picker.js" />
         <option value="$PROJECT_DIR$/payment_page_files/medusa_controller.js" />
-        <option value="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
-        <option value="$PROJECT_DIR$/payment_page_files/payment_decorator.js" />
-        <option value="$PROJECT_DIR$/payment_page_files/payment_system.js" />
         <option value="$PROJECT_DIR$/medusa/cards_picker.js" />
         <option value="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
         <option value="$PROJECT_DIR$/medusa/spec/promo_code_spec.js" />
         <option value="$PROJECT_DIR$/medusa/promo_code.js" />
         <option value="$PROJECT_DIR$/payment_page_files/bonus_manager.js" />
         <option value="$PROJECT_DIR$/payment_page_files/payment_card.js" />
+        <option value="$PROJECT_DIR$/payment_page_files/payment_decorator.js" />
+        <option value="$PROJECT_DIR$/payment_page_files/payment_group.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/inheritance_spec.js" />
         <option value="$PROJECT_DIR$/payment_page.html" />
+        <option value="$PROJECT_DIR$/payment_page_files/payment_system.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/component_spec.js" />
+        <option value="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
+        <option value="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
+        <option value="$PROJECT_DIR$/medusa/price_component.js" />
         <option value="$PROJECT_DIR$/medusa/price_aggregator.js" />
         <option value="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
       </list>
@@ -238,6 +287,17 @@
               <item name="payment_page" type="462c0819:PsiDirectoryNode" />
               <item name="medusa" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="payment_page" type="b2602c69:ProjectViewProjectNode" />
+              <item name="payment_page" type="462c0819:PsiDirectoryNode" />
+              <item name="medusa" type="462c0819:PsiDirectoryNode" />
+              <item name="managers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="payment_page" type="b2602c69:ProjectViewProjectNode" />
+              <item name="payment_page" type="462c0819:PsiDirectoryNode" />
+              <item name="payment_page_files" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -252,14 +312,14 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/medusa/managers" />
-      <recent name="$PROJECT_DIR$/medusa" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/medusa/spec" />
       <recent name="$PROJECT_DIR$/medusa" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/medusa/managers" />
+      <recent name="$PROJECT_DIR$/medusa" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -285,21 +345,22 @@
       <option name="presentableId" value="Default" />
       <updated>1509528988475</updated>
       <workItem from="1509528990047" duration="51672000" />
-      <workItem from="1510561561124" duration="20961000" />
+      <workItem from="1510561561124" duration="58907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120925000" />
+    <option name="totallyTimeSpent" value="158871000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="189" y="24" width="1857" height="1092" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24181223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="YouTrack" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Basis.js" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -312,7 +373,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -349,23 +409,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/payment_page_2.html" />
-    <entry file="file://$PROJECT_DIR$/medusa/hub.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/medusa_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/spec/fixtures/additional_services.html" />
     <entry file="file://$PROJECT_DIR$/jasmine/console.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -394,6 +437,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -412,7 +458,7 @@
           <folding>
             <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#799029#799773#0" expanded="false" />
+            <element signature="e#799024#799768#0" expanded="false" />
             <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
@@ -463,6 +509,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -514,14 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -583,22 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_decorator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="217" column="18" lean-forward="false" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="13" column="80" lean-forward="false" selection-start-line="13" selection-start-column="80" selection-end-line="13" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -615,26 +640,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="427" column="21" lean-forward="false" selection-start-line="427" selection-start-column="21" selection-end-line="427" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/payment_page_files/medusa_controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1728">
           <caret line="96" column="6" lean-forward="false" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/bonus_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4482">
-          <caret line="249" column="8" lean-forward="false" selection-start-line="249" selection-start-column="8" selection-end-line="249" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -679,19 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="5137" column="72" lean-forward="false" selection-start-line="5137" selection-start-column="72" selection-end-line="5137" selection-end-column="72" />
-          <folding>
-            <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#799029#799773#0" expanded="false" />
-            <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/service_interface.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -700,21 +696,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_decorator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="57" lean-forward="true" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+        <state relative-caret-position="204">
+          <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/inheritance_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
           <folding>
-            <marker date="1510930797487" expanded="false" signature="3905:5054" ph="{...}" />
+            <marker date="1511779124650" expanded="true" signature="1665:1727" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="5141" column="35" lean-forward="false" selection-start-line="5141" selection-start-column="35" selection-end-line="5141" selection-end-column="35" />
+          <folding>
+            <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#799024#799768#0" expanded="false" />
+            <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="34" column="94" lean-forward="false" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/component_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="119" column="63" lean-forward="true" selection-start-line="119" selection-start-column="63" selection-end-line="119" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/managers/bonus_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="87" column="50" lean-forward="true" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        <state relative-caret-position="414">
+          <caret line="23" column="77" lean-forward="true" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="107" column="60" lean-forward="true" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
+          <folding>
+            <element signature="e#5623#7534#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

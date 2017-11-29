@@ -5,16 +5,76 @@ describe('PriceAggregator', function(){
         aggregator = new PriceAggregator();
         component = new PriceComponent({ id: 'foo', price: 101 });
     });
-    describe('PriceComponent', function(){
-        describe('API', function(){
-            it('getId', function(){
-                expect(component.getId()).toEqual('foo');
-            });
-           it('getCost', function(){
-               expect(component.getPrice()).toEqual(101);
-           });
+    
+    describe('PaymentManager', function(){
+        var paymentManager, paymentSystem;
+
+        beforeEach(function(){
+            paymentManager = new PaymentManager();
+            paymentManager.registerFilter('total', TotalPriceFilter);
+            component = new PaymentSystem({ id: 1}, new PaymentGroup(paymentManager, 'foo'));
+            aggregator.init();
+        });
+        
+        it('inherits Aggregator', function(){
+            expect(paymentManager instanceof PriceAggregator).toBeTruthy();
+        });
+
+        it('registers component PaymentSystem', function(){
+           paymentManager.registerComponent(component);
+
+           expect(paymentManager.getComponents()).toEqual({1: component});
+        });
+
+        it('gets total price based on component', function(){
+            component.setPrice(100);
+            paymentManager.registerComponent(component);
+            aggregator.registerComponent(paymentManager);
+
+            expect(aggregator.getPrice()).toEqual(100);
         });
     });
+
+    describe('Component progression', function(){
+        beforeEach(function(){
+           aggregator.init();
+        });
+
+        it('has one component: payment_manager', function(){
+            aggregator.registerComponent(new PaymentManager({ id: 'payment_manager' }));
+            var components = aggregator.getComponents();
+
+            expect(Object.keys(components).length).toEqual(1);
+            expect(components['payment_manager'] instanceof PaymentManager).toBeTruthy();
+        });
+
+        it('has one component: payment_manager which is aggregator of components', function(){
+            var manager = new PaymentManager({ id: 'payment_manager' });
+            manager.registerFilter('total', TotalPriceFilter);
+            manager.registerComponent(new PriceComponent({ id: 'foo', price: 51 }));
+            manager.registerComponent(new PriceComponent({ id: 'bar', price: 49 }));
+
+            aggregator.registerComponent(manager);
+
+            expect(aggregator.getPrice()).toEqual(100);
+        });
+
+        it('has two components: payment_manager and bonus_manager', function(){
+            var payment_manager = new PaymentManager({ id: 'payment_manager' });
+            var bonus_manager = new BonusManager({ id: 'bonus_manager' });
+            payment_manager.registerFilter('total', TotalPriceFilter);
+            bonus_manager.registerFilter('total', TotalPriceFilter);
+            payment_manager.registerComponent(new PriceComponent({ id: 'webmoney', price: 500 }));
+            bonus_manager.registerComponent(new PriceComponent({ id: 'ttn', price: -150 }));
+            bonus_manager.registerComponent(new PriceComponent({ id: 'promo', price: 650 }));
+
+            aggregator.registerComponent(payment_manager);
+            aggregator.registerComponent(bonus_manager);
+
+            expect(aggregator.getPrice()).toEqual(1000);
+        });
+    });
+
    describe('API', function(){
        beforeEach(function(){
           aggregator.init();
@@ -26,34 +86,26 @@ describe('PriceAggregator', function(){
 
           it('has one component', function(){
              component.setPrice(100);
-             aggregator.addComponent(component);
+             aggregator.registerComponent(component);
 
              expect(aggregator.getPrice()).toEqual(100);
           });
 
-          it('has to have positive price', function(){
-             component.setPrice(-100);
-             aggregator.addComponent(component);
-
-             expect(aggregator.getPrice()).toEqual(0);
-          });
-
-          it('changes baseline', function(){
-            aggregator.setBaseLine(300);
-            component.setPrice(200);
-            aggregator.addComponent(component);
-
-            expect(aggregator.getPrice()).toEqual(300);
-          });
-
           it('register filter', function(){
               component.setPrice(100);
-              aggregator.addComponent(component);
+              aggregator.registerComponent(component);
              aggregator.registerFilter('basePrice', function(){
                 return this.findComponentById('foo').getPrice() / 100 * 25;
              });
 
              expect(aggregator.getPrice('basePrice')).toEqual(25);
+          });
+
+          it('without filters always returns cosmos temperature', function(){
+             aggregator = new PriceAggregator();
+             aggregator.registerComponent(new PriceComponent({ price: 100 }));
+
+             expect(aggregator.getPrice()).toEqual(-273.15);
           });
       });
 
@@ -68,8 +120,8 @@ describe('PriceAggregator', function(){
               var components = [foo, bar];
               var items = [];
 
-              aggregator.addComponent(foo);
-              aggregator.addComponent(bar);
+              aggregator.registerComponent(foo);
+              aggregator.registerComponent(bar);
 
               aggregator.getComponents(function(comp){
                   items.push(comp);
@@ -83,16 +135,16 @@ describe('PriceAggregator', function(){
               var bar = new PriceComponent({ id: 'bar' });
               var components = { foo: foo, bar: bar };
 
-              aggregator.addComponent(foo);
-              aggregator.addComponent(bar);
+              aggregator.registerComponent(foo);
+              aggregator.registerComponent(bar);
 
               expect(aggregator.getComponents()).toEqual(components);
           });
       });
 
-      it('addComponent', function(){
+      it('registerComponent', function(){
           var item = new PriceComponent({ id: 'foobar', price: 10 });
-          aggregator.addComponent(item);
+          aggregator.registerComponent(item);
 
           expect(aggregator.getComponents()).toEqual({ foobar: item });
       });
@@ -118,8 +170,8 @@ describe('PriceAggregator', function(){
             };
 
             aggregator.registerFilter('total', fn);
-            aggregator.addComponent(foo);
-            aggregator.addComponent(bar);
+            aggregator.registerComponent(foo);
+            aggregator.registerComponent(bar);
 
             expect(aggregator.getPrice()).toEqual(400);
       });
@@ -127,7 +179,7 @@ describe('PriceAggregator', function(){
       describe('basePrice', function(){
           it('returns sum of payment_system and markup when no markup', function(){
               var payment_system = new PriceComponent({ id: 'payment_system', price: 200 });
-              aggregator.addComponent(payment_system);
+              aggregator.registerComponent(payment_system);
 
               var fn = function(aggregator){
                  return  aggregator.getSumOfComponents(['payment_system', 'markup']);
@@ -142,8 +194,8 @@ describe('PriceAggregator', function(){
               var payment_system = new PriceComponent({ id: 'payment_system', price: 200 });
               var markup = new PriceComponent({ id: 'markup', price: 300 });
 
-              aggregator.addComponent(payment_system);
-              aggregator.addComponent(markup);
+              aggregator.registerComponent(payment_system);
+              aggregator.registerComponent(markup);
 
               var fn = function(aggregator){
                   return  aggregator.getSumOfComponents(['payment_system', 'markup']);

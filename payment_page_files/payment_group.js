@@ -23,7 +23,7 @@ function PaymentGroup(manager,name) {
 
     this.getPaymentSystemByDefaultGroupAndCurrency = function (def_group,currency) {
         var system = false;
-        if(!this.defaultGroups[def_group]) Hub.error('Group "'+this.name+'" doesn\'t contains default group "'+def_group+'"');
+        if(!this.defaultGroups[def_group]) Hub.track('Group "'+this.name+'" doesn\'t contains default group "'+def_group+'"');
 
         $.each(this.defaultGroups[def_group]['systems'], function( i, sys ){
             if(sys.getCurrency() == currency){ system = sys;return;}
@@ -42,7 +42,7 @@ function PaymentGroup(manager,name) {
     };
 
     this.setActivePaymentSystem = function (id) {
-        if(!this.systems[id]) Hub.error('Group "'+this.name+'" doesn\'t contains system "'+id+'"');
+        if(!this.systems[id]) Hub.track('Group "'+this.name+'" doesn\'t contains system "'+id+'"');
 
         this.activePaymentSystemId = id;
         this.defaultGroups[this.systems[id].getDefaultGroupName()].activePaymentSystemId = id;

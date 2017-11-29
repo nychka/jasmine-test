@@ -1,4 +1,6 @@
 function PaymentSystem(data,group,manager){
+  PriceComponent.call(this);
+
   this.manager = manager;
   this.group = group;
   this.markupsAvilability = false;
@@ -11,7 +13,7 @@ function PaymentSystem(data,group,manager){
     this.groupName = data.group;
     this.defaultGroupName = data.default_group;
     this.cost = parseFloat(data.cost);
-    this.rate_against_default_currency = this.manager.exchangeRate(this.currency);
+    this.rate_against_default_currency = 1;//FIXME: this.manager.exchangeRate(this.currency);
     this.margin = this.initMargin();
   };
 
@@ -26,9 +28,9 @@ function PaymentSystem(data,group,manager){
     }
     return margin;
   };
-  this.getId = function(){
-    return this.id;
-  };
+  // this.getId = function(){
+  //   return this.id;
+  // };
   this.getCurrency = function(){
     return this.currency;
   };
@@ -41,9 +43,9 @@ function PaymentSystem(data,group,manager){
   this.getDefaultGroupName = function(){
     return this.defaultGroupName;
   };
-  this.getPrice = function(){
-    return this.cost;
-  };
+  // this.getPrice = function(){
+  //   return this.cost;
+  // };
   this.getRate = function(){
     //TODO: check if need margins or exchanges
     return this.margin;//this.rate_against_default_currency;
@@ -123,4 +125,7 @@ function PaymentSystem(data,group,manager){
   //==================
 
   this.init(data);
-}
+};
+
+
+

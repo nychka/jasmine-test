@@ -1,4 +1,6 @@
-function BonusManager() {
+function BonusManager(settings) {
+  PriceAggregator.call(this, settings);
+
   this.bonusesCheckedFlag = {};
   this.bonusRule = {};
   this.availabilityList = {};
@@ -247,7 +249,7 @@ function BonusManager() {
       // diff = (willBeCharged - discount);
       // willBeCharged = (diff > minimalPayment) ? diff : minimalPayment;
       // this.realPromotionCost = startPrice - willBeCharged;
-        Hub.track'todo: calculate promo');
+        Hub.track('todo: calculate promo');
          willBeCharged = (willBeCharged - this.usePromotionCost);
     }
     /**

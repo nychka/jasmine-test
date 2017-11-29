@@ -1,4 +1,6 @@
-function PaymentManager() {
+function PaymentManager(settings) {
+    if(typeof PriceAggregator === 'function') PriceAggregator.call(this, settings);
+
     this.decorator = null;
     this.paymentSystems = [];
     this.paymentGroups = [];
@@ -30,6 +32,7 @@ function PaymentManager() {
     };
 
     this.init = function () {
+        if(this.registerFilter === 'function') this.registerFilter('total', TotalPriceFilter);
         this.decorator = new PaymentDecorator(this);
         this.dataGroupNames = Hub.archive.getData().data.groups;
         this.dataSysytems = Hub.archive.getData().data.systems;
@@ -133,7 +136,7 @@ function PaymentManager() {
         if(this.paymentGroups[group]){
             this.setActivePaymentSystem(this.paymentGroups[group].getActivePaymentSystemId(defaultGroup));
         }else{
-            Hub.error('Payment group "'+group+'" doesn\'t exist');
+            Hub.track('Payment group "'+group+'" doesn\'t exist');
         }
     };
 
@@ -188,10 +191,10 @@ function PaymentManager() {
                 }
                 this.reloadPrices();
             } else {
-                Hub.error('Payment system "' + id + '" doesn\'t have group attached to.');
+                Hub.track('Payment system "' + id + '" doesn\'t have group attached to.');
             }
         } else {
-            Hub.error('Payment system "'+id+'" doesn\'t exist');
+            Hub.track('Payment system "'+id+'" doesn\'t exist');
         }
     };
 
@@ -374,7 +377,7 @@ function PaymentManager() {
     };
 
     this.getGroupByName = function (group) {
-        if(!this.paymentGroups[group]) Hub.error('Payment group "'+group+'" doesn\'t exist');
+        if(!this.paymentGroups[group]) Hub.track('Payment group "'+group+'" doesn\'t exist');
 
         return this.paymentGroups[group];
     };
@@ -396,7 +399,7 @@ function PaymentManager() {
     };
 
     this.getPaymentSystemById = function (id) {
-        if(!this.paymentSystems[id]) Hub.error('Payment system "'+id+'" doesn\'t exist');
+        if(!this.paymentSystems[id]) Hub.track('Payment system "'+id+'" doesn\'t exist');
 
         return this.paymentSystems[id];
     };
