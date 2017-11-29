@@ -22,13 +22,39 @@ describe('Component', function(){
         });
     });
 
+    describe('Extensions', function(){
+       describe('History', function(){
+          it('save', function(){
+              var history = new History();
+              var record = { message: 'hello_world'};
+
+              history.save('hello_world', record);
+
+              expect(history.find('hello_world')).toEqual([record]);
+          });
+
+          it('find', function(){
+              var history = new History();
+
+              history.save('foo', { message: 'foo'});
+              history.save('bar', { message: 'bar'});
+
+              expect(Object.keys(history.find()).length).toEqual(2);
+              expect(history.find()).toEqual({
+                  foo: [{ message: 'foo'}],
+                  bar: [{ message: 'bar'}]
+              });
+          });
+       });
+    });
+
     describe('History', function(){
         it('initialized', function(){
            component = new Component();
            var record = { message: 'Component has been initialized without settings' };
            var history = { 'initialized': [record] };
 
-           expect(component.getHistory()).toEqual(history);
+           expect(component.history.find()).toEqual(history);
         });
 
         it('property_changed', function(){
@@ -36,7 +62,7 @@ describe('Component', function(){
             component.setId('foo');
             var record = { message: "Component has changed property [id] from 0 to foo" };
 
-            expect(component.getHistory()['property_changed']).toEqual([record]);
+            expect(component.history.find('property_changed')).toEqual([record]);
         });
     });
 
@@ -55,17 +81,19 @@ describe('Component', function(){
            expect(component.getId()).toEqual('bar');
         });
 
-        describe('getHistory', function(){
-            it('returns all history without tag', function(){
-                var history = { initialized: [{ message: 'Component has been initialized without settings' }]};
+        describe('extend', function(){
+            it('by object', function(){
+                var extension = { foo: function(){ return 'bar'; }};
+                component.extend('fooExt', extension);
 
-                expect(component.getHistory()).toEqual(history);
+                expect(component.fooExt.foo()).toEqual('bar');
             });
 
-            it('returns all records by tag', function(){
-                var history = [{ message: 'Component has been initialized without settings' }]
+            it('by function', function(){
+                var extension = function(){ this.foo = function(){ return 'bar'; }};
+                component.extend('fooExt', extension);
 
-                expect(component.getHistory('initialized')).toEqual(history);
+                expect(component.fooExt.foo()).toEqual('bar');
             });
         });
     });
@@ -88,13 +116,14 @@ describe('PriceComponent', function(){
     });
 
     describe('History', function(){
+
         describe('initialized', function(){
             it('with settings', function(){
                 component = new PriceComponent({ price: 22 });
                 var record = { message: 'Component has been initialized with settings' };
                 var history = { 'initialized': [record] };
 
-                expect(component.getHistory()).toEqual(history);
+                expect(component.history.find()).toEqual(history);
             });
 
             it('without settings', function(){
@@ -102,7 +131,7 @@ describe('PriceComponent', function(){
                 var record = { message: 'Component has been initialized without settings' };
                 var history = { 'initialized': [record] };
 
-                expect(component.getHistory()).toEqual(history);
+                expect(component.history.find()).toEqual(history);
             });
         });
 
@@ -111,7 +140,7 @@ describe('PriceComponent', function(){
             component.setPrice(102);
             var record = { message: "Component has changed property [price] from 0 to 102" };
 
-            expect(component.getHistory()['property_changed']).toEqual([record]);
+            expect(component.history.find('property_changed')).toEqual([record]);
         });
     });
 

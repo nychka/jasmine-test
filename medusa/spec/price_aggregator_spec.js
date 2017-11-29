@@ -11,9 +11,7 @@ describe('PriceAggregator', function(){
 
         beforeEach(function(){
             paymentManager = new PaymentManager();
-            paymentManager.registerFilter('total', TotalPriceFilter);
             component = new PaymentSystem({ id: 1}, new PaymentGroup(paymentManager, 'foo'));
-            aggregator.init();
         });
         
         it('inherits Aggregator', function(){
@@ -36,9 +34,6 @@ describe('PriceAggregator', function(){
     });
 
     describe('Component progression', function(){
-        beforeEach(function(){
-           aggregator.init();
-        });
 
         it('has one component: payment_manager', function(){
             aggregator.registerComponent(new PaymentManager({ id: 'payment_manager' }));
@@ -50,7 +45,6 @@ describe('PriceAggregator', function(){
 
         it('has one component: payment_manager which is aggregator of components', function(){
             var manager = new PaymentManager({ id: 'payment_manager' });
-            manager.registerFilter('total', TotalPriceFilter);
             manager.registerComponent(new PriceComponent({ id: 'foo', price: 51 }));
             manager.registerComponent(new PriceComponent({ id: 'bar', price: 49 }));
 
@@ -62,8 +56,6 @@ describe('PriceAggregator', function(){
         it('has two components: payment_manager and bonus_manager', function(){
             var payment_manager = new PaymentManager({ id: 'payment_manager' });
             var bonus_manager = new BonusManager({ id: 'bonus_manager' });
-            payment_manager.registerFilter('total', TotalPriceFilter);
-            bonus_manager.registerFilter('total', TotalPriceFilter);
             payment_manager.registerComponent(new PriceComponent({ id: 'webmoney', price: 500 }));
             bonus_manager.registerComponent(new PriceComponent({ id: 'ttn', price: -150 }));
             bonus_manager.registerComponent(new PriceComponent({ id: 'promo', price: 650 }));
@@ -76,9 +68,6 @@ describe('PriceAggregator', function(){
     });
 
    describe('API', function(){
-       beforeEach(function(){
-          aggregator.init();
-       });
       describe('getPrice', function(){
           it('has no components returns zero', function(){
               expect(aggregator.getPrice()).toEqual(0);
@@ -99,13 +88,6 @@ describe('PriceAggregator', function(){
              });
 
              expect(aggregator.getPrice('basePrice')).toEqual(25);
-          });
-
-          it('without filters always returns cosmos temperature', function(){
-             aggregator = new PriceAggregator();
-             aggregator.registerComponent(new PriceComponent({ price: 100 }));
-
-             expect(aggregator.getPrice()).toEqual(-273.15);
           });
       });
 
@@ -158,7 +140,7 @@ describe('PriceAggregator', function(){
            bar = new PriceComponent({ id: 'bar', price: 275});
        });
 
-      it('totalPriceFilter', function(){
+      it('total', function(){
             var fn = function(aggregator){
                 var price = 0;
 
@@ -182,7 +164,7 @@ describe('PriceAggregator', function(){
               aggregator.registerComponent(payment_system);
 
               var fn = function(aggregator){
-                 return  aggregator.getSumOfComponents(['payment_system', 'markup']);
+                 return  aggregator.calculate('sum', ['payment_system', 'markup']);
               };
 
               aggregator.registerFilter('base', fn);
@@ -198,7 +180,7 @@ describe('PriceAggregator', function(){
               aggregator.registerComponent(markup);
 
               var fn = function(aggregator){
-                  return  aggregator.getSumOfComponents(['payment_system', 'markup']);
+                  return  aggregator.calculate('sum', ['payment_system', 'markup']);
               };
 
               aggregator.registerFilter('base', fn);

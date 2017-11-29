@@ -2,13 +2,14 @@ function PriceAggregator(settings)
 {
   var components = {};
   var filters = {};
-  var kelvin = -273.15;
 
   PriceComponent.call(this, settings);
 
-  this.init = function()
+  var init = function()
   {
-    this.registerFilter('total', TotalPriceFilter);
+    var proto = PriceAggregator.prototype;
+
+    for(var filter in proto.filters) this.registerFilter(filter, proto.filters[filter]);
   };
 
 /**
@@ -21,7 +22,7 @@ function PriceAggregator(settings)
     var filter = filterId ? this.getFilterById(filterId) : this.getDefaultFilter();
     if(typeof filter !== 'function') console.warn('filter not prepared');
 
-    return (typeof filter === 'function') ? filter.call(this, this) : kelvin;
+    return filter.call(this, this);
   };
 /**
  * @override
@@ -44,11 +45,6 @@ function PriceAggregator(settings)
     components[id] = component;
   };
 
-  this.setBaseLine = function(price)
-  {
-    baseLine = price;
-  };
-
   this.registerFilter = function(id, fn)
   {
     filters[id] = fn;
@@ -69,29 +65,17 @@ function PriceAggregator(settings)
       return this.getFilterById('total');
   };
 
-  this.getSumOfComponents = function(component_ids)
+  this.calculate = function(operation, components_list)
   {
-      var sum = 0;
+      var proto = PriceAggregator.prototype;
 
-      for(var i in component_ids){
-          var component = this.findComponentById(component_ids[i]);
-
-          if(component){
-              sum += component.getPrice();
-          }
+      if(proto.operations.hasOwnProperty(operation)){
+          return proto.operations[operation].call(this, components_list)
+      }else{
+          console.warn("Operation " + operation + ' is unsupported');
       }
-
-      return sum;
   };
+
+  init.call(this);
 };
 
-function TotalPriceFilter(aggregator)
-{
-    var price = 0;
-
-    aggregator.getComponents(function(component){
-        price += component.getPrice();
-    });
-
-    return price;
-};
