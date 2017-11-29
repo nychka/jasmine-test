@@ -142,15 +142,12 @@ PriceAggregator.prototype.filters = {
         });
 
         return price;
-    }
-};
-
-PriceAggregator.prototype.operations = {
-    'sum': function(component_ids){
+    },
+    'sum': function(aggregator, component_ids){
         var sum = 0;
 
         for(var i in component_ids){
-            var component = this.findComponentById(component_ids[i]);
+            var component = aggregator.findComponentById(component_ids[i]);
 
             if(component){
                 sum += component.getPrice();

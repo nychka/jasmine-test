@@ -4,7 +4,6 @@
     <list default="true" id="f99f5fa0-1b3a-4fab-a851-2f08ce0bc36f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_aggregator.js" afterPath="$PROJECT_DIR$/medusa/price_aggregator.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_component.js" afterPath="$PROJECT_DIR$/medusa/price_component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/component_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/component_spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -44,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_aggregator.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="price_aggregator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="246">
+              <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -57,18 +56,8 @@
       <file leaf-file-name="price_component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="148" column="34" lean-forward="false" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hub.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/hub.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="155" column="57" lean-forward="true" selection-start-line="155" selection-start-column="57" selection-end-line="155" selection-end-column="57" />
+            <state relative-caret-position="246">
+              <caret line="145" column="47" lean-forward="true" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -84,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_aggregator_spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="price_aggregator_spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="182" column="84" lean-forward="true" selection-start-line="182" selection-start-column="84" selection-end-line="182" selection-end-column="84" />
+            <state relative-caret-position="473">
+              <caret line="182" column="83" lean-forward="true" selection-start-line="182" selection-start-column="83" selection-end-line="182" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -151,11 +140,11 @@
       <find>gets total</find>
       <find>makeRecord</find>
       <find>extend</find>
-      <find>ServiceInterface</find>
       <find>TotalPriceF</find>
       <find>aggregator.init</find>
       <find>without filters</find>
       <find>getSumOf</find>
+      <find>ServiceInterface</find>
     </findStrings>
     <replaceStrings>
       <replace>hub.dispatcher.addManager</replace>
@@ -178,8 +167,8 @@
       <replace>setPrice</replace>
       <replace>Hub.track</replace>
       <replace>PaymentManager</replace>
-      <replace>addComponent(</replace>
       <replace>log</replace>
+      <replace>addComponent(</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/payment_page_files</dir>
@@ -235,8 +224,8 @@
         <option value="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
         <option value="$PROJECT_DIR$/medusa/spec/component_spec.js" />
         <option value="$PROJECT_DIR$/medusa/price_component.js" />
-        <option value="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
         <option value="$PROJECT_DIR$/medusa/price_aggregator.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
       </list>
     </option>
   </component>
@@ -340,12 +329,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509528988475</updated>
       <workItem from="1509528990047" duration="51672000" />
-      <workItem from="1510561561124" duration="69418000" />
+      <workItem from="1510561561124" duration="70353000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169382000" />
+    <option name="totallyTimeSpent" value="170317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -725,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/hub.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="155" column="57" lean-forward="true" selection-start-line="155" selection-start-column="57" selection-end-line="155" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -762,26 +743,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+    <entry file="file://$PROJECT_DIR$/medusa/hub.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="148" column="34" lean-forward="false" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
+        <state relative-caret-position="360">
+          <caret line="155" column="57" lean-forward="true" selection-start-line="155" selection-start-column="57" selection-end-line="155" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
+    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="182" column="84" lean-forward="true" selection-start-line="182" selection-start-column="84" selection-end-line="182" selection-end-column="84" />
+        <state relative-caret-position="246">
+          <caret line="145" column="47" lean-forward="true" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        <state relative-caret-position="246">
+          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="182" column="83" lean-forward="true" selection-start-line="182" selection-start-column="83" selection-end-line="182" selection-end-column="83" />
           <folding />
         </state>
       </provider>

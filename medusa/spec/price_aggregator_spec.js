@@ -164,7 +164,7 @@ describe('PriceAggregator', function(){
               aggregator.registerComponent(payment_system);
 
               var fn = function(aggregator){
-                 return  aggregator.calculate('sum', ['payment_system', 'markup']);
+                 return  aggregator.getPrice('sum', ['payment_system', 'markup']);
               };
 
               aggregator.registerFilter('base', fn);
@@ -180,7 +180,7 @@ describe('PriceAggregator', function(){
               aggregator.registerComponent(markup);
 
               var fn = function(aggregator){
-                  return  aggregator.calculate('sum', ['payment_system', 'markup']);
+                  return  aggregator.getPrice('sum', ['payment_system', 'markup']);
               };
 
               aggregator.registerFilter('base', fn);

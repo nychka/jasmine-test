@@ -17,12 +17,12 @@ function PriceAggregator(settings)
  * @param filterId
  * @returns {number}
  */
-  this.getPrice = function(filterId)
+  this.getPrice = function(filterId, params)
   {
     var filter = filterId ? this.getFilterById(filterId) : this.getDefaultFilter();
     if(typeof filter !== 'function') console.warn('filter not prepared');
 
-    return filter.call(this, this);
+    return filter.call(this, this, params);
   };
 /**
  * @override
@@ -63,17 +63,6 @@ function PriceAggregator(settings)
   this.getDefaultFilter = function()
   {
       return this.getFilterById('total');
-  };
-
-  this.calculate = function(operation, components_list)
-  {
-      var proto = PriceAggregator.prototype;
-
-      if(proto.operations.hasOwnProperty(operation)){
-          return proto.operations[operation].call(this, components_list)
-      }else{
-          console.warn("Operation " + operation + ' is unsupported');
-      }
   };
 
   init.call(this);
