@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f99f5fa0-1b3a-4fab-a851-2f08ce0bc36f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_aggregator.js" afterPath="$PROJECT_DIR$/medusa/price_aggregator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/medusa/spec/payment_manager_spec.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/medusa/price_aggregator.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/cards_picker.js" afterPath="$PROJECT_DIR$/medusa/cards_picker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/managers/bonus_manager.js" afterPath="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/managers/payment_manager.js" afterPath="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_component.js" afterPath="$PROJECT_DIR$/medusa/price_component.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page.html" afterPath="$PROJECT_DIR$/payment_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/general_script.js" afterPath="$PROJECT_DIR$/payment_page_files/general_script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/medusa_controller.js" afterPath="$PROJECT_DIR$/payment_page_files/medusa_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_page_files/script.js" afterPath="$PROJECT_DIR$/payment_page_files/script.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,86 +28,140 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="medusa_controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment_page_files/medusa_controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="488" column="64" lean-forward="false" selection-start-line="488" selection-start-column="60" selection-end-line="488" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="payment_page.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/payment_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="2535" column="224631" lean-forward="false" selection-start-line="2535" selection-start-column="224631" selection-end-line="2535" selection-end-column="224631" />
+            <state relative-caret-position="22">
+              <caret line="5133" column="0" lean-forward="true" selection-start-line="5133" selection-start-column="0" selection-end-line="5133" selection-end-column="0" />
               <folding>
                 <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#799024#799768#0" expanded="false" />
+                <element signature="e#798266#799010#0" expanded="false" />
                 <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <marker date="1512042340384" expanded="true" signature="10451:10521" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="10554:11463" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="11508:11528" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="11550:11598" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="11613:12217" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="12247:12279" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="12303:12828" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="12856:13521" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="13568:13599" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="13638:13673" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="13716:13751" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="13794:13863" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="13888:13987" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="14028:14065" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="14090:14228" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="14229:14348" ph="/*...*/" />
+                <marker date="1512042340384" expanded="true" signature="14349:14793" ph="/*...*/" />
+                <marker date="1512042340384" expanded="true" signature="14825:15126" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="15179:15221" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="15260:15332" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="15358:16465" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="16507:16541" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="16572:16883" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="16936:16978" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="17025:17530" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="17561:17744" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="17795:17823" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="17866:17900" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="17939:18010" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18061:18328" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18352:18441" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18468:18606" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18658:18840" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18874:18948" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="18977:19008" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="19047:19178" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="19214:19270" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="19299:19534" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="19570:19837" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="19879:19986" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="20051:20082" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="20120:20512" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="20539:20683" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="20698:26047" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="26068:26098" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="26592:27062" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="27117:27151" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="27179:27356" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="27386:27517" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="27518:30507" ph="/*...*/" />
+                <marker date="1512042340384" expanded="true" signature="30548:31250" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="31297:31336" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="31384:31422" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="31456:31831" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="31870:32277" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32322:32364" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32409:32448" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32472:32505" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32531:32642" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32673:32705" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="32736:33269" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="33295:33402" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="33432:33569" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="33606:33759" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="33792:33972" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34009:34068" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34095:34132" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34157:34201" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34231:34418" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34469:34527" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34607:34751" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="34780:35084" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="35101:35184" ph="{...}" />
+                <marker date="1512042340384" expanded="true" signature="35206:35233" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bonus_manager.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/managers/bonus_manager.js">
+      <file leaf-file-name="payment_card.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment_page_files/payment_card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+            <state relative-caret-position="185">
+              <caret line="100" column="25" lean-forward="false" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_aggregator.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
+      <file leaf-file-name="cards_picker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+            <state relative-caret-position="516">
+              <caret line="47" column="40" lean-forward="true" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_component.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cards_picker_spec.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="67" column="69" lean-forward="false" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="price_component.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="145" column="47" lean-forward="true" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="component_spec.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/spec/component_spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2064">
-              <caret line="140" column="93" lean-forward="true" selection-start-line="140" selection-start-column="93" selection-end-line="140" selection-end-column="93" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="price_aggregator_spec.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="473">
-              <caret line="182" column="83" lean-forward="true" selection-start-line="182" selection-start-column="83" selection-end-line="182" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="payment_manager.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="83" lean-forward="true" selection-start-line="1" selection-start-column="83" selection-end-line="1" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="payment_system.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+              <caret line="308" column="36" lean-forward="false" selection-start-line="308" selection-start-column="36" selection-end-line="308" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -115,36 +179,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>H</find>
-      <find>preparePromotion</find>
-      <find>Hub.track</find>
-      <find>Hub.log(</find>
-      <find>getCostBy</find>
-      <find>cost</find>
-      <find>setCost</find>
-      <find>Object.create</find>
-      <find>addCompo</find>
-      <find>addComponent('bar',</find>
-      <find>addComponent(</find>
-      <find>addComp</find>
-      <find>AdditionalServices</find>
-      <find>'todo:</find>
-      <find>Hub.error</find>
-      <find>init()</find>
-      <find>ServiceIn</find>
-      <find>gets total prc</find>
-      <find>aggregator.ini</find>
-      <find>base</find>
-      <find>baselin</find>
-      <find>posit</find>
-      <find>gets total</find>
-      <find>makeRecord</find>
-      <find>extend</find>
-      <find>TotalPriceF</find>
       <find>aggregator.init</find>
       <find>without filters</find>
       <find>getSumOf</find>
       <find>ServiceInterface</find>
+      <find>price_aggregator_</find>
+      <find>card_data</find>
+      <find>settings.cardNumbers</find>
+      <find>fbevent</find>
+      <find>slick.mi</find>
+      <find>spx.js</find>
+      <find>slick</find>
+      <find>'facebook</find>
+      <find>facebook</find>
+      <find>slick.min</find>
+      <find>canUse</find>
+      <find>lang_prefix</find>
+      <find>new InsuranceW</find>
+      <find>.run</find>
+      <find>transform_in</find>
+      <find>enable_slick</find>
+      <find>'service').run</find>
+      <find>cardNumbers</find>
+      <find>cards_picker_changed</find>
+      <find>getCurrentState</find>
+      <find>toThrow(</find>
+      <find>Throw</find>
+      <find>toThrow</find>
+      <find>ThrowError</find>
+      <find>cards_picker</find>
+      <find>previous</find>
     </findStrings>
     <replaceStrings>
       <replace>hub.dispatcher.addManager</replace>
@@ -167,8 +231,9 @@
       <replace>setPrice</replace>
       <replace>Hub.track</replace>
       <replace>PaymentManager</replace>
-      <replace>log</replace>
       <replace>addComponent(</replace>
+      <replace>log</replace>
+      <replace>settings.cards</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/payment_page_files</dir>
@@ -208,9 +273,6 @@
         <option value="$PROJECT_DIR$/jasmine/jasmine-combined.js" />
         <option value="$PROJECT_DIR$/medusa/spec/otp_cards_picker_spec.js" />
         <option value="$PROJECT_DIR$/medusa/otp_cards_picker.js" />
-        <option value="$PROJECT_DIR$/payment_page_files/medusa_controller.js" />
-        <option value="$PROJECT_DIR$/medusa/cards_picker.js" />
-        <option value="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
         <option value="$PROJECT_DIR$/medusa/spec/promo_code_spec.js" />
         <option value="$PROJECT_DIR$/medusa/promo_code.js" />
         <option value="$PROJECT_DIR$/payment_page_files/bonus_manager.js" />
@@ -218,14 +280,20 @@
         <option value="$PROJECT_DIR$/payment_page_files/payment_decorator.js" />
         <option value="$PROJECT_DIR$/payment_page_files/payment_group.js" />
         <option value="$PROJECT_DIR$/medusa/spec/inheritance_spec.js" />
-        <option value="$PROJECT_DIR$/payment_page.html" />
         <option value="$PROJECT_DIR$/payment_page_files/payment_system.js" />
-        <option value="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
-        <option value="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
         <option value="$PROJECT_DIR$/medusa/spec/component_spec.js" />
-        <option value="$PROJECT_DIR$/medusa/price_component.js" />
         <option value="$PROJECT_DIR$/medusa/price_aggregator.js" />
         <option value="$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/payment_manager_spec.js" />
+        <option value="$PROJECT_DIR$/payment_page_files/script.js" />
+        <option value="$PROJECT_DIR$/payment_page_files/general_script.js" />
+        <option value="$PROJECT_DIR$/medusa/managers/bonus_manager.js" />
+        <option value="$PROJECT_DIR$/payment_page_files/medusa_controller.js" />
+        <option value="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
+        <option value="$PROJECT_DIR$/payment_page.html" />
+        <option value="$PROJECT_DIR$/medusa/cards_picker.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
+        <option value="$PROJECT_DIR$/medusa/price_component.js" />
       </list>
     </option>
   </component>
@@ -329,12 +397,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509528988475</updated>
       <workItem from="1509528990047" duration="51672000" />
-      <workItem from="1510561561124" duration="70353000" />
+      <workItem from="1510561561124" duration="98536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170317000" />
+    <option name="totallyTimeSpent" value="198500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -393,14 +461,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/medusa/spec/fixtures/additional_services.html" />
-    <entry file="file://$PROJECT_DIR$/jasmine/console.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jasmine/jasmine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="73008">
@@ -442,8 +502,82 @@
           <folding>
             <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#799024#799768#0" expanded="false" />
+            <element signature="e#798266#799010#0" expanded="false" />
             <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1512042340384" expanded="true" signature="10451:10521" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="10554:11463" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11508:11528" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11550:11598" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11613:12217" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12247:12279" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12303:12828" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12856:13521" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13568:13599" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13638:13673" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13716:13751" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13794:13863" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13888:13987" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14028:14065" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14090:14228" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14229:14348" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="14349:14793" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="14825:15126" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15179:15221" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15260:15332" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15358:16465" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16507:16541" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16572:16883" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16936:16978" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17025:17530" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17561:17744" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17795:17823" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17866:17900" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17939:18010" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18061:18328" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18352:18441" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18468:18606" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18658:18840" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18874:18948" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18977:19008" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19047:19178" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19214:19270" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19299:19534" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19570:19837" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19879:19986" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20051:20082" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20120:20512" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20539:20683" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20698:26047" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="26068:26098" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="26592:27062" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27117:27151" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27179:27356" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27386:27517" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27518:30507" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="30548:31250" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31297:31336" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31384:31422" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31456:31831" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31870:32277" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32322:32364" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32409:32448" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32472:32505" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32531:32642" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32673:32705" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32736:33269" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33295:33402" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33432:33569" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33606:33759" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33792:33972" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34009:34068" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34095:34132" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34157:34201" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34231:34418" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34469:34527" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34607:34751" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34780:35084" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="35101:35184" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="35206:35233" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -468,14 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/general_script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2853">
-          <caret line="223" column="5" lean-forward="true" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -608,38 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="50" column="45" lean-forward="true" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="83" column="7" lean-forward="false" selection-start-line="83" selection-start-column="7" selection-end-line="83" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/medusa_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="96" column="6" lean-forward="false" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="103" column="12" lean-forward="true" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/spec/promo_code_spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2772">
@@ -680,14 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/medusa/spec/inheritance_spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -695,51 +781,6 @@
           <folding>
             <marker date="1511779124650" expanded="true" signature="1665:1727" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/managers/bonus_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="83" lean-forward="true" selection-start-line="1" selection-start-column="83" selection-end-line="1" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="2535" column="224631" lean-forward="false" selection-start-line="2535" selection-start-column="224631" selection-end-line="2535" selection-end-column="224631" />
-          <folding>
-            <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#799024#799768#0" expanded="false" />
-            <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/spec/component_spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2064">
-          <caret line="140" column="93" lean-forward="true" selection-start-line="140" selection-start-column="93" selection-end-line="140" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -751,26 +792,217 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+    <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="145" column="47" lean-forward="true" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/price_aggregator.js">
+    <entry file="file://$PROJECT_DIR$/medusa/spec/component_spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        <state relative-caret-position="2520">
+          <caret line="140" column="93" lean-forward="true" selection-start-line="140" selection-start-column="93" selection-end-line="140" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/medusa/spec/price_aggregator_spec.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="7" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/payment_manager_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_system.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/general_script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="874" column="0" lean-forward="true" selection-start-line="874" selection-start-column="0" selection-end-line="874" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1512033507844" expanded="true" signature="6007:6022" ph="..." />
+            <marker date="1512033507844" expanded="true" signature="24272:24283" ph="..." />
+            <marker date="1512033507844" expanded="true" signature="24879:24890" ph="..." />
+            <marker date="1512033507844" expanded="true" signature="25015:25032" ph="..." />
+            <marker date="1512033507844" expanded="true" signature="36856:36864" ph="‹" />
+            <marker date="1512033507844" expanded="true" signature="36945:36953" ph="›" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/managers/bonus_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/managers/payment_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="70" column="49" lean-forward="true" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/medusa_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="488" column="64" lean-forward="false" selection-start-line="488" selection-start-column="60" selection-end-line="488" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page_files/payment_card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="100" column="25" lean-forward="false" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="5133" column="0" lean-forward="true" selection-start-line="5133" selection-start-column="0" selection-end-line="5133" selection-end-column="0" />
+          <folding>
+            <element signature="n#script#4;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#5;n#form#0;n#div#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#798266#799010#0" expanded="false" />
+            <element signature="n#script#13;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1512042340384" expanded="true" signature="10451:10521" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="10554:11463" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11508:11528" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11550:11598" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="11613:12217" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12247:12279" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12303:12828" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="12856:13521" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13568:13599" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13638:13673" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13716:13751" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13794:13863" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="13888:13987" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14028:14065" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14090:14228" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="14229:14348" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="14349:14793" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="14825:15126" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15179:15221" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15260:15332" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="15358:16465" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16507:16541" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16572:16883" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="16936:16978" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17025:17530" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17561:17744" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17795:17823" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17866:17900" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="17939:18010" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18061:18328" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18352:18441" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18468:18606" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18658:18840" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18874:18948" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="18977:19008" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19047:19178" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19214:19270" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19299:19534" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19570:19837" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="19879:19986" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20051:20082" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20120:20512" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20539:20683" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="20698:26047" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="26068:26098" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="26592:27062" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27117:27151" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27179:27356" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27386:27517" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="27518:30507" ph="/*...*/" />
+            <marker date="1512042340384" expanded="true" signature="30548:31250" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31297:31336" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31384:31422" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31456:31831" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="31870:32277" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32322:32364" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32409:32448" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32472:32505" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32531:32642" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32673:32705" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="32736:33269" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33295:33402" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33432:33569" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33606:33759" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="33792:33972" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34009:34068" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34095:34132" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34157:34201" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34231:34418" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34469:34527" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34607:34751" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="34780:35084" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="35101:35184" ph="{...}" />
+            <marker date="1512042340384" expanded="true" signature="35206:35233" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="67" column="69" lean-forward="false" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="47" column="40" lean-forward="true" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
-          <caret line="182" column="83" lean-forward="true" selection-start-line="182" selection-start-column="83" selection-end-line="182" selection-end-column="83" />
+          <caret line="308" column="36" lean-forward="false" selection-start-line="308" selection-start-column="36" selection-end-line="308" selection-end-column="36" />
           <folding />
         </state>
       </provider>

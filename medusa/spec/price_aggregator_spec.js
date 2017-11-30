@@ -5,33 +5,6 @@ describe('PriceAggregator', function(){
         aggregator = new PriceAggregator();
         component = new PriceComponent({ id: 'foo', price: 101 });
     });
-    
-    describe('PaymentManager', function(){
-        var paymentManager, paymentSystem;
-
-        beforeEach(function(){
-            paymentManager = new PaymentManager();
-            component = new PaymentSystem({ id: 1}, new PaymentGroup(paymentManager, 'foo'));
-        });
-        
-        it('inherits Aggregator', function(){
-            expect(paymentManager instanceof PriceAggregator).toBeTruthy();
-        });
-
-        it('registers component PaymentSystem', function(){
-           paymentManager.registerComponent(component);
-
-           expect(paymentManager.getComponents()).toEqual({1: component});
-        });
-
-        it('gets total price based on component', function(){
-            component.setPrice(100);
-            paymentManager.registerComponent(component);
-            aggregator.registerComponent(paymentManager);
-
-            expect(aggregator.getPrice()).toEqual(100);
-        });
-    });
 
     describe('Component progression', function(){
 

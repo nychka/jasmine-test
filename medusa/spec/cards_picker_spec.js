@@ -1,19 +1,27 @@
 describe('CardsPicker', function(){
-    var picker, options;
+    var picker, options, card;
 
     var element = $('<div></div>', { id: 'jasmine_cards_picker' });
     var select = $('<select></select>', { id: 'usbl_selector'});
+
     element.append(select);
     $('body').append(element);
 
     options = {
         wrapper: $('#jasmine_cards_picker'),
-        pickerSelector:  'select'
+        pickerSelector:  'select',
+        cards: [
+            { number: "4363231111", group: 'otp' },
+            { number: "4363231112", group: 'otp'},
+            { number: "4363231113", group: 'default'},
+            { number: "4363231114", group: 'custom'}
+        ]
     };
 
 
     beforeEach(function(){
         picker = new CardsPicker(options);
+        card =  { number: "4363231112", name: 'user_card', group: 'otp' };
     });
 
     describe('getWrapper', function(){
@@ -32,21 +40,92 @@ describe('CardsPicker', function(){
         expect(picker.getPickerContainer()).toExist();
     });
 
-    describe('setup', function(){
-        it('prepare card options for picker container', function(){
-            picker.settings.cardNumbers = ["4363231112"];
-            picker.setup();
+    describe('History plugin', function(){
+       it('initialized', function(){
 
-            expect(picker.getCards()).toEqual(picker.settings.cardNumbers);
+            expect(picker.history.find('initialized')).toEqual([{ message: 'Component has been initialized with settings' }]);
+       });
+
+       it('prepared', function(){
+           picker.setup();
+
+           expect(picker.history.find('prepared')).toEqual([{ message: 'Component has been prepared', data: { cards: picker.getCards() }}]);
+       });
+    });
+
+    describe('State plugin', function(){
+        describe('get', function(){
+            it('when state registered', function(){
+                picker.state.register('default', function(){
+                   this.name = 'default';
+                });
+               expect(picker.state.get('default').name).toEqual('default');
+            });
+
+            it('when no state found', function(){
+                expect(function(){
+                    picker.state.get('fd');
+                }).toThrow( State.prototype.errors.state_not_found('fd'));
+            });
         });
 
-        it('tries to add existing cards', function(){
-            picker.settings.cardNumbers = ["4363231112", "4363231111"];
+       describe('getCurrent', function(){
+           it('default', function(){
+               expect(picker.state.getCurrent()).toEqual(picker.state.get('default'));
+           });
+
+           it('activated', function(){
+               picker.state.register('activated', function(){
+                   this.handle = function(){
+                       picker.fakeState = 'foo';
+                   }
+               });
+
+               expect(picker.fakeState).not.toBe('foo');
+
+               picker.state.transitTo('activated');
+
+               expect(picker.fakeState).toBe('foo');
+           });
+       });
+
+       it('register', function(){
+          picker.state.register('activated', function(){});
+
+          expect(function(){
+              picker.state.transitTo('activated');
+          }).toThrow(State.prototype.errors.method_not_overloaded('handle'));
+       });
+
+       it('after component initialization transit to default state', function(){
+          picker.setup();
+
+          expect(picker.state.getCurrent().getId()).toEqual('default');
+          expect(picker.history.find('state_changed').length).toEqual(1);
+           expect(picker.history.find('state_changed')[0].message).toEqual('Component transits to state default');
+       });
+    });
+
+    describe('setup', function(){
+        it('prepare card options for picker container', function(){
+            picker.settings.cards = [
+                { number: "4363231112", name: 'user_card', group: 'otp' }
+            ];
             picker.setup();
 
-            expect(picker.getCards()).toEqual(picker.settings.cardNumbers);
+            expect(picker.getCards()).toEqual(picker.settings.cards);
+        });
+
+        xit('tries to add existing cards', function(){
+            picker.settings.cards = [
+                { number: "4363231112", name: 'user_card', group: 'otp' },
+                { number: "4363231113", name: 'user_card', group: 'otp' }
+            ];
+            picker.setup();
+
+            expect(picker.getCards()).toEqual(picker.settings.cards);
             expect(function(){
-                picker.settings.cardNumbers = ["4363231111"];
+                picker.settings.cards = ["4363231111"];
                 picker.setup();
             }).toThrow(new OtpCardsPickerAddSameCardError("4363231111"));
         });
@@ -54,7 +133,6 @@ describe('CardsPicker', function(){
 
     describe('buildCardOption', function() {
         it('builds with valid card number 4363231112', function () {
-            var card = "4363231112";
             var text = "4363 23XX XXXX 1112";
             var value = "43631112";
             var option = picker.buildCardOption(card);
@@ -64,11 +142,11 @@ describe('CardsPicker', function(){
         });
 
         it('throws error when card number is not valid', function(){
-            var cardNumber = "1234";
+            card.number = '1234';
 
             expect(function(){
-                picker.buildCardOption(cardNumber);
-            }).toThrow(new OtpCardsPickerCardNumberIsNotValidError(cardNumber));
+                picker.buildCardOption(card);
+            }).toThrow(new OtpCardsPickerCardNumberIsNotValidError(card));
 
         });
     });

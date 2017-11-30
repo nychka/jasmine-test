@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="./payment_page_files/magnific-popup.min.css" type="text/css"><link rel="stylesheet" href="./payment_page_files/slick.min.css" type="text/css"><link rel="stylesheet" href="./payment_page_files/index.css" type="text/css"><link rel="stylesheet" href="./payment_page_files/avia.css" type="text/css"><link rel="stylesheet" href="./payment_page_files/domain_fixes.css" type="text/css">
 
 
-    <script src="./payment_page_files/458103134547817" async=""></script><script async="" src="./payment_page_files/fbevents.js"></script><script type="text/javascript" async="" src="./payment_page_files/watch.js"></script><script type="text/javascript" async="" src="./payment_page_files/conversion_async.js"></script><script async="true" type="text/javascript" src="./payment_page_files/event" data-owner="criteo-tag"></script><script id="facebook-jssdk" src="./payment_page_files/all.js" async=""></script><script async="" src="./payment_page_files/saved_resource"></script><script id="xcntmyAsync"></script><script async="" src="./payment_page_files/ld.js"></script><script id="dumedia" async="" charset="utf-8" src="./payment_page_files/dumedia.js"></script><script type="text/javascript" async="" defer="" src="./payment_page_files/piwik.js"></script><script async="" src="./payment_page_files/gtm.js"></script><script async="" src="./payment_page_files/analytics.js"></script><script type="text/javascript">
+    <script type="text/javascript">
         window.currencies = ["RUR","UAH","EUR","USD","AZN","PLN","MDL","KZT","GBP","RON","TRY","DKK","NOK","SEK","CHF","AED","BYN","BYR","KGS","AMD","UZS","AUD","MXN","GEL"];
         window.language   = "ru";
         window.cur_domain = 'avia';
@@ -120,10 +120,10 @@ ga('send', 'pageview');
 <script type="text/javascript" src="./payment_page_files/jquery-ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="./payment_page_files/svg_avia.js"></script>
 <script type="text/javascript" src="./payment_page_files/csrf.js"></script>
-<script type="text/javascript" src="./payment_page_files/booking_controller.js"></script>
-<script type="text/javascript" src="./payment_page_files/intermediate_avia_booking_controller.js"></script>
-<script type="text/javascript" src="./payment_page_files/v2_avia_booking_controller.js"></script>
-<script type="text/javascript" src="./payment_page_files/avia_booking_controller.js"></script>
+<!--<script type="text/javascript" src="./payment_page_files/booking_controller.js"></script>-->
+<!--<script type="text/javascript" src="./payment_page_files/intermediate_avia_booking_controller.js"></script>-->
+<!--<script type="text/javascript" src="./payment_page_files/v2_avia_booking_controller.js"></script>-->
+<!--<script type="text/javascript" src="./payment_page_files/avia_booking_controller.js"></script>-->
 <script type="text/javascript" src="./payment_page_files/separate_booking_page_controller.js"></script>
 <script type="text/javascript" src="./payment_page_files/booking.js"></script>
 <script type="text/javascript" src="./payment_page_files/jquery.translit.js"></script>
@@ -145,7 +145,8 @@ ga('send', 'pageview');
     <![endif]-->
 
 
-    <script src="./payment_page_files/spx.js" async="true"></script><style type="text/css">/*.lleo_errorSelection *::-moz-selection,
+    <!--<script src="./payment_page_files/spx.js" async="true"></script -->
+    <style type="text/css">
 .lleo_errorSelection *::selection,
 .lleo_errorSelection *::-webkit-selection {
     background-color: red !important;
@@ -1834,9 +1835,13 @@ ga('send', 'pageview');
         <div class="card_block">
 
             <!-- USB card selection block -->
-            <div class="select_card_type usb_cards_block" id="usb_cards_block_direct">
-                <div class="select_label">Виберите карту:</div>
-                <div class="select_select" id="usb_selector_block"></div>
+            <div class="select_card_type usb_cards_block" id="usb_cards_block_341" hidden>
+                <div class="select_label">Виберите карту: </div>
+                <div class="select_select" id="usb_selector_block_341">
+                    <select class="chosen-select-no-search ignore-selectbox" id="usbl_selector">
+                        <!-- DYNAMIC LOADING: LEAVE EMPTY PLEASE -->
+                    </select>
+                </div>
             </div>
             <!-- USB card selection block -->
             <div class="clear"></div>
@@ -4411,7 +4416,7 @@ document.addEventListener('readystatechange', function(){
             this.selfPrice          = 0;
             this.currencies         = {"AED":"AED","AFN":"AFN","ALL":"ALL","AMD":"AMD","ANG":"ANG","AOA":"AOA","ARS":"ARS","AUD":"AUD","AWG":"AWG","AZM":"AZM","AZN":"AZN","BAM":"BAM","BBD":"BBD","BDT":"BDT","BGN":"BGN","BHD":"BHD","BIF":"BIF","BMD":"BMD","BND":"BND","BOB":"BOB","BRL":"BRL","BSD":"BSD","BTN":"BTN","BWP":"BWP","BYN":"BYN","BYR":"BYR","BZD":"BZD","CAD":"CAD","CDF":"CDF","CHF":"CHF","CLP":"CLP","CNY":"CNY","COP":"COP","CRC":"CRC","CUC":"CUC","CUP":"CUP","CVE":"CVE","CZK":"CZK","DJF":"DJF","DKK":"DKK","DOP":"DOP","DZD":"DZD","EEK":"EEK","EGP":"EGP","ERN":"ERN","ETB":"ETB","EUR":"EUR","FJD":"FJD","FKP":"FKP","GBP":"GBP","GEL":"GEL","GGP":"GGP","GHS":"GHS","GIP":"GIP","GMD":"GMD","GNF":"GNF","GTQ":"GTQ","GYD":"GYD","HKD":"HKD","HNL":"HNL","HRK":"HRK","HTG":"HTG","HUF":"HUF","IDR":"IDR","ILS":"ILS","IMP":"IMP","INR":"INR","IQD":"IQD","IRR":"IRR","ISK":"ISK","JEP":"JEP","JMD":"JMD","JOD":"JOD","JPY":"JPY","KES":"KES","KGS":"KGS","KHR":"KHR","KMF":"KMF","KPW":"KPW","KRW":"KRW","KWD":"KWD","KYD":"KYD","KZT":"KZT","LAK":"LAK","LBP":"LBP","LKR":"LKR","LRD":"LRD","LSL":"LSL","LTL":"LTL","LVL":"LVL","LYD":"LYD","MAD":"MAD","MDL":"MDL","MGA":"MGA","MKD":"MKD","MMK":"MMK","MNT":"MNT","MOP":"MOP","MRO":"MRO","MUR":"MUR","MVR":"MVR","MWK":"MWK","MXN":"MXN","MYR":"MYR","MZN":"MZN","NAD":"NAD","NGN":"NGN","NIO":"NIO","NOK":"NOK","NPR":"NPR","NZD":"NZD","OMR":"OMR","PAB":"PAB","PEN":"PEN","PGK":"PGK","PHP":"PHP","PKR":"PKR","PLN":"PLN","PYG":"PYG","QAR":"QAR","RON":"RON","RSD":"RSD","RUB":"RUR","RUR":"RUR","RWF":"RWF","SAR":"SAR","SBD":"SBD","SCR":"SCR","SDG":"SDG","SDR":"SDR","SEK":"SEK","SGD":"SGD","SHP":"SHP","SLL":"SLL","SOS":"SOS","SPL":"SPL","SRD":"SRD","SSP":"SSP","STD":"STD","SVC":"SVC","SYP":"SYP","SZL":"SZL","THB":"THB","TJS":"TJS","TMM":"TMM","TMT":"TMT","TND":"TND","TOP":"TOP","TRL":"TRL","TRY":"TRY","TTD":"TTD","TVD":"TVD","TWD":"TWD","TZS":"TZS","UAH":"UAH","UGX":"UGX","USD":"USD","UYU":"UYU","UZS":"UZS","VEF":"VEF","VND":"VND","VUV":"VUV","WST":"WST","XAF":"XAF","XAG":"XAG","XAU":"XAU","XCD":"XCD","XDR":"XDR","XOF":"XOF","XPD":"XPD","XPF":"XPF","XPT":"XPT","YER":"YER","ZAR":"ZAR","ZMK":"ZMK","ZWD":"ZWD","ZWL":"ZWL"};
             this.running_request = false;
-            this.lang               = (lang_prefix || 'ru').replace('/', '');
+            this.lang               = (window.lang_prefix || 'ru').replace('/', '');
             this.useCostPerPassenger = 1;
             this.passengerCount     = 1 ;
             this.session_id =  '996f9eca20cc3521c9b72d27bb00cbd6';
@@ -4826,10 +4831,10 @@ document.addEventListener('readystatechange', function(){
         $(function(){
             insWithAviaObj = new InsuranceWithAvia;
             if(canUseServiceInterface()){
-                Hub.dispatcher.getManager('service').add(insWithAviaObj);
+//                Hub.dispatcher.getManager('service').add(insWithAviaObj);
             }else{
-                PriceCalculationObj.addService(insWithAviaObj);
-                insWithAviaObj.init();
+//                PriceCalculationObj.addService(insWithAviaObj);
+//                insWithAviaObj.init();
                 //console.warn('This is DEPRECATED! Use ServiceInterface instead');
             }
             disable_input_plugin(insWithAviaObj.mainWrapp);
@@ -5117,7 +5122,7 @@ document.addEventListener('readystatechange', function(){
     });
 </script>
 <!-- ADDITIONAL SERVICES END -->
-<script src="medusa/cards_picker.js" type="text/javascript"></script>
+
 <!-- JASMINE -->
 <link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png">
 <!-- link rel="stylesheet" href="jasmine/jasmine.css" -->
@@ -5127,7 +5132,7 @@ document.addEventListener('readystatechange', function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine.min.js"></script>
 
 
-
+<script src="medusa/cards_picker.js" type="text/javascript"></script>
 <!-- script src="jasmine/jasmine-html.js" type="text/javascript"></script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.8.0/jasmine-html.min.js"></script>
 
@@ -5138,7 +5143,6 @@ document.addEventListener('readystatechange', function(){
 <!-- script src="jasmine/mock-ajax.js" type="text/javascript"></script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine-ajax/3.3.1/mock-ajax.min.js"></script>
 
-<script src="medusa/price_aggregator.js" type="text/javascript"></script>
 <script src="medusa/price_component.js" type="text/javascript"></script>
 <script src="medusa/spec/spec_helper.js" type="text/javascript"></script>
 <script src="medusa/spec/hub_spec.js" type="text/javascript"></script>
@@ -5149,6 +5153,7 @@ document.addEventListener('readystatechange', function(){
 <script src="medusa/spec/price_aggregator_spec.js" type="text/javascript"></script>
 <script src="medusa/spec/inheritance_spec.js" type="text/javascript"></script>
 <script src="medusa/spec/component_spec.js" type="text/javascript"></script>
+<script src="medusa/spec/payment_manager_spec.js" type="text/javascript"></script>
 <!-- JASMINE END -->
 
 </body></html>

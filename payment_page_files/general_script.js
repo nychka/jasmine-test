@@ -1,7 +1,7 @@
 var logged_erros = {};
 var MAX_LOGGED_ERROR_COUNT = 10
 window.onerror = function (msg, url, lineNo, columnNo, err) {
-
+    var token;
     if (typeof(msg) === 'object' && msg.srcElement && msg.target) {
       if(msg.srcElement == '[object HTMLScriptElement]' && msg.target == '[object HTMLScriptElement]'){
           msg = 'Error loading script' + msg.src;
@@ -25,7 +25,7 @@ window.onerror = function (msg, url, lineNo, columnNo, err) {
     if(logged_erros[error] > MAX_LOGGED_ERROR_COUNT){
       return;
     }
-    token = $.cookie("extended_user_token").replace(/[^0-9]/gi,'');
+    // token = $.cookie("extended_user_token").replace(/[^0-9]/gi,'');
     token = token ? token : ((typeof(session_id)!="undefined" ? session_id : "")||'')
     window.log_error(error, token , (window.location.pathname) , 955);
 

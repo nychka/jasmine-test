@@ -871,7 +871,7 @@ $(document).ready(function(){
     window.enable_magnific();
     window.enable_magnific_inline();
     window.enable_tooltip();
-    window.enable_slick_sliders(); // enable slick slider
+    // window.enable_slick_sliders(); // enable slick slider
 
     //переключалки вкладок в попапі
     LoginPopup = $('#login-popup');

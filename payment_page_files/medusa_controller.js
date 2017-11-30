@@ -45,7 +45,7 @@ $.Controller("MedusaController",{
         }.bind(self));
 
         Hub.subscribe('payment_controller_initialized', function(){
-            if(Hub.dispatcher.getManager('service')) Hub.dispatcher.getManager('service').run();
+            // if(Hub.dispatcher.getManager('service')) Hub.dispatcher.getManager('service').run();
         });
 
         Hub.subscribe('cards_picker_prepared', function(){
@@ -340,7 +340,7 @@ $.Controller("MedusaController",{
                     if(window['front_version'] != "mobile"){
                         $('.payment_block').iCheck('destroy');
                         if($('.no-ui-customization').length > 0){
-                            $('.no-ui-customization').button('destroy');
+                           // $('.no-ui-customization').button('destroy');
                         }
                     }
                     if(window['front_version'] != "mobile"){

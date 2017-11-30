@@ -32,7 +32,6 @@ function PaymentManager(settings) {
     };
 
     this.init = function () {
-        if(this.registerFilter === 'function') this.registerFilter('total', TotalPriceFilter);
         this.decorator = new PaymentDecorator(this);
         this.dataGroupNames = Hub.archive.getData().data.groups;
         this.dataSysytems = Hub.archive.getData().data.systems;
@@ -68,7 +67,7 @@ function PaymentManager(settings) {
         if(this.hasSavedCards()){
             this.cardsPicker = new CardsPicker({
                 wrapper: $('.usb_cards_block'),
-                cardNumbers:  this.getSavedCards(),
+                cards:  this.getSavedCards(),
                 pickerSelector: '#usbl_selector',
             });
 
@@ -441,12 +440,15 @@ function PaymentManager(settings) {
     this.hasSavedCards = function(){
         var data = Hub.archive.getData().data;
 
-        return data.bonuses && data.bonuses.otp && data.bonuses.otp.cards && data.bonuses.otp.cards.length;
+        return true;//data.bonuses && data.bonuses.otp && data.bonuses.otp.cards && data.bonuses.otp.cards.length;
     };
 
     this.getSavedCards = function()
-    {
-        return Hub.archive.getData().data.bonuses.otp.cards.split(",");
+    {//Hub.archive.getData().data.bonuses.otp.cards.split(",");
+        return  [
+            { number: "4363231112", name: 'user_card', group: 'otp' },
+            { number: "4363231113", name: 'user_card', group: 'otp' }
+        ];
     };
 
     this.getCardsPicker = function()

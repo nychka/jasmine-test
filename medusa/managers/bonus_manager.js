@@ -1,5 +1,5 @@
 function BonusManager(settings) {
-  PriceAggregator.call(this, settings);
+  if(typeof PriceAggregator === 'function') PriceAggregator.call(this, settings);
 
   this.bonusesCheckedFlag = {};
   this.bonusRule = {};

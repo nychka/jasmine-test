@@ -40,14 +40,88 @@ function Component(settings)
     this.extend = function(id, fn)
     {
         if(this.extensions.hasOwnProperty(id)) return false;
+        if(typeof fn !== 'function') throw new Error('Extension must be Function!');
 
-        var extension = typeof fn === 'function' ? new fn() : fn;
+        var extension = new fn(this);
         this.extensions[id] = extension;
 
         this[id] = extension;
     };
 
     init.call(this, settings);
+};
+
+function State(component)
+{
+    var states = {};
+    var current = 'default';
+    var previous;
+
+    var init = function(){
+      this.register('default', function(){
+          this.handle = function(){
+              console.warn('overload me please');
+          }
+      });
+    };
+
+    this.getCurrent = function()
+    {
+      return states[current];
+    };
+
+    this.transitTo = function(state)
+    {
+        previous = current;
+        current = state;
+        this.get(state).handle.call(this);
+        component.log('state_changed', { current: current, previous: previous });
+    };
+
+    this.get = function(state)
+    {
+        if(! states.hasOwnProperty(state)) throw State.prototype.errors.state_not_found(state);
+
+        return states[state];
+    };
+
+    this.register = function(id, fn)
+    {
+        fn.prototype.handle = function(){ throw State.prototype.errors.method_not_overloaded('handle'); };
+        fn.prototype.getId = function(){ return this.id; };
+        fn.prototype.setId = function(id){ this.id = id; };
+
+        var state = new fn();
+        state.setId(id);
+        states[id] = state;
+
+        component.log('state_registered', { state: id });
+    };
+    init.call(this);
+};
+
+State.prototype.errors = {
+    'state_not_found': function(data){
+         function NoStateFoundError(state){
+                this.name = 'NoStateFoundError';
+                this.message = 'No state found by id: ' + state;
+         };
+         NoStateFoundError.prototype = Object.create(Error.prototype);
+         NoStateFoundError.prototype.constructor = NoStateFoundError;
+
+         return new NoStateFoundError(data);
+    },
+    'method_not_overloaded': function(method)
+    {
+        function MethodNotOverloadedError(method){
+            this.name = 'MethodNotOverloadedError';
+            this.message = 'Method ' + method + ' must be overloaded!';
+        };
+        MethodNotOverloadedError.prototype = Object.create(Error.prototype);
+        MethodNotOverloadedError.prototype.constructor = MethodNotOverloadedError;
+
+        return new MethodNotOverloadedError(method);
+    }
 };
 
 function History()
@@ -91,6 +165,76 @@ function PriceComponent(settings)
     };
 };
 
+function PriceAggregator(settings)
+{
+    var components = {};
+    var filters = {};
+
+    PriceComponent.call(this, settings);
+
+    var init = function()
+    {
+        var proto = PriceAggregator.prototype;
+
+        for(var filter in proto.filters) this.registerFilter(filter, proto.filters[filter]);
+    };
+
+    /**
+     * @override
+     * @param filterId
+     * @returns {number}
+     */
+    this.getPrice = function(filterId, params)
+    {
+        var filter = filterId ? this.getFilterById(filterId) : this.getDefaultFilter();
+        if(typeof filter !== 'function') console.warn('filter not prepared');
+
+        return filter.call(this, this, params);
+    };
+    /**
+     * @override
+     */
+    this.setPrice = function(){ console.warn('This operation is useless. What have you been expected?')};
+
+    this.getComponents = function(fn)
+    {
+        if(typeof fn === 'function'){ for(var i in components){ fn.call(this, components[i]); } }
+
+        return components;
+    };
+
+    this.registerComponent = function(component)
+    {
+        if(! (component instanceof PriceComponent)) throw new Error('Must be instance of PriceComponent!');
+
+        var id = component.getId();
+
+        components[id] = component;
+    };
+
+    this.registerFilter = function(id, fn)
+    {
+        filters[id] = fn;
+    };
+
+    this.findComponentById = function(id)
+    {
+        return components[id];
+    };
+
+    this.getFilterById = function(id)
+    {
+        return filters[id];
+    };
+
+    this.getDefaultFilter = function()
+    {
+        return this.getFilterById('total');
+    };
+
+    init.call(this);
+};
+
 PriceComponent.prototype = Object.create(Component.prototype);
 PriceComponent.prototype.constructor = PriceComponent;
 
@@ -107,7 +251,26 @@ BonusManager.prototype = Object.create(PriceAggregator.prototype);
 BonusManager.prototype.constructor = BonusManager;
 
 Component.prototype.extensions = {
-    'history': History
+    'history': History,
+    'state'  : State
+};
+
+CardsPicker.prototype = Object.create(Component.prototype);
+CardsPicker.prototype.constructor = CardsPicker;
+
+CardsPicker.prototype.states = {
+    'default': function() {
+        this.handle = function()
+        {
+            console.warn('HELLO PROTO');
+        };
+    },
+    'activated': function() {
+        this.handle = function()
+        {
+            console.warn('HELLO PROTO');
+        };
+    }
 };
 
 History.prototype.tags = {
@@ -128,6 +291,22 @@ History.prototype.tags = {
 
         record.message += '[' + data.prop + '] ';
         record.message += 'from ' + data.previous + ' to ' + data.current;
+
+        return record;
+    },
+
+    'prepared': function(data)
+    {
+        var record = { message: 'Component has been prepared', data: data };
+
+        return record;
+    },
+
+    'state_changed': function(data)
+    {
+        var record = { message: 'Component transits ' };
+        record.message += (data.previous && data.previous !== data.current) ? 'from ' + data.previous + ' ' : '';
+        record.message += 'to state ' + data.current;
 
         return record;
     }
