@@ -74,7 +74,7 @@ function State(component)
     {
         previous = current;
         current = state;
-        this.get(state).handle.call(this);
+        this.get(state).handle.call(this, component);
         component.log('state_changed', { current: current, previous: previous });
     };
 
@@ -270,7 +270,21 @@ CardsPicker.prototype.states = {
         {
             console.warn('HELLO PROTO');
         };
+    },
+    'otp_activated': function(){
+        this.handle = function(component)
+        {
+           component.setup({ filter: 'otp' });
+        }
     }
+};
+
+CardsPicker.prototype.filters = {
+  'otp': function(cards){
+      return cards.filter(function(card){
+          return card.group === 'otp';
+      });
+  }
 };
 
 History.prototype.tags = {

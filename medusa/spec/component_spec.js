@@ -52,9 +52,9 @@ describe('Component', function(){
         it('initialized', function(){
            component = new Component();
            var record = { message: 'Component has been initialized without settings' };
-           var history = { 'initialized': [record] };
+           var history = [record];
 
-           expect(component.history.find()).toEqual(history);
+           expect(component.history.find('initialized')).toEqual(history);
         });
 
         it('property_changed', function(){
@@ -81,20 +81,11 @@ describe('Component', function(){
            expect(component.getId()).toEqual('bar');
         });
 
-        describe('extend', function(){
-            it('by object', function(){
-                var extension = { foo: function(){ return 'bar'; }};
-                component.extend('fooExt', extension);
+        it('extend', function(){
+            var extension = function(){ this.foo = function(){ return 'bar'; }};
+            component.extend('fooExt', extension);
 
-                expect(component.fooExt.foo()).toEqual('bar');
-            });
-
-            it('by function', function(){
-                var extension = function(){ this.foo = function(){ return 'bar'; }};
-                component.extend('fooExt', extension);
-
-                expect(component.fooExt.foo()).toEqual('bar');
-            });
+            expect(component.fooExt.foo()).toEqual('bar');
         });
     });
 });
@@ -116,22 +107,21 @@ describe('PriceComponent', function(){
     });
 
     describe('History', function(){
-
         describe('initialized', function(){
             it('with settings', function(){
                 component = new PriceComponent({ price: 22 });
                 var record = { message: 'Component has been initialized with settings' };
-                var history = { 'initialized': [record] };
+                var history = [record];
 
-                expect(component.history.find()).toEqual(history);
+                expect(component.history.find('initialized')).toEqual(history);
             });
 
             it('without settings', function(){
                 component = new PriceComponent();
                 var record = { message: 'Component has been initialized without settings' };
-                var history = { 'initialized': [record] };
+                var history = [record];
 
-                expect(component.history.find()).toEqual(history);
+                expect(component.history.find('initialized')).toEqual(history);
             });
         });
 

@@ -24,6 +24,32 @@ describe('CardsPicker', function(){
         card =  { number: "4363231112", name: 'user_card', group: 'otp' };
     });
 
+    describe('API', function(){
+       it('clear', function(){
+          picker.setup();
+
+          expect(picker.getPickerContainer().children().length).toEqual(4);
+
+          picker.clear();
+
+          expect(picker.getPickerContainer().children().length).toEqual(0);
+       });
+
+       it('getCards', function(){
+           var otpCards  = picker.settings.cards.filter(function(card){ return card.group === 'otp'; });
+
+          expect(picker.getCards('otp')).toEqual(otpCards);
+       });
+    });
+
+    describe('Scenarios', function(){
+       it('when otp bonus is not used, user can use only default cards', function(){
+           picker.state.transitTo('otp_activated');
+
+           expect(picker.getPickerContainer().children().length).toEqual(2);
+       });
+    });
+
     describe('getWrapper', function(){
         it('is in DOM', function(){
             expect(picker.getWrapper()).toBeInDOM();

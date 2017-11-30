@@ -26,18 +26,24 @@ function CardsPicker(options)
         this.prepareStates();
     };
 
-    this.setup = function()
+    this.clear = function()
     {
-        if(! this.settings.cards.length) return false; //TODO throw Error
+        var select = this.getPickerContainer();
 
-        for(var i = 0; i < this.settings.cards.length; i++){
-            var option = this.buildCardOption(this.settings.cards[i]);
+        select.html('');
+        window.front_version === 'mobile' ? select.selectmenu("refresh", true) : select.trigger("chosen:updated");
+    };
 
-            this.getPickerContainer().append(option);
-        }
+    this.setup = function(settings)
+    {
+        var filter = settings && settings.filter ? settings.filter : 'all';
+        var self = this;
 
-        this.count();
-
+        this.clear();
+        this.getCards(filter).map(function(card){
+            var option = self.buildCardOption(card);
+            self.getPickerContainer().append(option);
+        });
         var envelope = {
             data: { cards: this.getCards() },
             message: 'CardsPicker has been prepared with ' + this.length + ' card number'
@@ -45,7 +51,6 @@ function CardsPicker(options)
 
         Hub.publish('cards_picker_prepared', envelope);
         this.log('prepared', { cards: this.getCards() });
-        this.state.transitTo('default');
     };
 
     this.toggle = function(status)
@@ -90,9 +95,15 @@ function CardsPicker(options)
         return this.getWrapper().find(this.settings.pickerSelector);
     };
 
-    this.getCards = function()
+    this.getCards = function(filter)
     {
-        return this.settings.cards;
+        var proto = CardsPicker.prototype;
+        var cards = this.settings.cards;
+        var hasFilter = filter && proto.filters && Object.keys(proto.filters).length && proto.filters.hasOwnProperty(filter);
+
+        if(hasFilter) cards = proto.filters[filter].call(this, cards);
+
+        return cards;
     };
 
     this.getOptions = function()
