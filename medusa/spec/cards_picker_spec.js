@@ -26,10 +26,18 @@ describe('CardsPicker', function(){
     });
 
     describe('API', function(){
-        it('findCardById', function(){
-            var card  = picker.findCardById("4363231111");
+        describe('findCardById', function(){
+            it('correct', function(){
+                var card  = picker.findCardById("4363231111");
 
-            expect(card.group).toEqual('otp');
+                expect(card.number).toEqual("4363231111");
+            });
+
+            it('wrong', function(){
+                var card  = picker.findCardById("000000");
+
+                expect(card).toBeFalsy();
+            });
         });
        it('clear', function(){
           picker.setup();
@@ -45,17 +53,24 @@ describe('CardsPicker', function(){
            it('otp', function(){
                var otpCards  = picker.settings.cards.filter(function(card){ return card.group === 'otp'; });
 
-               expect(picker.getCards('otp')).toEqual(otpCards);
+               expect(picker.getCards('group','otp')).toEqual(otpCards);
            });
 
            it('default', function(){
                var cards  = picker.settings.cards.filter(function(card){ return card.group === 'default'; });
 
-               expect(picker.getCards('default')).toEqual(cards);
+               expect(picker.getCards('group','default')).toEqual(cards);
            });
 
            it('all', function(){
                expect(picker.getCards()).toEqual(picker.settings.cards);
+           });
+
+           it('number', function(){
+               var cards  = picker.getCards('number', "4363231111");
+
+               expect(cards.length).toEqual(1);
+               expect(cards[0].number).toEqual("4363231111");
            });
        });
 

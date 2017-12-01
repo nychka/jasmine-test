@@ -84,8 +84,8 @@ $.Controller("MedusaController",{
         }.bind(self));
 
         Hub.subscribe('cards_picker_changed', function(envelope){
-            // this.getPaymentCard().getState('cards_picker_activated').setCardNumber(envelope.data.card);
-            // this.getPaymentCard().transitToState('cards_picker_activated');
+            var number = Hub.dispatcher.getManager('payment').getCardsPicker().format('first_and_last', envelope.data.card.number);
+             this.getPaymentCard().getCurrentState().setCardNumber(number);
         }.bind(self));
     },
     getPaymentManager: function(){
@@ -1245,10 +1245,11 @@ function UnionPayActivatedState()
     };
 };
 
-function CardsPickerDefault()
+function CardsPickerDefault(component)
 {
     this.name = 'cards_picker_default';
     this.cardNumber = '12345678';
+    this.context = component.getContext();
 
     this.handle = function(context)
     {
@@ -1260,11 +1261,17 @@ function CardsPickerDefault()
         context.card_date_year.prop('disabled', true);
     };
 
-    this.setCardNumber = function(cardNumber)
+    this.setCardNumber = function(card)
     {
-        if(cardNumber.length !== 8) throw Error('card number length not equals 8');
+        if(card.length !== 8) throw Error('card number length not equals 8');
 
-        this.cardNumber = cardNumber;
+        this.cardNumber = card;
+        this.trigger();
+    };
+
+    this.trigger = function()
+    {
+        this.handle(this.context);
     };
 
     this.getCardNumber = function()
@@ -1275,13 +1282,15 @@ function CardsPickerDefault()
     this.getLastToken = function(){ return this.cardNumber.substr(4, 4); };
 };
 
-function CardsPickerOtp()
+function CardsPickerOtp(component)
 {
     this.name = 'cards_picker_otp';
     this.cardNumber = '12345678';
+    this.context = component.getContext();
 
     this.handle = function(context)
     {
+
         context.card_number_0.val(this.getFirstToken()).prop('readonly', true).focus();
         context.card_number_3.val(this.getLastToken()).prop('readonly', true).focus();
     };
@@ -1291,6 +1300,12 @@ function CardsPickerOtp()
         if(cardNumber.length !== 8) throw Error('card number length not equals 8');
 
         this.cardNumber = cardNumber;
+        this.trigger();
+    };
+
+    this.trigger = function()
+    {
+        this.handle(this.context);
     };
 
     this.getCardNumber = function()

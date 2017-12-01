@@ -41,9 +41,9 @@ function CardsPicker(options)
     this.findCardById = function(id)
     {
         var number = id.toString();
-      var cards = this.getCards({ number: number });
+      var cards = this.getCards('number', number);
 
-      return cards[0];
+      return (cards && cards.length === 1) ? cards[0] : false;
     };
 
     this.setActiveCard = function(number)
@@ -64,7 +64,7 @@ function CardsPicker(options)
         var self = this;
 
         this.clear();
-        this.getCards(filter).map(function(card){
+        this.getCards('group', filter).map(function(card){
             var option = self.buildCardOption(card);
             self.getPickerContainer().append(option);
         });
@@ -120,13 +120,13 @@ function CardsPicker(options)
         return this.getWrapper().find(this.settings.pickerSelector);
     };
 
-    this.getCards = function(filter)
+    this.getCards = function(filter, data)
     {
         var proto = CardsPicker.prototype;
         var cards = this.settings.cards;
         var hasFilter = filter && proto.filters && Object.keys(proto.filters).length && proto.filters.hasOwnProperty(filter);
 
-        if(hasFilter) cards = proto.filters[filter].call(this, cards, filter);
+        if(hasFilter) cards = proto.filters[filter].call(this, cards, data);
 
         return cards;
     };
@@ -142,21 +142,33 @@ function CardsPicker(options)
         return $(options[0]);
     };
 
-    this.buildCardOption = function(card)
+    this.format = function(filter, number)
     {
-        if(! this.isValidCardNumber(card.number)) throw new OtpCardsPickerCardNumberIsNotValidError(card);
-
+        var filters = {};
         var getFirstToken = function(number){ return number.substr(0, 4); };
         var getSecondToken = function(number){ return number.substr(4, 2) + "XX"; };
         var getThirdToken = function(number){ return "XXXX"; };
         var getLastToken = function(number){ return number.substr(6, 4); };
 
-        var buildTextForCardOption = function(number){
+        filters['first_six'] = function(number)
+        {
             return getFirstToken(number) + " " + getSecondToken(number) + " " + getThirdToken(number) + " " + getLastToken(number);
         };
 
-        var text = buildTextForCardOption(card.number); // 1234 56XX XXXX 7890
-        var value = getFirstToken(card.number) + getLastToken(card.number); // 12347890
+        filters['first_and_last'] = function(number)
+        {
+            return number.length === 10 ? (getFirstToken(number) + getLastToken(number)) : number;
+        };
+
+        return filters[filter].call(this, number);
+    };
+
+    this.buildCardOption = function(card)
+    {
+        if(! this.isValidCardNumber(card.number)) throw new OtpCardsPickerCardNumberIsNotValidError(card);
+
+        var text = this.format('first_six', card.number); // 1234 56XX XXXX 7890
+        var value = this.format('first_and_last', card.number); // 12347890
 
         return $('<option></option>', { value: value, text: text, 'data-number': card.number, 'data-group': card.group });
     };

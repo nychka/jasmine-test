@@ -264,8 +264,9 @@ CardsPicker.prototype.states = {
         {
             var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
             component.setup({ filter: 'default' });
-            paymentCard.states['cards_picker_default'] = new CardsPickerDefault();
-            paymentCard.states['cards_picker_default'].setCardNumber(component.getFirstOption().val());
+            var number = component.format('first_and_last', component.getFirstOption().val());
+            paymentCard.states['cards_picker_default'] = new CardsPickerDefault(paymentCard);
+            paymentCard.states['cards_picker_default'].setCardNumber(number);
             paymentCard.transitToState('cards_picker_default');
         };
     },
@@ -273,7 +274,7 @@ CardsPicker.prototype.states = {
         this.handle = function(component)
         {
             var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
-            paymentCard.states['cards_picker_otp'] = new CardsPickerOtp();
+            paymentCard.states['cards_picker_otp'] = new CardsPickerOtp(paymentCard);
            component.setup({ filter: 'otp' });
             paymentCard.transitToState('cards_picker_otp');
         }
@@ -281,20 +282,15 @@ CardsPicker.prototype.states = {
 };
 
 CardsPicker.prototype.filters = {
-    'byId': function(cards, data){
+    'number': function(cards, number){
         return cards.filter(function(card){
-           return card.number === data.number;
+           return card.number === number;
         });
     },
-  'otp': function(cards){
+    'group': function(cards, group){
       return cards.filter(function(card){
-          return card.group === 'otp';
+          return card.group === group;
       });
-  },
-    'default': function(cards){
-        return cards.filter(function(card){
-            return card.group === 'default';
-        });
     },
 };
 
