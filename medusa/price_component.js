@@ -260,15 +260,9 @@ CardsPicker.prototype.constructor = CardsPicker;
 
 CardsPicker.prototype.states = {
     'default': function() {
-        this.handle = function()
+        this.handle = function(component)
         {
-            console.warn('HELLO PROTO');
-        };
-    },
-    'activated': function() {
-        this.handle = function()
-        {
-            console.warn('HELLO PROTO');
+            component.setup({ filter: 'default' });
         };
     },
     'otp_activated': function(){
@@ -284,7 +278,12 @@ CardsPicker.prototype.filters = {
       return cards.filter(function(card){
           return card.group === 'otp';
       });
-  }
+  },
+'default': function(cards){
+    return cards.filter(function(card){
+        return card.group === 'default';
+    });
+},
 };
 
 History.prototype.tags = {

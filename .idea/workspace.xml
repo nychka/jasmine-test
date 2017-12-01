@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/cards_picker.js" afterPath="$PROJECT_DIR$/medusa/cards_picker.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/price_component.js" afterPath="$PROJECT_DIR$/medusa/price_component.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medusa/spec/component_spec.js" afterPath="$PROJECT_DIR$/medusa/spec/component_spec.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,16 +32,15 @@
       <file leaf-file-name="cards_picker_spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="46" column="51" lean-forward="true" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
+            <state relative-caret-position="240">
+              <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
               <folding>
-                <element signature="e#1571#1804#0" expanded="false" />
-                <element signature="e#1847#1934#0" expanded="false" />
-                <element signature="e#1979#2377#0" expanded="false" />
-                <element signature="e#2420#4218#0" expanded="false" />
-                <element signature="e#4254#5129#0" expanded="false" />
-                <element signature="e#5176#5770#0" expanded="false" />
-                <element signature="e#5818#6137#0" expanded="false" />
+                <element signature="e#1840#2073#0" expanded="false" />
+                <element signature="e#2116#2203#0" expanded="false" />
+                <element signature="e#2248#2646#0" expanded="false" />
+                <element signature="e#4142#5017#0" expanded="false" />
+                <element signature="e#5064#5658#0" expanded="false" />
+                <element signature="e#5706#6025#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -51,8 +49,8 @@
       <file leaf-file-name="cards_picker.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+            <state relative-caret-position="290">
+              <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -61,8 +59,8 @@
       <file leaf-file-name="price_component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="276" column="46" lean-forward="false" selection-start-line="276" selection-start-column="46" selection-end-line="276" selection-end-column="46" />
+            <state relative-caret-position="409">
+              <caret line="283" column="38" lean-forward="false" selection-start-line="283" selection-start-column="38" selection-end-line="283" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -222,9 +220,9 @@
         <option value="$PROJECT_DIR$/medusa/managers/payment_manager.js" />
         <option value="$PROJECT_DIR$/payment_page.html" />
         <option value="$PROJECT_DIR$/medusa/spec/component_spec.js" />
-        <option value="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
         <option value="$PROJECT_DIR$/medusa/price_component.js" />
         <option value="$PROJECT_DIR$/medusa/cards_picker.js" />
+        <option value="$PROJECT_DIR$/medusa/spec/cards_picker_spec.js" />
       </list>
     </option>
   </component>
@@ -328,7 +326,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206148000" />
+    <option name="totallyTimeSpent" value="207853000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -737,34 +735,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
+    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="46" column="51" lean-forward="true" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
-          <folding>
-            <element signature="e#1571#1804#0" expanded="false" />
-            <element signature="e#1847#1934#0" expanded="false" />
-            <element signature="e#1979#2377#0" expanded="false" />
-            <element signature="e#2420#4218#0" expanded="false" />
-            <element signature="e#4254#5129#0" expanded="false" />
-            <element signature="e#5176#5770#0" expanded="false" />
-            <element signature="e#5818#6137#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="409">
+          <caret line="283" column="38" lean-forward="false" selection-start-line="283" selection-start-column="38" selection-end-line="283" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medusa/price_component.js">
+    <entry file="file://$PROJECT_DIR$/medusa/spec/cards_picker_spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="276" column="46" lean-forward="false" selection-start-line="276" selection-start-column="46" selection-end-line="276" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="240">
+          <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+          <folding>
+            <element signature="e#1840#2073#0" expanded="false" />
+            <element signature="e#2116#2203#0" expanded="false" />
+            <element signature="e#2248#2646#0" expanded="false" />
+            <element signature="e#4142#5017#0" expanded="false" />
+            <element signature="e#5064#5658#0" expanded="false" />
+            <element signature="e#5706#6025#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/medusa/cards_picker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+        <state relative-caret-position="290">
+          <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
           <folding />
         </state>
       </provider>

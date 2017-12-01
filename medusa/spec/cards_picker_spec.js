@@ -14,7 +14,8 @@ describe('CardsPicker', function(){
             { number: "4363231111", group: 'otp' },
             { number: "4363231112", group: 'otp'},
             { number: "4363231113", group: 'default'},
-            { number: "4363231114", group: 'custom'}
+            { number: "4363231114", group: 'default'},
+            { number: "4363231115", group: 'default'}
         ]
     };
 
@@ -43,10 +44,16 @@ describe('CardsPicker', function(){
     });
 
     describe('Scenarios', function(){
-       it('when otp bonus is not used, user can use only default cards', function(){
+       it('when otp bonus is used, user can use only otp cards', function(){
            picker.state.transitTo('otp_activated');
 
            expect(picker.getPickerContainer().children().length).toEqual(2);
+       });
+
+       it('when otp bonus is not used, user can see only default cards', function(){
+           picker.state.transitTo('default');
+
+           expect(picker.getPickerContainer().children().length).toEqual(3);
        });
     });
 
@@ -121,14 +128,6 @@ describe('CardsPicker', function(){
           expect(function(){
               picker.state.transitTo('activated');
           }).toThrow(State.prototype.errors.method_not_overloaded('handle'));
-       });
-
-       it('after component initialization transit to default state', function(){
-          picker.setup();
-
-          expect(picker.state.getCurrent().getId()).toEqual('default');
-          expect(picker.history.find('state_changed').length).toEqual(1);
-           expect(picker.history.find('state_changed')[0].message).toEqual('Component transits to state default');
        });
     });
 

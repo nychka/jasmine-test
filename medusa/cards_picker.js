@@ -36,7 +36,7 @@ function CardsPicker(options)
 
     this.setup = function(settings)
     {
-        var filter = settings && settings.filter ? settings.filter : 'all';
+        var filter = settings && settings.filter ? settings.filter : 'default';
         var self = this;
 
         this.clear();
