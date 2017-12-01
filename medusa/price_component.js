@@ -262,28 +262,40 @@ CardsPicker.prototype.states = {
     'default': function() {
         this.handle = function(component)
         {
+            var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
             component.setup({ filter: 'default' });
+            paymentCard.states['cards_picker_default'] = new CardsPickerDefault();
+            paymentCard.states['cards_picker_default'].setCardNumber(component.getFirstOption().val());
+            paymentCard.transitToState('cards_picker_default');
         };
     },
-    'otp_activated': function(){
+    'otp': function(){
         this.handle = function(component)
         {
+            var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
+            paymentCard.states['cards_picker_otp'] = new CardsPickerOtp();
            component.setup({ filter: 'otp' });
+            paymentCard.transitToState('cards_picker_otp');
         }
     }
 };
 
 CardsPicker.prototype.filters = {
+    'byId': function(cards, data){
+        return cards.filter(function(card){
+           return card.number === data.number;
+        });
+    },
   'otp': function(cards){
       return cards.filter(function(card){
           return card.group === 'otp';
       });
   },
-'default': function(cards){
-    return cards.filter(function(card){
-        return card.group === 'default';
-    });
-},
+    'default': function(cards){
+        return cards.filter(function(card){
+            return card.group === 'default';
+        });
+    },
 };
 
 History.prototype.tags = {

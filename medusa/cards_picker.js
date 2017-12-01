@@ -28,10 +28,34 @@ function CardsPicker(options)
 
     this.clear = function()
     {
-        var select = this.getPickerContainer();
+        this.getPickerContainer().html('');
+        this.refresh();
+    };
 
-        select.html('');
+    this.refresh = function()
+    {
+        var select = this.getPickerContainer();
         window.front_version === 'mobile' ? select.selectmenu("refresh", true) : select.trigger("chosen:updated");
+    };
+
+    this.findCardById = function(id)
+    {
+        var number = id.toString();
+      var cards = this.getCards({ number: number });
+
+      return cards[0];
+    };
+
+    this.setActiveCard = function(number)
+    {
+        var card  = (typeof number !== 'object') ? this.findCardById(number) : number;
+        this.activeCard = card;
+        Hub.publish('cards_picker_changed', { data: { card: card },  message: 'card number has been chosen: ' + card.number });
+    };
+
+    this.getActiveCard = function()
+    {
+      return this.activeCard;
     };
 
     this.setup = function(settings)
@@ -44,6 +68,7 @@ function CardsPicker(options)
             var option = self.buildCardOption(card);
             self.getPickerContainer().append(option);
         });
+        this.refresh();
         var envelope = {
             data: { cards: this.getCards() },
             message: 'CardsPicker has been prepared with ' + this.length + ' card number'
@@ -101,20 +126,20 @@ function CardsPicker(options)
         var cards = this.settings.cards;
         var hasFilter = filter && proto.filters && Object.keys(proto.filters).length && proto.filters.hasOwnProperty(filter);
 
-        if(hasFilter) cards = proto.filters[filter].call(this, cards);
+        if(hasFilter) cards = proto.filters[filter].call(this, cards, filter);
 
         return cards;
     };
 
     this.getOptions = function()
     {
-        return Object.values(cards);
+        return this.getPickerContainer().find('option');
     };
 
     this.getFirstOption = function(){
         var options = this.getOptions();
 
-        return options[0];
+        return $(options[0]);
     };
 
     this.buildCardOption = function(card)
@@ -133,7 +158,7 @@ function CardsPicker(options)
         var text = buildTextForCardOption(card.number); // 1234 56XX XXXX 7890
         var value = getFirstToken(card.number) + getLastToken(card.number); // 12347890
 
-        return $('<option></option>', { value: value, text: text });
+        return $('<option></option>', { value: value, text: text, 'data-number': card.number, 'data-group': card.group });
     };
 
     /**

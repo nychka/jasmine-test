@@ -26,26 +26,49 @@ describe('CardsPicker', function(){
     });
 
     describe('API', function(){
+        it('findCardById', function(){
+            var card  = picker.findCardById("4363231111");
+
+            expect(card.group).toEqual('otp');
+        });
        it('clear', function(){
           picker.setup();
 
-          expect(picker.getPickerContainer().children().length).toEqual(4);
+          expect(picker.getPickerContainer().children().length).toBeGreaterThan(0);
 
           picker.clear();
 
           expect(picker.getPickerContainer().children().length).toEqual(0);
        });
 
-       it('getCards', function(){
-           var otpCards  = picker.settings.cards.filter(function(card){ return card.group === 'otp'; });
+       describe('getCards', function(){
+           it('otp', function(){
+               var otpCards  = picker.settings.cards.filter(function(card){ return card.group === 'otp'; });
 
-          expect(picker.getCards('otp')).toEqual(otpCards);
+               expect(picker.getCards('otp')).toEqual(otpCards);
+           });
+
+           it('default', function(){
+               var cards  = picker.settings.cards.filter(function(card){ return card.group === 'default'; });
+
+               expect(picker.getCards('default')).toEqual(cards);
+           });
+
+           it('all', function(){
+               expect(picker.getCards()).toEqual(picker.settings.cards);
+           });
+       });
+
+       it('getOptions', function(){
+           picker.setup({ filter: 'default'} );
+
+           expect(picker.getOptions().length).toEqual(3);
        });
     });
 
     describe('Scenarios', function(){
        it('when otp bonus is used, user can use only otp cards', function(){
-           picker.state.transitTo('otp_activated');
+           picker.state.transitTo('otp');
 
            expect(picker.getPickerContainer().children().length).toEqual(2);
        });
