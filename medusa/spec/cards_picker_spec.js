@@ -25,7 +25,84 @@ describe('CardsPicker', function(){
         card =  { number: "4363231112", name: 'user_card', group: 'otp' };
     });
 
+    describe('UserCard', function(){
+        var userCard;
+
+        beforeEach(function(){
+            userCard = new UserCard(card);
+        });
+
+        describe('API', function(){
+            it('getGroup', function(){
+                expect(userCard.getGroup()).toEqual('otp');
+            });
+
+            it('first_token', function(){
+               expect(userCard.get('first_token')).toEqual('4363');
+            });
+
+            it('second_token', function(){
+                expect(userCard.get('second_token')).toEqual('23XX');
+            });
+
+            it('third_token', function(){
+                expect(userCard.get('third_token')).toEqual('XXXX');
+            });
+
+            it('last_token', function(){
+                expect(userCard.get('last_token')).toEqual('1112');
+            });
+
+            it('ten', function(){
+               expect(userCard.get('ten')).toEqual(card.number);
+               expect(userCard.get()).toEqual(card.number);
+            });
+
+            it('sixteen', function(){
+                expect(userCard.get('sixteen')).toEqual('4363 23XX XXXX 1112');
+            });
+
+            it('eight', function(){
+                expect(userCard.get('eight')).toEqual('43631112');
+            });
+        });
+    });
+
     describe('API', function(){
+        describe('getWrapper', function(){
+            it('is in DOM', function(){
+                expect(picker.getWrapper()).toBeInDOM();
+            });
+
+            it('has correct wrapper', function(){
+                expect(picker.getWrapper()).toEqual(options.wrapper);
+            });
+        });
+
+        it('getPickerContainer', function(){
+            picker.setup();
+
+            expect(picker.getPickerContainer()).toExist();
+        });
+
+        it('prepareCards', function(){
+            expect(picker.getCards().length).toEqual(5);
+        });
+
+        it('count', function(){
+            picker.setup();
+
+            expect(picker.count()).toEqual(3);
+
+            picker.state.transitTo('otp');
+
+            expect(picker.count()).toEqual(2);
+
+            picker.clear();
+
+            expect(picker.count()).toEqual(0);
+        });
+
         describe('findCardById', function(){
             it('correct', function(){
                 var card  = picker.findCardById("4363231111");
@@ -39,6 +116,7 @@ describe('CardsPicker', function(){
                 expect(card).toBeFalsy();
             });
         });
+
        it('clear', function(){
           picker.setup();
 
@@ -51,19 +129,19 @@ describe('CardsPicker', function(){
 
        describe('getCards', function(){
            it('otp', function(){
-               var otpCards  = picker.settings.cards.filter(function(card){ return card.group === 'otp'; });
+               var otpCards  = picker.prepareCards().filter(function(card){ return card.group === 'otp'; });
 
                expect(picker.getCards('group','otp')).toEqual(otpCards);
            });
 
            it('default', function(){
-               var cards  = picker.settings.cards.filter(function(card){ return card.group === 'default'; });
+               var cards  = picker.prepareCards().filter(function(card){ return card.group === 'default'; });
 
                expect(picker.getCards('group','default')).toEqual(cards);
            });
 
            it('all', function(){
-               expect(picker.getCards()).toEqual(picker.settings.cards);
+               expect(picker.getCards()).toEqual(picker.prepareCards());
            });
 
            it('number', function(){
@@ -79,41 +157,83 @@ describe('CardsPicker', function(){
 
            expect(picker.getOptions().length).toEqual(3);
        });
+
+        describe('setup', function(){
+            it('prepare card options for picker container', function(){
+                var settings = Object.create(options);
+                settings.cards = [
+                    { number: "4363231112", name: 'user_card', group: 'otp' }
+                ];
+                picker = new CardsPicker(settings);
+                picker.setup();
+
+                var userCard = new UserCard(picker.settings.cards[0]);
+
+                expect(picker.getCards()).toEqual([userCard]);
+            });
+
+            xit('tries to add existing cards', function(){
+                picker.settings.cards = [
+                    { number: "4363231112", name: 'user_card', group: 'otp' },
+                    { number: "4363231113", name: 'user_card', group: 'otp' }
+                ];
+                picker.setup();
+
+                expect(picker.getCards()).toEqual(picker.settings.cards);
+                expect(function(){
+                    picker.settings.cards = ["4363231111"];
+                    picker.setup();
+                }).toThrow(new OtpCardsPickerAddSameCardError("4363231111"));
+            });
+        });
+
+        describe('buildCardOption', function() {
+            it('builds with valid card number 4363231112', function () {
+                var text = "4363 23XX XXXX 1112";
+                var value = "43631112";
+                var option = picker.buildCardOption(new UserCard(card));
+
+                expect(option.text()).toEqual(text);
+                expect(option.val()).toEqual(value);
+            });
+
+            xit('throws error when card number is not valid', function(){
+                card.number = '1234';
+
+                expect(function(){
+                    picker.buildCardOption(new UserCard(card));
+                }).toThrow(new OtpCardsPickerCardNumberIsNotValidError(card.number));
+
+            });
+        });
+
+        describe('isValidCardNumber', function(){
+            it('when card number has length 10 is valid', function(){
+                expect(picker.isValidCardNumber("4363231112")).toBeTruthy();
+            });
+
+            it('when card number has length 16 is not valid', function(){
+                expect(picker.isValidCardNumber("4111222211113333")).toBeFalsy();
+            });
+        });
     });
 
     describe('Scenarios', function(){
        it('when otp bonus is used, user can use only otp cards', function(){
            picker.state.transitTo('otp');
 
-           expect(picker.getPickerContainer().children().length).toEqual(2);
+           expect(picker.getOptions().length).toEqual(2);
        });
 
        it('when otp bonus is not used, user can see only default cards', function(){
            picker.state.transitTo('default');
 
-           expect(picker.getPickerContainer().children().length).toEqual(3);
+           expect(picker.getOptions().length).toEqual(3);
        });
-    });
-
-    describe('getWrapper', function(){
-        it('is in DOM', function(){
-            expect(picker.getWrapper()).toBeInDOM();
-        });
-
-        it('has correct wrapper', function(){
-            expect(picker.getWrapper()).toEqual(options.wrapper);
-        });
-    });
-
-    it('getPickerContainer', function(){
-        picker.setup();
-
-        expect(picker.getPickerContainer()).toExist();
     });
 
     describe('History plugin', function(){
        it('initialized', function(){
-
             expect(picker.history.find('initialized')).toEqual([{ message: 'Component has been initialized with settings' }]);
        });
 
@@ -167,60 +287,5 @@ describe('CardsPicker', function(){
               picker.state.transitTo('activated');
           }).toThrow(State.prototype.errors.method_not_overloaded('handle'));
        });
-    });
-
-    describe('setup', function(){
-        it('prepare card options for picker container', function(){
-            picker.settings.cards = [
-                { number: "4363231112", name: 'user_card', group: 'otp' }
-            ];
-            picker.setup();
-
-            expect(picker.getCards()).toEqual(picker.settings.cards);
-        });
-
-        xit('tries to add existing cards', function(){
-            picker.settings.cards = [
-                { number: "4363231112", name: 'user_card', group: 'otp' },
-                { number: "4363231113", name: 'user_card', group: 'otp' }
-            ];
-            picker.setup();
-
-            expect(picker.getCards()).toEqual(picker.settings.cards);
-            expect(function(){
-                picker.settings.cards = ["4363231111"];
-                picker.setup();
-            }).toThrow(new OtpCardsPickerAddSameCardError("4363231111"));
-        });
-    });
-
-    describe('buildCardOption', function() {
-        it('builds with valid card number 4363231112', function () {
-            var text = "4363 23XX XXXX 1112";
-            var value = "43631112";
-            var option = picker.buildCardOption(card);
-
-            expect(option.text()).toEqual(text);
-            expect(option.val()).toEqual(value);
-        });
-
-        it('throws error when card number is not valid', function(){
-            card.number = '1234';
-
-            expect(function(){
-                picker.buildCardOption(card);
-            }).toThrow(new OtpCardsPickerCardNumberIsNotValidError(card));
-
-        });
-    });
-
-    describe('isValidCardNumber', function(){
-        it('when card number has length 10 is valid', function(){
-            expect(picker.isValidCardNumber("4363231112")).toBeTruthy();
-        });
-
-        it('when card number has length 16 is not valid', function(){
-            expect(picker.isValidCardNumber("4111222211113333")).toBeFalsy();
-        });
     });
 });

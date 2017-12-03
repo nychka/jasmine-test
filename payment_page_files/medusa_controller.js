@@ -84,8 +84,7 @@ $.Controller("MedusaController",{
         }.bind(self));
 
         Hub.subscribe('cards_picker_changed', function(envelope){
-            var number = Hub.dispatcher.getManager('payment').getCardsPicker().format('first_and_last', envelope.data.card.number);
-             this.getPaymentCard().getCurrentState().setCardNumber(number);
+                this.getPaymentCard().getCurrentState().setOption('card', envelope.data.card, UserCard);
         }.bind(self));
     },
     getPaymentManager: function(){
@@ -1075,10 +1074,7 @@ function DefaultState()
 
         context.card_input_wrapper.removeClass('jcb union');
 
-        context.card_number_0.prop('readonly', false);
-        context.card_number_1.prop('readonly', false);
-        context.card_number_2.prop('readonly', false);
-        context.card_number_3.prop('readonly', false);
+        context.wrapper.find('input').prop('readonly', false);
     };
 
     this.restore_cvv_description = function(context)
@@ -1248,24 +1244,25 @@ function UnionPayActivatedState()
 function CardsPickerDefault(component)
 {
     this.name = 'cards_picker_default';
-    this.cardNumber = '12345678';
+    this.options = {};
     this.context = component.getContext();
 
     this.handle = function(context)
     {
-        context.card_number_0.val(this.getFirstToken()).prop('disabled', true);
-        context.card_number_1.prop('disabled', true);
-        context.card_number_2.prop('disabled', true);
-        context.card_number_3.val(this.getLastToken()).prop('disabled', true);
-        context.card_date_month.prop('disabled', true);
-        context.card_date_year.prop('disabled', true);
+        var card = this.options['card'];
+        context.card_number_0.val(card.get('first_token')).prop('readonly', true);
+        context.card_number_1.prop('readonly', true);
+        context.card_number_2.prop('readonly', true);
+        context.card_number_3.val(card.get('last_token')).prop('readonly', true);
+        context.card_date_month.prop('readonly', true);
+        context.card_date_year.prop('readonly', true);
     };
 
-    this.setCardNumber = function(card)
+    this.setOption = function(option, data, type)
     {
-        if(card.length !== 8) throw Error('card number length not equals 8');
+        if(! (data instanceof type)) throw new TypeError(type + ' must be given! ' + typeof data + ' given instead');
 
-        this.cardNumber = card;
+        this.options[option] = data;
         this.trigger();
     };
 
@@ -1273,33 +1270,26 @@ function CardsPickerDefault(component)
     {
         this.handle(this.context);
     };
-
-    this.getCardNumber = function()
-    {
-        return this.cardNumber;
-    };
-    this.getFirstToken = function(){ return this.cardNumber.substr(0, 4); };
-    this.getLastToken = function(){ return this.cardNumber.substr(4, 4); };
 };
 
 function CardsPickerOtp(component)
 {
     this.name = 'cards_picker_otp';
-    this.cardNumber = '12345678';
     this.context = component.getContext();
+    this.options = {};
 
     this.handle = function(context)
     {
-
-        context.card_number_0.val(this.getFirstToken()).prop('readonly', true).focus();
-        context.card_number_3.val(this.getLastToken()).prop('readonly', true).focus();
+        var card = this.options['card'];
+        context.card_number_0.val(card.get('first_token')).prop('readonly', true).focus();
+        context.card_number_3.val(card.get('last_token')).prop('readonly', true).focus();
     };
 
-    this.setCardNumber = function(cardNumber)
+    this.setOption = function(option, data, type)
     {
-        if(cardNumber.length !== 8) throw Error('card number length not equals 8');
+        if(! (data instanceof type)) throw new TypeError(type + ' must be given! ' + typeof data + ' given instead');
 
-        this.cardNumber = cardNumber;
+        this.options[option] = data;
         this.trigger();
     };
 
@@ -1307,11 +1297,4 @@ function CardsPickerOtp(component)
     {
         this.handle(this.context);
     };
-
-    this.getCardNumber = function()
-    {
-        return this.cardNumber;
-    };
-    this.getFirstToken = function(){ return this.cardNumber.substr(0, 4); };
-    this.getLastToken = function(){ return this.cardNumber.substr(4, 4); };
 };

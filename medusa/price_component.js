@@ -259,23 +259,42 @@ CardsPicker.prototype = Object.create(Component.prototype);
 CardsPicker.prototype.constructor = CardsPicker;
 
 CardsPicker.prototype.states = {
+    'disabled': function(){
+        this.handle = function(component){
+            var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
+
+            paymentCard.reset();
+            component.disable();
+        }
+    },
+
     'default': function() {
         this.handle = function(component)
         {
-            var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
+            var paymentCard, number, card;
+
+            paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
             component.setup({ filter: 'default' });
-            var number = component.format('first_and_last', component.getFirstOption().val());
+            number = component.getFirstOption().data('number');
+            card = component.findCardById(number);
             paymentCard.states['cards_picker_default'] = new CardsPickerDefault(paymentCard);
-            paymentCard.states['cards_picker_default'].setCardNumber(number);
+            paymentCard.states['cards_picker_default'].setOption('card', card, UserCard);
+            paymentCard.transitToState('default');
             paymentCard.transitToState('cards_picker_default');
         };
     },
     'otp': function(){
         this.handle = function(component)
         {
-            var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
+            var paymentCard, number, card;
+
+            paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
             paymentCard.states['cards_picker_otp'] = new CardsPickerOtp(paymentCard);
-           component.setup({ filter: 'otp' });
+            component.setup({ filter: 'otp' });
+            number = component.getFirstOption().data('number');
+            card = component.findCardById(number);
+            paymentCard.states['cards_picker_otp'].setOption('card', card, UserCard);
+            paymentCard.transitToState('default');
             paymentCard.transitToState('cards_picker_otp');
         }
     }
