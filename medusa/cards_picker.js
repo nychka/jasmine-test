@@ -1,3 +1,12 @@
+/**
+ * User's cards picker component
+ *
+ * @author Nychka Yaroslav
+ * @email y.nychka@tickets.com.ua
+ * @date 04.12.2017
+ * @version 1.0.0
+ *
+ */
 function CardsPicker(options)
 {
     Component.call(this, options);
@@ -16,7 +25,16 @@ function CardsPicker(options)
 
         if(proto.states && Object.keys(proto.states).length){
             for(var state in proto.states){
-                this.state.register(state, proto.states[state]);
+                var condition = this.settings.cards.filter(function(card){
+                    return card.group === state;
+                });
+                var canRegister = condition.length  || ["default", "otp"].indexOf(state) === -1;
+
+                if(canRegister){
+                    this.state.register(state, proto.states[state]);
+                }else{
+                    this.log('state_registered', { message: 'State ' + state + ' is not registered' });
+                }
             }
         }
     };
@@ -48,6 +66,7 @@ function CardsPicker(options)
     this.refresh = function()
     {
         var select = this.getPickerContainer();
+        //select.prop('selectedIndex', 0);
         window.front_version === 'mobile' ? select.selectmenu("refresh", true) : select.trigger("chosen:updated");
         this.count();
     };
@@ -55,9 +74,9 @@ function CardsPicker(options)
     this.findCardById = function(id)
     {
         var number = id.toString();
-      var cards = this.getCards('number', number);
+        var cards = this.getCards('number', number);
 
-      return (cards && cards.length === 1) ? cards[0] : false;
+        return (cards && cards.length === 1) ? cards[0] : false;
     };
 
     this.setActiveCard = function(number)
@@ -69,20 +88,24 @@ function CardsPicker(options)
 
     this.getActiveCard = function()
     {
-      return this.activeCard;
+        return this.activeCard;
     };
 
-    this.setup = function(settings)
-    {
-        var filter = settings && settings.filter ? settings.filter : 'default';
-        var self = this;
+    this.prependOption = function(){
+        var option = $('<option></option>', { text: '____ _RESET_ ____', 'data-action': 'reset' });
+        this.getPickerContainer().append(option);
+    };
 
+    this.beforeSetup = function()
+    {
         this.clear();
-        this.getCards('group', filter).map(function(card){
-            var option = self.buildCardOption(card);
-            self.getPickerContainer().append(option);
-        });
+    };
+
+    this.afterSetup = function()
+    {
+        this.prependOption();
         this.refresh();
+
         var envelope = {
             data: { cards: this.getCards() },
             message: 'CardsPicker has been prepared with ' + this.length + ' card number'
@@ -90,6 +113,21 @@ function CardsPicker(options)
 
         Hub.publish('cards_picker_prepared', envelope);
         this.log('prepared', { cards: this.getCards() });
+    };
+
+    this.setup = function(settings)
+    {
+        var filter = settings && settings.filter ? settings.filter : 'default';
+        var self = this;
+
+        this.beforeSetup();
+
+        this.getCards('group', filter).map(function(card){
+            var option = self.buildCardOption(card);
+            self.getPickerContainer().append(option);
+        });
+
+        this.afterSetup();
     };
 
     this.toggle = function(status)
@@ -145,7 +183,7 @@ function CardsPicker(options)
 
     this.getOptions = function()
     {
-        return this.getPickerContainer().find('option');
+        return this.getPickerContainer().find('option[data-group]');
     };
 
     this.getFirstOption = function(){
@@ -206,17 +244,17 @@ UserCard.prototype.filters = {
     },
 
     'sixteen': function(card){
-      return card.get('first_token') + " " + card.get('second_token') + " " + card.get('third_token') + " " + card.get('last_token');
+        return card.get('first_token') + " " + card.get('second_token') + " " + card.get('third_token') + " " + card.get('last_token');
     },
 
     'eight': function(card){
-      return card.get('first_token') + card.get('last_token');
+        return card.get('first_token') + card.get('last_token');
     }
 };
 
 UserCard.prototype.getGroup = function()
 {
-  return this.group;
+    return this.group;
 };
 
 UserCard.prototype.get = function(filter)

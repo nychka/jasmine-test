@@ -48,43 +48,11 @@ $.Controller("MedusaController",{
             // if(Hub.dispatcher.getManager('service')) Hub.dispatcher.getManager('service').run();
         });
 
-        Hub.subscribe('cards_picker_prepared', function(){
-            console.warn('refactor prepared');
-            // var picker = Hub.dispatcher.getManager('payment').getCardsPicker().getPickerContainer();
-            // this.getPaymentCard().states['cards_picker_activated'] = new CardsPickerActivated();
-            //
-            // if(window.front_version === 'mobile'){
-            //     picker.selectmenu("refresh", true);
-            // }else{
-            //     picker.trigger("chosen:updated");
-            // }
-        }.bind(self));
-
-        Hub.subscribe('cards_picker_enabled', function(envelope){
-            console.warn('refactor enabled');
-            // var state = 'cards_picker_activated';
-            // var picker = Hub.dispatcher.getManager('payment').getCardsPicker().getPickerContainer();
-            //
-            // this.getPaymentCard().getState(state).setCardNumber(envelope.data.card);
-            // this.getPaymentCard().transitToState(state);
-            //
-            // Hub.dispatcher.getManager('payment').getDecorator().toggleNonDirectPaymentMethods(false);
-            // picker.prop('selectedIndex', 0);
-            //
-            // if(window.front_version === 'mobile'){
-            //     picker.selectmenu('refresh');
-            // }else{
-            //     picker.trigger("chosen:updated");
-            // }
-        }.bind(self));
-
-        Hub.subscribe('cards_picker_disabled', function(){
-            this.getPaymentCard().reset();
-            Hub.dispatcher.getManager('payment').getDecorator().toggleNonDirectPaymentMethods(true);
-        }.bind(self));
-
         Hub.subscribe('cards_picker_changed', function(envelope){
-                this.getPaymentCard().getCurrentState().setOption('card', envelope.data.card, UserCard);
+            var card = envelope.data.card;
+
+            this.getPaymentCard().transitToState('cards_picker_' + card.group);
+            this.getPaymentCard().getCurrentState().setOption('card', card, UserCard);
         }.bind(self));
     },
     getPaymentManager: function(){
@@ -464,14 +432,17 @@ $.Controller("MedusaController",{
     },
     "[name=use_usblp_bonuses] -> change": function(ev){ // USBLP CHECKBOX
         var checked = !$(ev.target.parentElement).hasClass('checked');
+        var cardsPicker = Hub.dispatcher.getManager('payment').getCardsPicker();
+
         if(window['front_version'] == 'mobile'){
             checked = $(ev.target).prop('checked');
         }
         else{
             checked = $('[name=use_usblp_bonuses]:enabled').is(":checked");
         }
-        if(Hub.dispatcher.getManager('payment').getCardsPicker()){
-            Hub.dispatcher.getManager('payment').getCardsPicker().toggle(checked);
+
+        if(cardsPicker){
+            checked ? cardsPicker.state.transitTo('otp') : cardsPicker.state.transitTo('default', 'disabled');
         }
 
         $(ev.target).closest('.js-section-additional').toggleClass('active').siblings().toggleClass('disabled');
@@ -485,8 +456,15 @@ $.Controller("MedusaController",{
         }
     },
     "#usbl_selector -> change": function(ev){ // otp dropdown
-        var card = $(ev.target).find(":selected").data('number');
-        Hub.dispatcher.getManager('payment').getCardsPicker().setActiveCard(card);
+        var option = $(ev.target).find(":selected");
+        var picker = Hub.dispatcher.getManager('payment').getCardsPicker();
+        var paymentCard = Hub.dispatcher.getController('payment').getPaymentCard();
+
+        if(option.data('action') === 'reset'){
+            paymentCard.reset();
+        }else{
+            picker.setActiveCard(option.data('number'));
+        }
     },
     ".markups_js -> change":function(ev){
         var el = $(ev.target);

@@ -58,11 +58,11 @@ function State(component)
     var previous;
 
     var init = function(){
-      this.register('default', function(){
-          this.handle = function(){
-              console.warn('overload me please');
-          }
-      });
+      // this.register('default', function(){
+      //     this.handle = function(){
+      //         console.warn('overload me please');
+      //     }
+      // });
     };
 
     this.getCurrent = function()
@@ -72,10 +72,19 @@ function State(component)
 
     this.transitTo = function(state)
     {
-        previous = current;
-        current = state;
-        this.get(state).handle.call(this, component);
-        component.log('state_changed', { current: current, previous: previous });
+        if(this.canTransitTo(state)){
+            this.get(state).handle.call(this, component);
+            previous = current;
+            current = state;
+            component.log('state_changed', { current: current, previous: previous });
+        }else{
+            component.log('state_not_changed', { current: state });
+        }
+    };
+
+    this.canTransitTo = function(state)
+    {
+        return states.hasOwnProperty(state);
     };
 
     this.get = function(state)

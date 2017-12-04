@@ -230,6 +230,39 @@ describe('CardsPicker', function(){
 
            expect(picker.getOptions().length).toEqual(3);
        });
+
+       it('component transits to otp, when no otp cards available', function(){
+          var settings = Object.create(options);
+
+          settings.cards = [
+              { number: "4363231113", group: 'default'},
+              { number: "4363231114", group: 'default'}
+          ];
+
+          picker = new CardsPicker(settings);
+
+          picker.state.transitTo('otp');
+
+          expect(picker.history.find('state_not_changed').length).toBeTruthy();
+          expect(picker.state.getCurrent().getId()).toEqual('default');
+       });
+
+        it('component transits to default, when no default cards available', function(){
+            var settings = Object.create(options);
+
+            settings.cards = [
+                { number: "4363231113", group: 'otp'},
+                { number: "4363231114", group: 'otp'}
+            ];
+
+            picker = new CardsPicker(settings);
+            picker.state.transitTo('disabled');
+
+            picker.state.transitTo('default');
+
+            expect(picker.history.find('state_not_changed').length).toBeTruthy();
+            expect(picker.state.getCurrent().getId()).toEqual('disabled');
+        });
     });
 
     describe('History plugin', function(){
