@@ -410,18 +410,32 @@ Motion.prototype.getCurrent = function()
 
 Motion.prototype.getNext = function()
 {
-    var current = this.getCurrent()[0];
+    var focused = this.getCurrent()[0];
     var members = this.getMembers();
 
 
-    for(var i = 0, nextIndex = 1; i < members.length - 1; i++, nextIndex++)
+    for(var currentIndex = 0, focusedIndex = -1; currentIndex < members.length; currentIndex++)
     {
-        if(current === members[i] && members[nextIndex]){
-            return $(members[nextIndex]);
+        if(focused === members[currentIndex]) { focusedIndex = currentIndex; continue; }
+
+        var forward = $(members[currentIndex]);
+        var canForwardBeFilled = forward.length && !this.isFilled(forward);
+        var isFurtherThanFocused = focusedIndex >= 0 && currentIndex > focusedIndex;
+
+        if(isFurtherThanFocused && canForwardBeFilled){
+            return forward;
         }
     }
 
     return false;
+};
+
+Motion.prototype.isFilled = function(input)
+{
+    var length = input.val().length;
+    var maxLength = input.prop('maxlength');
+
+    return length === maxLength;
 };
 
 Motion.prototype.setCurrent = function(current)
@@ -436,12 +450,10 @@ Motion.prototype.move = function(input)
 {
     if($(document.activeElement).prop('id') !== input.prop('id')) input.focus();
 
-    var length = input.val().length;
-    var maxLength = input.prop('maxlength');
     var next = this.getNext();
-    console.log(length, maxLength);
+    var isFilled = this.isFilled(input);
 
-    if(length === maxLength && next){
+    if(isFilled && next){
         next.focus();
         console.log('focus');
     }
