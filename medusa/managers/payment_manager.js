@@ -446,11 +446,11 @@ function PaymentManager(settings) {
     this.getSavedCards = function()
     {//Hub.archive.getData().data.bonuses.otp.cards.split(",");
         return  [
-            { number: "4363231112", name: 'user_card', group: 'otp' },
-            { number: "4363231113", name: 'user_card', group: 'otp' },
-            { number: "4363231114", name: 'user_card', group: 'default' },
-            { number: "4363231115", name: 'user_card', group: 'default' },
-            { number: "4363231116", name: 'user_card', group: 'default' }
+            // { number: "4363231112", name: 'user_card', group: 'otp' },
+            // { number: "4363231113", name: 'user_card', group: 'otp' },
+            // { number: "4363231114", name: 'user_card', group: 'default' },
+            // { number: "4363231115", name: 'user_card', group: 'default' },
+            // { number: "4363231116", name: 'user_card', group: 'default' }
         ];
     };
 

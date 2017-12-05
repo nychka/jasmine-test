@@ -378,3 +378,71 @@ function PaymentCard(settings){
         return result[0];
     };
 };
+
+function Motion(component)
+{
+    var self = this;
+    this.component = component;
+    this.context = component.getContext();
+    this.current = null;
+
+    this.getMembers().each(function(i, el){
+      $(el).on('keyup', function(){ self.move($(el)); });
+      $(el).on('focus', function(){ self.setCurrent($(el)); });
+    });
+};
+
+Motion.prototype.getMembers = function()
+{
+    return this.context.wrapper
+        .find('input[tabindex]:visible')
+        .sort(function(a, b){
+            return $(a).prop('tabindex') - $(b).prop('tabindex');
+        });
+};
+
+Motion.prototype.getCurrent = function()
+{
+    if(!this.current || $(document.activeElement).prop('id') !== this.current.prop('id')) this.setCurrent(null);
+
+    return this.current;
+};
+
+Motion.prototype.getNext = function()
+{
+    var current = this.getCurrent()[0];
+    var members = this.getMembers();
+
+
+    for(var i = 0, nextIndex = 1; i < members.length - 1; i++, nextIndex++)
+    {
+        if(current === members[i] && members[nextIndex]){
+            return $(members[nextIndex]);
+        }
+    }
+
+    return false;
+};
+
+Motion.prototype.setCurrent = function(current)
+{
+    var message = current ? current.prop('id') + ' gets focus' : ' loses focus';  console.warn(message);
+
+
+  this.current = current;
+};
+
+Motion.prototype.move = function(input)
+{
+    if($(document.activeElement).prop('id') !== input.prop('id')) input.focus();
+
+    var length = input.val().length;
+    var maxLength = input.prop('maxlength');
+    var next = this.getNext();
+    console.log(length, maxLength);
+
+    if(length === maxLength && next){
+        next.focus();
+        console.log('focus');
+    }
+};

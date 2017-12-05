@@ -98,6 +98,7 @@ $.Controller("MedusaController",{
         if(! canInitialize) return false;
 
         this.payment_card = new PaymentCard();
+        this.card_focus = new Motion(this.payment_card);
 
         if (card_types.momentum) {
             this.payment_card.addCardType({
@@ -497,27 +498,28 @@ $.Controller("MedusaController",{
         if($('.save_card_data .icheckbox_minimal').hasClass('checked')){$(ev.target).val("");}else{$(ev.target).val("1");}
     },
     ".paym_card -> click":function(ev){
-        ev.preventDefault();
-        var el = $(ev.target).parent();
-        el.parent().siblings().removeClass("active");
-        el.parent().addClass("active");
-        $('.card_data input').val('');
-        var card_el = this.element.find(".card_data:visible");
-        var card_data = el.data("card");
-        card_el.find("#card_date_month, #card_date_year").val("XX").prop('type', 'password').focus();
-        var first_four = card_data.pan6.slice(0,4);
-        var last_four = card_data.pan4;
-        card_el.find("#card_number_0").val(first_four).focus();
-        card_el.find("#card_number_3").val(last_four).focus();
-        card_el.find("#card_number_1, #card_number_2").val("XXXX").prop('type', 'password').focus();
-        card_el.find("#card_holder").val("XXXXXXXXXXXXXXXXXXXXXXXX").prop('type', 'password').focus();
-        card_el.find("#card_cvv").val("").focus();
-        this.element.find(".card_data:visible input:not(#card_cvv)").prop('disabled', true);
-        this.element.find("#save_card_id").val(card_data.id);
-        $('.save_card_data').slideUp();
-        $('.save_card_data .icheckbox_minimal').removeClass('checked');
-        $('.save_card_data #savecard').removeAttr('checked');
-        $('.save_card_data #savecard').val("");
+        console.warn(".paym_card -> click");
+        // ev.preventDefault();
+        // var el = $(ev.target).parent();
+        // el.parent().siblings().removeClass("active");
+        // el.parent().addClass("active");
+        // $('.card_data input').val('');
+        // var card_el = this.element.find(".card_data:visible");
+        // var card_data = el.data("card");
+        // card_el.find("#card_date_month, #card_date_year").val("XX").prop('type', 'password').focus();
+        // var first_four = card_data.pan6.slice(0,4);
+        // var last_four = card_data.pan4;
+        // card_el.find("#card_number_0").val(first_four).focus();
+        // card_el.find("#card_number_3").val(last_four).focus();
+        // card_el.find("#card_number_1, #card_number_2").val("XXXX").prop('type', 'password').focus();
+        // card_el.find("#card_holder").val("XXXXXXXXXXXXXXXXXXXXXXXX").prop('type', 'password').focus();
+        // card_el.find("#card_cvv").val("").focus();
+        // this.element.find(".card_data:visible input:not(#card_cvv)").prop('disabled', true);
+        // this.element.find("#save_card_id").val(card_data.id);
+        // $('.save_card_data').slideUp();
+        // $('.save_card_data .icheckbox_minimal').removeClass('checked');
+        // $('.save_card_data #savecard').removeAttr('checked');
+        // $('.save_card_data #savecard').val("");
     },
     "#card_cvv -> focus":function(ev){
         if(!$.trim($(ev.target).val()).length){
@@ -530,23 +532,25 @@ $.Controller("MedusaController",{
         }
     },
     ".other_card -> click":function(ev){
+        console.warn(".other_card -> click");
         ev.preventDefault();
         $(ev.target).parent().siblings().removeClass("active");
         $(ev.target).closest('li').addClass("active");
         if(this.element.find("#save_card_id").val()){
-            this.element.find(".card_data:visible input:not(#card_cvv)").each(function(){$(this).val("").prop('disabled', false).prop('type', 'text').focus();$(this).removeClass("error")});
+            //this.element.find(".card_data:visible input:not(#card_cvv)").each(function(){$(this).val("").prop('disabled', false).prop('type', 'text').focus();$(this).removeClass("error")});
             this.element.find("#save_card_id").val("");
         }
-        this.element.find(".card_data:visible #card_number_0").focus();
+        //this.element.find(".card_data:visible #card_number_0").focus();
         if ($('.active_group_block .my_cards_list li').length < 6) {
             $('.save_card_data').slideDown();
         };
     },
 
     "input[type=text], input[type=tel] -> change": function(ev) {
-        if(window['front_version'] != 'v2'){
-            if(!this.parent.bubbling) this.next_unfilled_input($(ev.target).attr('id'));
-        }
+        // if(window['front_version'] != 'v2'){
+        //     if(!this.parent.bubbling) this.next_unfilled_input($(ev.target).attr('id'));
+        // }
+        console.warn("input[type=text], input[type=tel] -> change");
     },
     ".card_num input -> keyup":function(ev){
         var $target = $(ev.target),
@@ -554,63 +558,69 @@ $.Controller("MedusaController",{
 
         max_length = max_length ? parseInt(max_length) : 4;
 
-        if($target.val().length == max_length){
-            this.parent.next_unfilled_input_container = $('.card_num');
-            this.next_unfilled_input();
-        }
+        // if($target.val().length == max_length){
+        //     this.parent.next_unfilled_input_container = $('.card_num');
+        //     this.next_unfilled_input();
+        // }
+        console.warn(".card_num input -> keyup");
     },
     ".card_num input -> click":function(ev){
-        var $target = $(ev.target);
-        var t_parent = $target.parent();
-        if(window['front_version'] == "mobile") t_parent = t_parent.parent();
-        var t_id = ev.target.id.substr(12,13);
-        if(t_id > 0){
-            for(var i = 0; i < t_id; i++){
-                if(t_parent.find("#card_number_"+i).val().length < 4){
-                    t_parent.find("#card_number_"+i).focus();
-                    break;
-                }
-            }
-        }
-        if(window['front_version'] == 'v2' && window['front_version'] != 'mobile' && $target.val().length > 0)
-            ev.target.select();
-        $target.parents('.card-num-wrapper').removeClass('error');
+        // var $target = $(ev.target);
+        // var t_parent = $target.parent();
+        // if(window['front_version'] == "mobile") t_parent = t_parent.parent();
+        // var t_id = ev.target.id.substr(12,13);
+        // if(t_id > 0){
+        //     for(var i = 0; i < t_id; i++){
+        //         if(t_parent.find("#card_number_"+i).val().length < 4){
+        //             t_parent.find("#card_number_"+i).focus();
+        //             break;
+        //         }
+        //     }
+        // }
+        // if(window['front_version'] == 'v2' && window['front_version'] != 'mobile' && $target.val().length > 0)
+        //     ev.target.select();
+        // $target.parents('.card-num-wrapper').removeClass('error');
+        console.warn(".card_num input -> click");
     },
     ".card_date_js input -> keyup":function(ev){
-        var $target = $(ev.target);
-
-        if (ev.keyCode === 37 || ev.keyCode === 8){
-            $target.val("");
-            ev.preventDefault();
-        }
-
-        if($target.val().length == 2){
-            if(window['front_version'] == 'v2' && ev.target.id == "card_date_year"){//&& window.cur_domain != 'my'
-                ev.preventDefault();
-                setTimeout(function(){$('#card_cvv:enabled').focus()},100);
-            }else{
-                this.parent.next_unfilled_input_container = $('.card_date');
-                this.next_unfilled_input();
-            }
-        }
+        // var $target = $(ev.target);
+        //
+        // if (ev.keyCode === 37 || ev.keyCode === 8){
+        //     $target.val("");
+        //     ev.preventDefault();
+        // }
+        //
+        // if($target.val().length == 2){
+        //     if(window['front_version'] == 'v2' && ev.target.id == "card_date_year"){//&& window.cur_domain != 'my'
+        //         ev.preventDefault();
+        //         setTimeout(function(){$('#card_cvv:enabled').focus()},100);
+        //     }else{
+        //         this.parent.next_unfilled_input_container = $('.card_date');
+        //         this.next_unfilled_input();
+        //     }
+        // }
+        console.warn(".card_date_js input -> keyup");
     },
     ".card_date_js input -> click":function(ev){
-        ev.target.select();
+        //ev.target.select();
+        console.warn(".card_date_js input -> click");
     },
     ".card_cvv_js input -> keyup":function(ev){
-        var $target = $(ev.target);
-        var maxLength = parseInt($target.attr('maxLength'));
-
-        if (ev.keyCode === 37 || ev.keyCode === 8 || ev.keyCode === 46){
-            $target.val("");
-            ev.preventDefault();
-        }
-        if($target.val().length == maxLength){
-            setTimeout(function(){$('#card_holder:enabled').focus()},100);
-        }
+        // var $target = $(ev.target);
+        // var maxLength = parseInt($target.attr('maxLength'));
+        //
+        // if (ev.keyCode === 37 || ev.keyCode === 8 || ev.keyCode === 46){
+        //     $target.val("");
+        //     ev.preventDefault();
+        // }
+        // if($target.val().length == maxLength){
+        //     setTimeout(function(){$('#card_holder:enabled').focus()},100);
+        // }
+        console.warn(".card_cvv_js input -> keyup");
     },
     ".card_cvv_js input -> click":function(ev){
-        ev.target.select();
+        //ev.target.select();
+        console.warn(".card_cvv_js input -> click");
     },
     ".only_latin_specials_js -> keyup":function(ev){
         var el  = $(ev.target)
@@ -863,24 +873,24 @@ $.Controller("MedusaController",{
 
         return activeTab;
     },
-    next_unfilled_input: function(last_id){
-        var unfilled = [], unfl;
-        this.parent.bubbling = true;
-        this.element.find("input:visible:not([readonly])").filter('[type=text],[type=password],[type=tel]').not('.ignore_tab').each(function(){
-            if( $(this).val() === "" || $(this).val().replace(/\s+/, "").replace(/\s+/, "").replace("/", "") === "" ) {
-                unfilled.push($(this));
-            }
-        });
-
-        if(unfilled.length > 0) {
-            unfl = unfilled[0];
-            unfilled = [];
-            this.parent.bubbling = false;
-            if(!last_id || (last_id != unfl.attr('id'))) {
-                setTimeout(function(){unfl.focus()},100);
-            }
-        }
-    },
+    // next_unfilled_input: function(last_id){
+    //     var unfilled = [], unfl;
+    //     this.parent.bubbling = true;
+    //     this.element.find("input:visible:not([readonly])").filter('[type=text],[type=password],[type=tel]').not('.ignore_tab').each(function(){
+    //         if( $(this).val() === "" || $(this).val().replace(/\s+/, "").replace(/\s+/, "").replace("/", "") === "" ) {
+    //             unfilled.push($(this));
+    //         }
+    //     });
+    //
+    //     if(unfilled.length > 0) {
+    //         unfl = unfilled[0];
+    //         unfilled = [];
+    //         this.parent.bubbling = false;
+    //         if(!last_id || (last_id != unfl.attr('id'))) {
+    //             setTimeout(function(){unfl.focus()},100);
+    //         }
+    //     }
+    // },
     setup_magnific_inline: function(){
         window.enable_magnific_inline();
     },
