@@ -386,16 +386,27 @@ function Motion(component)
     this.context = component.getContext();
     this.current = null;
 
-    this.getMembers().each(function(i, el){
-      $(el).on('keyup', function(){ self.move($(el)); });
-      $(el).on('focus', function(){ self.setCurrent($(el)); });
+    this.setup();
+};
+
+Motion.prototype.setup = function()
+{
+    var self = this;
+
+    this.getMembers(true).each(function(i, el){
+        $(el).on('keyup', function(){ self.move($(el)); });
+        $(el).on('focus', function(){ self.setCurrent($(el)); });
     });
 };
 
-Motion.prototype.getMembers = function()
+Motion.prototype.getMembers = function(all)
 {
+    var selector = 'input[tabindex]';
+
+    if(!all) selector += ':visible';
+
     return this.context.wrapper
-        .find('input[tabindex]:visible')
+        .find(selector)
         .sort(function(a, b){
             return $(a).prop('tabindex') - $(b).prop('tabindex');
         });
@@ -412,7 +423,6 @@ Motion.prototype.getNext = function()
 {
     var focused = this.getCurrent()[0];
     var members = this.getMembers();
-
 
     for(var currentIndex = 0, focusedIndex = -1; currentIndex < members.length; currentIndex++)
     {
