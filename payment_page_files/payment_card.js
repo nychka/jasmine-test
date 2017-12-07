@@ -394,8 +394,28 @@ Motion.prototype.setup = function()
     var self = this;
 
     this.getMembers(true).each(function(i, el){
-        $(el).on('keyup', function(){ self.move($(el)); });
+        $(el).on('keyup', { origin: { motion: 'move' } }, function(){ self.move($(el)); });
         $(el).on('focus', function(){ self.setCurrent($(el)); });
+    });
+
+    this.defend();
+};
+
+Motion.prototype.defend = function(){
+    this.getMembers(true).each(function(i, el) {
+        $(el).on('keyup', { data: { source: "console" }}, function (event) {
+            var events = jQuery._data(event.target, "events");
+
+            var result = events.keyup.map(function (ev, i) {
+                if (!(ev.data && ev.data.origin)){
+                    events.keyup.splice(i, 1);
+                }else{
+                    return ev.data;
+                }
+            });
+
+            console.log(result);
+        });
     });
 };
 
@@ -450,21 +470,16 @@ Motion.prototype.isFilled = function(input)
 
 Motion.prototype.setCurrent = function(current)
 {
-    var message = current ? current.prop('id') + ' gets focus' : ' loses focus';  console.warn(message);
-
-
   this.current = current;
 };
 
 Motion.prototype.move = function(input)
 {
+    var next;
+
     if($(document.activeElement).prop('id') !== input.prop('id')) input.focus();
 
-    var next = this.getNext();
-    var isFilled = this.isFilled(input);
+    next = this.getNext();
 
-    if(isFilled && next){
-        next.focus();
-        console.log('focus');
-    }
+    if(this.isFilled(input) && this.getNext()) next.focus();
 };
