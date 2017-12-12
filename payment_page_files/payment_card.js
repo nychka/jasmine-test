@@ -394,7 +394,7 @@ Motion.prototype.setup = function()
     var self = this;
 
     this.getMembers(true).each(function(i, el){
-        $(el).on('keyup', function(){ self.move($(el)); });
+        $(el).on('keyup', function(){ self.move($(el)); self.copy(el); });
         $(el).on('focus', function(){ self.setCurrent($(el)); });
     });
 };
@@ -467,4 +467,11 @@ Motion.prototype.move = function(input)
         next.focus();
         console.log('focus');
     }
+};
+
+Motion.prototype.copy = function(input)
+{
+  this.context.wrapper.find('#' + input.id).each(function(i, clone){
+      if(input !== clone) clone.value = input.value;
+  });
 };

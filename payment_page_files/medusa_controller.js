@@ -553,10 +553,10 @@ $.Controller("MedusaController",{
         console.warn("input[type=text], input[type=tel] -> change");
     },
     ".card_num input -> keyup":function(ev){
-        var $target = $(ev.target),
-            max_length = $target.attr('maxLength');
-
-        max_length = max_length ? parseInt(max_length) : 4;
+        // var $target = $(ev.target),
+        //     max_length = $target.attr('maxLength');
+        //
+        // max_length = max_length ? parseInt(max_length) : 4;
 
         // if($target.val().length == max_length){
         //     this.parent.next_unfilled_input_container = $('.card_num');
@@ -720,9 +720,10 @@ $.Controller("MedusaController",{
     ".currency_select_js -> change":function(ev){
         var el = $(ev.target);
         var value = el.val();
-        $.each(['card_number_0', 'card_number_1', 'card_number_2', 'card_number_3', 'card_date_year', 'card_date_month', 'card_number', 'card_holder'], function(i,id){
-            $('#'+id+':disabled').val($('#'+id+':enabled').val());
-        });
+        // $.each(['card_number_0', 'card_number_1', 'card_number_2', 'card_number_3', 'card_date_year', 'card_date_month', 'card_number', 'card_holder'], function(i,id){
+        //     $('#'+id+':disabled').val($('#'+id+':enabled').val());
+        // });
+        console.warn('deprecated currency change copy input data ');
         Hub.dispatcher.getManager('payment').setActivePaymentSystem(value);
         Hub.dispatcher.getManager('payment').reloadDirectAsService();
         /**
@@ -774,15 +775,16 @@ $.Controller("MedusaController",{
         }
     },
     bind_copy_card_data: function(){
-        $.each(['card_num', 'card_date', 'card_cvv','card_owner'], function(i, container_class) {
-            var input = $('.payment_block_aircompany').find('.' + container_class + ' input[type="text"],input[type="tel"],input[type="password"]');
-            input.removeClass('error');
-            input.not(':disabled').unbind('keyup.card_input');
-            input.not(':disabled').bind('keyup.card_input', function() {
-                var el = $(this), el_name = el.attr('name');
-                input.filter('[name="'+ el_name +'"]:disabled').val(el.val());
-            })
-        });
+        console.warn('deprecated');
+        // $.each(['card_num', 'card_date', 'card_cvv','card_owner'], function(i, container_class) {
+        //     var input = $('.payment_block_aircompany').find('.' + container_class + ' input[type="text"],input[type="tel"],input[type="password"]');
+        //     input.removeClass('error');
+        //     input.not(':disabled').unbind('keyup.card_input');
+        //     input.not(':disabled').bind('keyup.card_input', function() {
+        //         var el = $(this), el_name = el.attr('name');
+        //         input.filter('[name="'+ el_name +'"]:disabled').val(el.val());
+        //     })
+        // });
     },
     "input[name=pay_aircompany] -> change":function(ev){
         var el = $(ev.target);
