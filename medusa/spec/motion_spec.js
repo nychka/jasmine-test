@@ -67,6 +67,25 @@ describe('Motion', function(){
                expect(this.motion.getCurrent()).toBeNull();
            });
        });
+
+       describe('copy', function(){
+          it('has 4 layers - 4 currencies', function(){
+             expect(this.motion.context.wrapper.find('#card_number_0').length).toEqual(4);
+          });
+
+          it('copies to all clones', function(){
+              var first = $(this.motion.context.wrapper.find('#card_number_0')[0]);
+              var second = $(this.motion.context.wrapper.find('#card_number_0')[1]);
+              second.val('');
+              first.val('4111').trigger('keyup');
+
+              expect(second.val()).toEqual('4111');
+
+              second.val('1114').trigger('keyup');
+
+              expect(first.val()).toEqual('1114');
+          });
+       });
     });
 
     describe('Scenarios', function(){

@@ -261,6 +261,7 @@ function PaymentDecorator(manager) {
    - fiilling/clearing card data
    **/
   this.setInterfaceForUsblpUse = function (status) {
+    console.warn('deprecated setInterfaceForUsblpUse');
     var card_el = this.getPaymentSystemBlock(this.manager.getActivePaymentSystem().getId());
     card_el.find('#card_number_2').val('').trigger('blur.usbl');
     card_el.find('#card_date_month').val('').trigger('blur.usbl');
