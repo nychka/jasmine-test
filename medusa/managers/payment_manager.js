@@ -207,6 +207,7 @@ function PaymentManager(settings) {
      * @returns {Number} // current payment system price
      */
     this.getBasePrice = function(except){
+        console.warn('PaymentManager::getBasePrice is deprecated'); return false;
         var paymentSystem = this.getActivePaymentSystem();
         // Default price
         var cost = Hub.priceLog.set('ticket_base_price',paymentSystem.getDefaultTopay(),'-> getDefaultTopay');
@@ -222,6 +223,7 @@ function PaymentManager(settings) {
     };
 
     this.getFullPrice = function(){
+        console.warn('PaymentManager::getFullPrice is deprecated'); return false;
         var paymentSystem = this.getActivePaymentSystem();
         var cost = Hub.priceLog.set('ticket_full_price',this.getBasePrice(),'-> getBasePrice');
         // + other additional services
@@ -236,6 +238,7 @@ function PaymentManager(settings) {
     };
 
     this.reloadInfoBlocks = function () {
+        console.warn('PaymentManager::reloadInfoBlocks is deprecated'); return false;
         var paymentSystem = this.getActivePaymentSystem(),
             commission = paymentSystem.getDefaultCommission(),
             tariff = paymentSystem.getDefaultTariff(),
@@ -303,6 +306,8 @@ function PaymentManager(settings) {
     };
 
     this.reloadPrices = function() {
+        console.warn('PaymentManager::reloadPrices is deprecated');
+        return false;
         if (!this.hasPaymentSystems()) return false;
 
         var paymentSystem = this.getActivePaymentSystem(),

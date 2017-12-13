@@ -744,7 +744,7 @@ $.Controller("MedusaController",{
         }
         this.reload_direct_as_service(pay_currency,margin);
         this.s7_block_prices(pay_currency, Hub.dispatcher.getManager('payment').getActivePaymentSystem().getId());
-        this.cost.reloadPrice();
+        Hub.dispatcher.getManager('payment').reloadPrices();
     },
 
     s7_block_prices: function(currency, pay_system_id){
